@@ -1,7 +1,13 @@
 site_name: Trabajo de maestría en Ingeniería Analítica
 site_author: Kevin Hidalgo
+repo_url: https://github.com/KevinHidalgoDS/tfm-analitica
+site_url: https://github.com/KevinHidalgoDS/tfm-analitica
+copyright: Kevin Hidalgo
 
 theme:
+#  name: dracula
+#  logo: assets/img/dracula.png
+#  favicon: assets/favicon.ico
   name: material
   palette:
     # Modo claro
@@ -13,7 +19,7 @@ theme:
     - scheme: slate
       toggle:
         icon: material/brightness-4
-        name: Cambiar a modo claro
+        name: Cambiar a modo Dracula
   features:
     - navigation.tabs
     - navigation.sections
@@ -34,6 +40,7 @@ plugins:
 
 markdown_extensions:
   - admonition
+  - tables
   - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
