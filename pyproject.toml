@@ -1,0 +1,164 @@
+[project]
+name = "tfm-analitica"
+version = "0.1.0"
+authors = [
+  { name="Kevin Hidalgo", email="kfhidalgoh@unal.edu.co" },
+]
+maintainers = [
+  { name="Kevin Hidalgo", email="kfhidalgoh@unal.edu.co" },
+]
+description = "Descripción del proyecto"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    # Agrega aquí tus dependencias de producción (ej. pandas, scikit-learn, etc.)
+    "pandas"
+]
+
+[dependency-groups]
+dev = [
+    "pip-tools",
+    "black",
+    "coverage",
+    "flake8",
+    "mkdocs",
+    "mkdocs-jupyter",
+    "mkdocs-material",
+    "mkdocstrings-python",
+    "mypy",
+    "pydocstyle",
+    "pylint",
+    "pyrefly",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "taskipy",
+    "unittest-xml-reporting",
+]
+
+[tool.black]
+line-length = 100
+include = '^(common|tests)/'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+src_paths = ["common", "tests"]
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.pylint.messages_control]
+disable = [
+    "I1101"
+]
+
+[tool.pylint.main]
+ignore-patterns = [
+    "^no_.*\\.py$"
+]
+
+[tool.pydocstyle]
+convention = "google"
+match = "(?!no_).*\\.py"
+
+# pip install taskipy
+[tool.taskipy.tasks]
+format = "python -m ruff check common tests --fix && python -m black ."
+pylint = "python -X utf8 -m pylint common/ tests/ > pylint.log"
+flake8 = "python -m flake8 . > flake8.log"
+ruff = "python -m ruff check common tests --output-format=full > ruff.log"
+pydocstyle = "python -m pydocstyle common/ tests/ > pydocstyle.log"
+mypy = "python -m mypy common/ tests/ > mypy.log"
+pyrefly = "pyrefly check common tests > pyrefly.log"
+test = "python -m pytest > pytest.log"
+test-cov = "python -X utf8 -m pytest --cov=common --cov-report=term-missing > pytestcov.log"
+lint = "task pylint && task ruff && task pydocstyle && task mypy && task pyrefly"
+
+# --- Comandos agregados para pip-tools ---
+pip-compile = "pip-compile pyproject.toml --output-file=requirements.txt"  # Generar requirements.txt (Solo Producción)
+pip-compile-dev = "pip-compile pyproject.toml --group=dev --output-file=requirements-dev.txt"  # Generar requirements-dev.txt (Solo Desarrollo)
+pip-sync = "pip-sync requirements.txt requirements-dev.txt"  # Sincronizar el Entorno Virtual
+
+all = "task format && task lint && task test-cov"
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+ignore_missing_imports = true
+files = ["common", "tests"]
+exclude = "(^|/|\\\\)no_[^/\\\\]*\\.py$"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-ra -q"
+
+[tool.coverage.run]
+source = ["common"]
+omit = ["tests/*", "**/__init__.py"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pyrefly]
+python-version = "3.14"
+
+includes = [
+    "common",
+    "tests"
+]
+
+excludes = [
+    ".venv",
+    ".pytest_cache",
+    "__pycache__",
+    ".git",
+    "**/no_*.py"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+src = ["common", "tests"]
+
+fix = true
+show-fixes = true
+
+exclude = [
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__",
+    "**/no_*.py"
+]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle
+    "F",    # Pyflakes
+    "W",    # Warnings
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # bugbear
+    "SIM",  # simplificación de código
+    "C4",   # comprehensions
+    "N",    # naming
+    "PL",   # reglas de pylint
+    "RUF"   # reglas propias de Ruff
+]
+
+ignore = [
+    "E501"  # Black controla la longitud de línea
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+docstring-code-format = true
