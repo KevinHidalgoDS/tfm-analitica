@@ -1,49 +1,47 @@
-# 🧠 Trabajo de Maestría en Ingeniería Analítica
+# 🚀 Framework Híbrido para la Detección de Datos Atípicos (Microservicios & MLOps)
 
 [![Python Version](https://img.shields.io/badge/python-3.14%2B-blue.svg)](https://www.python.org/)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Linter: Flake8 & SonarQube](https://img.shields.io/badge/linter-flake8_|_sonarqube-brightgreen.svg)](https://flake8.pycqa.org/)
-[![Data Versioning: DVC](https://img.shields.io/badge/data-DVC-orange.svg)](https://dvc.org/)
+[![Cloud: Azure](https://img.shields.io/badge/cloud-Azure-0078D4.svg)](https://azure.microsoft.com/)
+[![Architecture: Microservices](https://img.shields.io/badge/architecture-Microservices_|_K8s-326ce5.svg)](https://kubernetes.io/)
+[![Linter: SonarQube](https://img.shields.io/badge/linter-SonarQube-brightgreen.svg)](https://www.sonarqube.org/)
 
 ## 📖 Descripción del Proyecto
 
-Este repositorio establece la estructura estándar y las mejores prácticas para los proyectos,
-prácticas y talleres del curso **Optimización e Inteligencia Artificial** del Departamento de
-Ciencias de la Computación y la Decisión de la **Universidad Nacional de Colombia, Sede Medellín**.
+Este repositorio contiene la implementación del trabajo de grado en modalidad de profundización
+para la **Maestría en Ingeniería - Analítica** de la **Universidad Nacional de Colombia, Sede
+Medellín**.
 
-El propósito de este repositorio es facilitar la implementación, experimentación y evaluación de
-métodos de optimización clásica y metaheurística. Abarca desde algoritmos basados en gradiente
-(gradiente descendente estocástico, Newton, QuasiNewton) hasta enfoques metaheurísticos (Algoritmos
-Genéticos, PSO, Colonia de Hormigas). Estos métodos se aplican directamente a la sintonización de
-hiperparámetros en modelos de Machine Learning, incluyendo Random Forest, Redes Neuronales, Deep
-Learning y enfoques no supervisados.
+El proyecto propone un framework híbrido para la detección de datos atípicos (outliers), integrando
+la interpretabilidad de los métodos estadísticos clásicos (z-score robusto, rango intercuartílico,
+distancia de Mahalanobis) con la capacidad de captura de patrones complejos de algoritmos de
+Machine Learning (Isolation Forest, Local Outlier Factor) y Deep Learning (Autoencoders).
+Toda la solución está orquestada sobre una arquitectura de microservicios escalable en la nube,
+facilitando el monitoreo continuo de la calidad de los datos en entornos organizacionales.
 
 ---
 
 ## 📂 Estructura de Directorios
 
-Para mantener un ciclo de vida analítico organizado, reproducible y listo para integrarse en
-pipelines de datos, se recomienda la siguiente jerarquía de archivos:
+La arquitectura de software desacopla los componentes de ingesta, procesamiento, modelado y
+visualización en servicios independientes.
 
 ```text
-├── data/
-│   ├── raw/             # Datos originales e inmutables.
-│   ├── processed/       # Datos limpios y listos para modelado.
-│   └── external/        # Datos de terceros o fuentes externas.
-├── docs/                # Documentación del proyecto (Sphinx/MkDocs), guías y referencias.
-├── models/              # Modelos entrenados y serializados (ej. .pkl, .h5).
-├── notebooks/           # Jupyter Notebooks para exploración y visualización (nombrados secuencialmente).
-├── src/                 # Código fuente principal del proyecto.
-│   ├── __init__.py
-│   ├── data/            # Scripts para ingesta y transformación de datos.
-│   ├── features/        # Scripts de feature engineering.
-│   ├── models/          # Scripts para entrenamiento, optimización y predicción.
-│   └── visualization/   # Generación de gráficos y pósteres digitales.
-├── tests/               # Pruebas unitarias y de integración.
-├── .gitignore           # Archivos ignorados por Git.
-├── dvc.yaml             # Pipeline de versionado de datos y modelos.
-├── environment.yml      # Dependencias para Conda.
-├── requirements.txt     # Dependencias para pip.
+├── .github/workflows/   # CI/CD pipelines (GitHub Actions).
+├── data/                # DVC trackeado (raw, processed) - respaldado en Azure Blob Storage.
+├── docs/                # Documentación del proyecto (MkDocs/Swagger).
+├── infrastructure/      # Plantillas de IaC (Terraform) y manifiestos de Kubernetes (AKS).
+├── services/            # Código fuente de cada microservicio independiente.
+│   ├── ingestion/       # Validación de esquemas y encolamiento.
+│   ├── preprocessing/   # Imputación, estandarización y partición.
+│   ├── stat_detector/   # [Capa 1] Detección estadística (SciPy, statsmodels).
+│   ├── ml_detector/     # [Capa 2] Detección ML/DL (scikit-learn, PyOD, TensorFlow/PyTorch).
+│   ├── ensemble/        # Ensamblado de puntajes (promedio ponderado o metamodelo supervisado).
+│   └── api_gateway/     # Exposición de resultados vía FastAPI.
+├── dashboard/           # Interfaz de usuario (Streamlit / Plotly Dash).
+├── tests/               # Pruebas unitarias, de integración y de carga (Locust/JMeter).
+├── docker-compose.yml   # Orquestación local para desarrollo.
+├── .gitignore
+├── dvc.yaml             # Pipeline de versionado de datos.
 └── README.md            # Este archivo.
 ```
 
@@ -51,163 +49,119 @@ pipelines de datos, se recomienda la siguiente jerarquía de archivos:
 
 ## ⚙️ Requisitos y Dependencias
 
-Para las sesiones prácticas y el desarrollo general, se recomienda el uso de **Anaconda** para la
-gestión de entornos virtuales o **Google Colab** para la ejecución en la nube.
+El framework requiere un ecosistema de herramientas distribuido:
 
-El proyecto gestiona sus dependencias de la siguiente forma:
-
-| Herramienta | Archivo            | Propósito principal                                                                              |
-| :---------- | :----------------- | :----------------------------------------------------------------------------------------------- |
-| **Conda**   | `environment.yml`  | Ideal para resolver dependencias complejas en ciencia de datos (ej. librerías con binarios C++). |
-| **Pip**     | `requirements.txt` | Instalación estándar de paquetes de Python en contenedores o entornos ligeros.                   |
-
-**Librerías principales requeridas:**
-
-- `numpy`, `pandas`, `scipy` (Manipulación matemática y de datos).
-- `scikit-learn`, `tensorflow` / `pytorch` (Implementación de Random Forest y Redes Neuronales).
-- `matplotlib`, `seaborn` (Visualización de convergencia).
+| Componente | Tecnologías | Propósito |
+| :--- | :--- | :--- |
+| **Lenguaje y Analítica** | `Python 3.x`, `pandas`, `scikit-learn`, `PyOD`, `TensorFlow` / `PyTorch` | Implementación de algoritmos de detección estadística, ML y DL. |
+| **Contenedores y Orquestación** | `Docker`, `Kubernetes` | Empaquetado y escalamiento horizontal e independiente de cada microservicio. |
+| **Infraestructura Cloud** | `Azure` (AKS, Blob Storage, Azure Functions) | Cómputo escalable y almacenamiento. *(El diseño es portable a AWS o GCP).* |
+| **Mensajería** | `Apache Kafka` | Comunicación asíncrona y procesamiento de flujos (streaming) entre servicios. |
+| **Persistencia** | `PostgreSQL` | Almacenamiento de metadatos y resultados estructurados. |
+| **Exposición y UI** | `FastAPI`, `Streamlit` / `Plotly Dash` | Endpoints REST y dashboard de explicabilidad. |
 
 ---
 
 ## 🚀 Instalación y Configuración
 
-Sigue estos pasos para replicar el entorno de desarrollo de manera consistente. Es imperativo tener
-el entorno debidamente configurado antes de iniciar las ejecuciones prácticas.
-
-**1. Clonar el repositorio:**
+**1. Clonar el repositorio y configurar versionado de datos:**
 
 ```bash
-git clone https://github.com/KevinHidalgoDS/tfm-analitica.git
-cd tfm-analitica
+git clone https://github.com/KevinHidalgo/tesis-outliers-framework.git
+cd tesis-outliers-framework
+dvc pull  # Descarga los datasets desde el Blob Storage
 ```
 
-**2. Crear y activar el entorno virtual (Recomendado: Anaconda):**
+**2. Despliegue Local (Entorno de Desarrollo):** Para pruebas locales, levanta todos los
+microservicios, bases de datos y el broker de Kafka utilizando Docker Compose:
 
 ```bash
-conda env create -f environment.yml
-conda activate optia_env
+docker-compose up --build -d
 ```
 
-**3. (Alternativa) Instalación vía pip:**
+**3. Despliegue en la Nube (Producción en Kubernetes):** Aplica los manifiestos sobre tu clúster
+(ej. Azure Kubernetes Service):
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # En Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+kubectl apply -f infrastructure/k8s/
 ```
 
 ---
 
 ## 💻 Uso y Ejecución
 
-El código está modularizado para separar las pruebas interactivas de la ejecución en lotes.
+El flujo de trabajo se basa en eventos.
 
-- **Exploración:** Utiliza la carpeta `notebooks/` para experimentación inicial o al ejecutar
-  prácticas sincrónicas en **Google Colab**.
-- **Entrenamiento:** Para correr optimizaciones completas y simulaciones robustas (como
-  simulaciones de Monte Carlo o búsquedas exhaustivas en grilla), ejecuta los módulos directamente
-  desde la terminal:
+1. **Ingesta:** Envía un lote de datos o un stream JSON al endpoint del microservicio de ingesta:
+   ```bash
+   curl -X POST "http://localhost:8000/api/v1/ingest" -H "Content-Type: application/json" -d @data_payload.json
+   ```
+2. **Procesamiento y Detección:** Kafka orquesta el paso de los datos por los microservicios de
+   preprocesamiento, `stat_detector` y `ml_detector` de forma asíncrona.
+3. **Monitoreo y Explicabilidad (Dashboard):** Accede a `http://localhost:8501` para abrir el
+   dashboard. Allí podrás visualizar el puntaje de anomalía por observación, métricas agregadas
+   (AUC-ROC, AUC-PR) y la contribución de cada variable mediante SHAP o desviación estandarizada.
 
-```bash
-# Ejemplo: Optimización de Random Forest (Práctica 1)
-python src/models/train_rf_optimization.py --method grid_search
-
-# Ejemplo: Optimización de Redes Neuronales (Práctica 2)
-python src/models/train_nn_optimization.py --method gradient_descent
-```
 
 ---
 
 ## 📏 Estándares de Código
 
-La legibilidad y el "clean-code" son fundamentales, especialmente al realizar tareas de refactoring
-algorítmico o al orquestar modelos analíticos para entornos productivos.
+Para garantizar la mantenibilidad y calidad en el despliegue de microservicios:
 
-1. **Estilo base:** Todo el código en Python debe seguir el estándar **PEP 8**.
-2. **Formateadores:** Se debe utilizar **Black** (longitud de línea de 88 caracteres) para unificar
-   el estilo de forma automática.
-3. **Linters:** Se emplea **Flake8** para identificar violaciones de estilo. En integraciones más
-   avanzadas y despliegues, es altamente recomendado integrar **SonarQube** en el flujo local para
-   detectar vulnerabilidades, asegurar una correcta parametrización del linter y evitar errores de
-   _backtracking_ al optimizar expresiones regulares complejas dentro de funciones de parseo.
-4. **Docstrings:** Documentar clases y funciones utilizando el formato de _NumPy_ o _Google_.
-
-**Ejemplo de formato de función:**
-
-```python
-def optimize_hyperparameters(model, param_grid: dict) -> dict:
-    """
-    Optimiza los hiperparámetros del modelo usando búsqueda en grilla.
-
-    Args:
-        model: Estimador base de machine learning.
-        param_grid (dict): Diccionario con los parámetros a evaluar.
-
-    Returns:
-        dict: Mejores hiperparámetros encontrados.
-    """
-    pass
-```
+- **Estilo y Linting:** Uso estricto de **Black** y **Flake8**.
+- **Análisis Estático (SonarQube):** Integrado en el pipeline local y CI/CD para detectar code
+  smells, asegurar correcta parametrización de linters y optimizar funciones complejas de parseo o
+  expresiones regulares (evitando _backtracking_).
+- **Documentación Autónoma:** Todos los endpoints construidos con **FastAPI** están
+  autodocumentados mediante **OpenAPI/Swagger**.
+- **Documentación del Proyecto (MkDocs):** Al compilar el sitio estático (ej. `mkdocs serve`),
+  asegúrate de resolver todos los _warnings_ en consola (como etiquetas HTML sin cerrar o
+  referencias a enlaces duplicados) para mantener un _build_ limpio.
 
 ---
 
 ## 📦 Versionado de Datos y Modelos
 
-Nunca incluyas datasets grandes (`.csv`, `.parquet`) ni artefactos de modelos (`.h5`, `.pkl`)
-directamente en Git.
-
-- **DVC (Data Version Control):** Utiliza DVC para rastrear cambios en los datos. Los archivos
-  `.dvc` se añaden a Git, mientras que los datos reales se almacenan en un _remote storage_ (como
-  un blob storage de nube empresarial, ej. Azure Blob Storage administrado con identidades locales
-  para desarrollo).
-- **Git LFS (Large File Storage):** Alternativa para versionar binarios grandes directamente
-  vinculados al repositorio.
+- **Datasets y Artefactos:** Los modelos serializados y los conjuntos de datos masivos se gestionan
+  exclusivamente con **DVC (Data Version Control)** y se almacenan remotamente (ej. Azure Blob
+  Storage o Amazon S3). No realizar commits de archivos grandes a Git.
+- **Trazabilidad:** Cada ejecución de análisis genera un identificador único (Run ID) para auditar
+  el flujo desde la ingesta hasta el ensamblado.
 
 ---
 
 ## 🧪 Testing y Validación
 
-La validación es crítica para asegurar que las funciones matemáticas (ej. derivadas del gradiente)
-converjan correctamente.
+La arquitectura requiere validación algorítmica y estructural:
 
-- Estructura las pruebas dentro de la carpeta `tests/`.
-- Utiliza **Pytest** para la ejecución de pruebas unitarias.
+1. **Pruebas de Modelos:** `pytest` para evaluar las métricas de precisión, exhaustividad y
+   F1-score del framework híbrido contra datasets de referencia (ej. repositorio ODDS).
+2. **Pruebas de Carga y Rendimiento:** Utiliza **Locust** o **Apache JMeter** para inyectar
+   volúmenes crecientes de datos al API y medir la latencia y el _throughput_ del sistema. [cite:
+   5]
 
 ```bash
-# Ejecutar todas las pruebas
-pytest tests/
+# Ejecutar suite de pruebas de carga
+locust -f tests/load/locustfile.py --host=http://localhost:8000
 ```
 
 ---
 
-## 📚 Documentación
+## 🤝 Contribuciones e Integración Continua
 
-- Mantén el `README.md` actualizado frente a nuevos requerimientos del proyecto.
-- Para el **Proyecto de Clase**, la entrega requiere documentar la implementación en Python,
-  generar un póster digital y preparar una presentación final. [cite: 1] Los recursos visuales para
-  esto deben almacenarse en la carpeta `docs/` o `src/visualization/`.
-- Comenta de manera justificada las decisiones complejas en el código (ej. por qué se eligió un
-  hiperparámetro o se modificó el "learning rate" en un método quasi-Newton).
-
----
-
-## 🤝 Contribuciones
-
-Para mantener la integridad del código al trabajar en equipo:
-
-1. Crea una rama para tu feature: `git checkout -b feature/algoritmo-genetico`
-2. Realiza commits descriptivos y atómicos.
-3. Asegúrate de que el código pase el linter localmente antes de subir los cambios
-   (`black . && flake8 .`).
-4. Abre un Pull Request (PR) y solicita revisión de al menos un compañero antes del merge.
+- Las contribuciones deben seguir el flujo de Git estándar.
+- El repositorio incluye pipelines de **GitHub Actions** que ejecutan automáticamente la
+  integración (pruebas de `pytest`) y el despliegue continuo (CI/CD) de los contenedores Docker
+  hacia los registros de imágenes.
 
 ---
 
 ## 📄 Licencia y Atribuciones
 
-Este material está estructurado para fines académicos de la **Universidad Nacional de Colombia,
-Sede Medellín**.
+**Autor:** Kevin Ferney Hidalgo Higuita **Institución:** Universidad Nacional de Colombia, Sede
+Medellín. **Licencia:** MIT License
 
-**Licencia sugerida para el código:** MIT License (permite uso, modificación y distribución). Por
-favor, asegúrate de referenciar adecuadamente la literatura o los fragmentos de código reutilizados
-en tus módulos u optimizadores.
+Este framework fue diseñado para facilitar el cierre de la brecha entre la investigación
+estadística algorítmica y la ingeniería de sistemas de datos modernos en organizaciones
+productivas.

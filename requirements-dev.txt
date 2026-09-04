@@ -27,3 +27,4 @@ mkdocs
 mkdocs-material
 mkdocstrings-python
 mkdocs-jupyter
+mkdocs-dracula-theme

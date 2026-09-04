@@ -25,6 +25,7 @@ dev = [
     "mkdocs-jupyter",
     "mkdocs-material",
     "mkdocstrings-python",
+    "mkdocs-dracula-theme",
     "mypy",
     "pydocstyle",
     "pylint",
