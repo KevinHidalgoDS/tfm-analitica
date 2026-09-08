@@ -226,7 +226,6 @@ nav:
       - Objetivos: preliminares/05_objetivos.md
       - Metodologías: preliminares/06_metodologia.md
       - Resultados esperados: preliminares/07_resultados_esperados.md
-  - Referencia de MkDocs: api_referencia.md
 
 # nav:
 #   - Inicio: index.md
