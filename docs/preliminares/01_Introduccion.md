@@ -1,3 +1,26 @@
+---
+title: Introducción
+author: "Kevin Ferney Hidalgo Higuita"
+date: "8 de Septiembre de 2026"
+institute: "Universidad Nacional de Colombia, Sede Medellín"
+description: "None."
+# --- Configuraciones para Pandoc (PDF) ---
+lang: es-CO
+bibliography: referencias.bib
+csl: ieee.csl
+# Formato visual del PDF (LaTeX)
+geometry: 
+  - top=2.5cm
+  - bottom=2.5cm
+  - left=3cm
+  - right=2.5cm
+fontsize: 12pt
+linestretch: 1.15
+papersize: letter
+toc: true
+toc-depth: 2
+---
+
 # Introducción
 
 La transformación digital de las organizaciones ha producido un incremento sostenido en el volumen,

@@ -1,65 +1,270 @@
-site_name: Framework Híbrido para la Detección de Datos Atípicos (Microservicios & MLOps)
+# =============================================================================
+# BLOQUE 1: METADATOS INSTITUCIONALES Y DEL PROYECTO DE TESIS
+# =============================================================================
+site_name: Framework Híbrido para la Detección de Datos Atípicos
+site_description: "Tesis de Maestría en Ingeniería - Analítica: Detección de anomalías con microservicios y MLOps"
 site_author: Kevin Hidalgo
+site_url: "https://kevinhidalgods.github.io/tfm-analitica/"
+copyright: "Copyright &copy; 2026 Kevin Hidalgo &bull; Universidad Nacional de Colombia - Sede Medellín"
+
+# Enlace al repositorio (crea el botón directo en la cabecera)
+repo_name: KevinHidalgoDS/tfm-analitica
+repo_url: https://github.com/KevinHidalgoDS/tfm-analitica
+edit_uri: "blob/main/docs/"
+
+# =============================================================================
+# BLOQUE 2: CONFIGURACIÓN DEL TEMA
+# =============================================================================
 
 theme:
 #  name: dracula
 #  logo: img/dracula.png
 #  favicon: img/favicon.ico
   name: material
+  language: es
+  # Logotipos e isotipos institucionales
+  # logo: img/unal_logo.png           # (Opcional: ubicar logo en docs/img/)
+  # favicon: img/favicon.ico
+
+  # Tipografía optimizada para lectura técnica y fórmulas matemáticas
+  font:
+    text: Roboto
+    code: JetBrains Mono
+
+  # Esquemas de color adaptativos (Claro / Oscuro)
   palette:
-    # Modo claro
+    # Modo claro (Default para lectura académica)
     - scheme: default
+      primary: teal                 # Tono sobrio de ingeniería
+      accent: deep orange
       toggle:
         icon: material/brightness-7
-        name: Cambiar a modo oscuro
-    # Modo oscuro
+        name: "Cambiar a modo oscuro"
+
+    # Modo oscuro (Lectura nocturna / código)
     - scheme: slate
+      primary: teal
+      accent: deep orange
       toggle:
         icon: material/brightness-4
         name: Cambiar a modo claro
+
+  # Capacidades de navegación y lectura para documentos extensos
   features:
-    - navigation.tabs
-    - navigation.sections
-    - search.suggest
-    - search.highlight
+    # Navegación SPA y fluidez
+    - navigation.instant           # Carga instantánea estilo SPA sin recargar toda la página
+    - navigation.tracking          # Actualiza la URL según el encabezado visible
+    - navigation.tabs              # Pestañas en la barra superior (capítulos principales)
+    - navigation.tabs.sticky       # Mantiene las pestañas visibles al hacer scroll
+    - navigation.sections          # Agrupación visual de secciones en la barra lateral
+    - navigation.indexes           # Permite que las carpetas tengan su propia página resumen
+    - navigation.top               # Botón flotante para regresar al inicio de la página
+    - navigation.path              # Migas de pan (Breadcrumbs) para orientar al lector
+
+    # Herramientas de búsqueda y lectura de código
+    - search.suggest               # Autocompletado de búsqueda en tiempo real
+    - search.highlight             # Resaltado de términos coincidentes en el texto
+    - search.share                 # Permite compartir URLs con parámetros de búsqueda
+    - content.code.copy            # Botón para copiar bloques de código con un clic
+    - content.code.annotate        # Permite añadir explicaciones flotantes paso a paso en el código
+    - content.tooltips             # Tooltips enriquecidos en referencias y enlaces
+
+# =============================================================================
+# BLOQUE 3: PLUGINS PARA CIENCIA DE DATOS, BIBLIOGRAFÍA Y CÓDIGO
+# =============================================================================
 
 plugins:
-  - search
+  # Motor de búsqueda indexado en español
+  - search:
+      lang: es
+
+  # Extracción automática de documentación desde docstrings de Python
   - mkdocstrings:
       handlers:
         python:
-          paths: [.] # src Directorio donde reside tu código fuente Python
+          paths: #[.] # src Directorio donde reside tu código fuente Python
+            - .                     # Raíz del proyecto
+            - src                   # Módulos comunes / compartidos
+            - services              # Código fuente de los microservicios
           options:
-            docstring_style: google # Compatible con formato Google o NumPy
-            show_root_heading: true
-            show_source: true
+            docstring_style: google # Compatible con formato Google Docstrings
+            members_order: source   # Ordena métodos según aparecen en el código fuente
+            show_root_heading: true # Muestra el nombre del módulo como título principal
+            show_source: true       # Muestra el código fuente
+            show_bases: true        # Muestra las clases base
+            show_if_no_docstring: false # Muestra las clases si no tienen docstring
+            separate_signature: true # Muestra la firma separada
+            merge_init_into_class: true # Fusiona el método __init__ con la clase
+            show_signature_annotations: true # Muestra las anotaciones de firma
             # show_attributes: false # <-- Oculta todas las variables y constantes
             filters:
               - "!^_[^_]"             # (Por defecto) Oculta variables privadas con un solo guion bajo
               - "!^__[a-zA-Z0-9_]+__$" # Oculta todas las variables dunder (__version__, __authors__, etc.)
-  - mkdocs-jupyter
+
+  # Renderizado de cuadernos interactivos (Jupyter Notebooks)
+  - mkdocs-jupyter:
+      include_source: true          # Muestra el código de las celdas
+      ignore_h1_titles: true        # Evita colisión de títulos con la cabecera de MkDocs
+      execute: false                # Evita re-ejecutar notebooks pesados durante el build
+
+  # Gestión de referencias y citas académicas mediante BibTeX y CSL
+  - bibtex:
+      bib_file: "docs/referencias.bib" # Ruta al archivo .bib de Scopus/IEEE/Zotero
+      csl_file: "docs/ieee.csl"                # Estilo de citación formal IEEE
+      cite_inline: true                        # Habilita citas en el texto tipo [@clave]
+
+# En el texto redactas: ...según los estudios sobre árboles de aislamiento [@liu2008isolation]... y
+# al final de la página colocas \bibliography o ## Referencias para que inyecte la lista
+# formateada automáticamente.
+
+  # Soporte para Generación de la Tesis en PDF (Requiere GTK3 / Pango en Windows para WeasyPrint)
+  # - with-pdf:
+  #     author: "Kevin Hidalgo"
+  #     copyright: "Universidad Nacional de Colombia - Sede Medellín"
+  #     cover_title: "Framework Híbrido para la Detección de Datos Atípicos"
+  #     cover_subtitle: "Tesis de Maestría en Ingeniería - Analítica"
+  #     toc_title: "Tabla de Contenido"
+  #     output_path: "tesis_kevin_hidalgo.pdf"
+
+  # Soporte para galería de imágenes con lightbox (zoom y navegación)
+  - glightbox
+
+  # Trazabilidad de Versiones
+  - git-revision-date-localized:
+      locale: es
+      type: timeago # o 'iso_date'
+
+# =============================================================================
+# BLOQUE 4: EXTENSIONES MARKDOWN PARA ESCRITURA CIENTÍFICA Y TÉCNICA
+# =============================================================================
 
 markdown_extensions:
+  # 1. Notificaciones, Teoremas, Definiciones y Notas Metodológicas
   - admonition
-  - pymdownx.details
+  - pymdownx.details            # Bloques colapsables (??? note "Ver demostración")
+  # 2. Tablas y Atributos de formato
+  - tables
+  - attr_list                   # Clases y estilos a imágenes/tablas ({: width="80%" .center})
+  - md_in_html                  # Permite Markdown dentro de etiquetas HTML personalizadas
+  - def_list                    # Listas de definición (ideal para glosarios y terminología)
+  - abbr                        # Acrónimos flotantes (MLOps, IQR, LOF, AUC-ROC, etc.)
+
+  # 3. Índice de contenidos y Anclas
+  - toc:
+      permalink: true           # Enlaces directos a cada sección (§)
+      toc_depth: 3              # Profundidad de encabezados analizados
+
+  # 4. Resaltado de sintaxis en código fuente
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
+  - pymdownx.inlinehilite        # Resaltado para código incrustado en párrafos
+
+  # 5. Diagramas de arquitectura y Pestañas de código
   - pymdownx.superfences:
       custom_fences:
-        - name: mermaid
+        - name: mermaid  # Renderizado de diagramas de secuencia, C4 y flujos Kafka
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  # Pestañas para código múltiple (ej: Python / Bash)
+  - pymdownx.tabbed:
+      alternate_style: true  # Pestañas elegantes (ej: Python / Docker / cURL)
+
+  # 6. Ecuaciones matemáticas en LaTeX (Z-score, Mahalanobis, Funciones de pérdida)
   - pymdownx.arithmatex:
       generic: true
 
+  # 7. Notas al pie académicas y listas de tareas
+  - footnotes                   # Notas al pie de página ([^1])
+  - pymdownx.tasklist:
+      custom_checkbox: true     # Listas de chequeo para control de fases y experimentos
+
+# =============================================================================
+# BLOQUE 5: SCRIPTS Y ESTILOS EXTERNOS (MathJax v3)
+# =============================================================================
+
 extra_javascript:
   - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  # polyfill.io ELIMINADO por motivos de seguridad
+  # - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# Hoja de estilos complementaria para personalización institucional
+# extra_css:
+#   - stylesheets/extra.css       # (Opcional: ajustes tipográficos, interlineado de tesis)
+
+# =============================================================================
+# BLOQUE 6: INFORMACIÓN DE CONTACTO SOCIAL / REDES
+# =============================================================================
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/KevinHidalgoDS
+      name: GitHub
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/kevin-ferney-hidalgo-higuita-752ab5162/
+      name: LinkedIn
+    - icon: fontawesome/solid/graduation-cap
+      link: https://unal.edu.co/
+      name: Universidad Nacional de Colombia
+
+# =============================================================================
+# BLOQUE 7: ESTRUCTURA DE NAVEGACIÓN CAPITULAR (ESTÁNDAR TESIS DE MAESTRÍA)
+# =============================================================================
 
 nav:
   - Inicio: index.md
-  - Introducción: 01_Introduccion.md
+  - Preliminares:
+      - Introducción: preliminares/01_Introduccion.md
+      - Problema de Investigación: preliminares/02_problema_de_investigacion.md
+      - Estado del arte: preliminares/03_estado_del_arte.md
+      - Hipótesis: preliminares/04_hipotesis.md
+      - Objetivos: preliminares/05_objetivos.md
+      - Metodologías: preliminares/06_metodologia.md
+      - Resultados esperados: preliminares/07_resultados_esperados.md
   - Referencia de MkDocs: api_referencia.md
+
+# nav:
+#   - Inicio: index.md
+#   - Preliminares:
+#       - Resumen y Abstract: preliminares/00_resumen.md
+#       - Agradecimientos: preliminares/agradecimientos.md
+#       - Glosario y Acrónimos: preliminares/glosario.md
+#   - Capítulo 1 - Introducción:
+#       - Contexto y Motivación: capitulo1/01_contexto.md
+#       - Planteamiento del Problema: capitulo1/02_problema.md
+#       - Objetivos de Investigación: capitulo1/03_objetivos.md
+#       - Justificación y Alcance: capitulo1/04_justificacion.md
+#   - Capítulo 2 - Marco Teórico y Estado del Arte:
+#       - Fundamentos de Detección de Anomalías: capitulo2/01_fundamentos.md
+#       - Métodos Estadísticos Paramétricos y No Paramétricos: capitulo2/02_metodos_estadisticos.md
+#       - Algoritmos de Machine Learning y Deep Learning: capitulo2/03_machine_learning.md
+#       - Paradigma de Microservicios y MLOps: capitulo2/04_microservicios_mlops.md
+#       - Revisión Sistemática de la Literatura: capitulo2/05_estado_del_arte.md
+#   - Capítulo 3 - Metodología del Framework Híbrido:
+#       - Diseño Conceptual del Framework: capitulo3/01_diseno_framework.md
+#       - Estrategia de Ensamble y Scoring: capitulo3/02_estrategia_ensamble.md
+#       - Métricas de Desempeño y Validación: capitulo3/03_metricas_evaluacion.md
+#   - Capítulo 4 - Arquitectura de Software y MLOps:
+#       - Vista de Arquitectura de Microservicios: capitulo4/01_arquitectura_servicios.md
+#       - Flujo de Eventos con Apache Kafka: capitulo4/02_streaming_kafka.md
+#       - Infraestructura Cloud y Despliegue en Kubernetes: capitulo4/03_cloud_k8s.md
+#       - Pipelines de CI/CD y Monitoreo: capitulo4/04_cicd_monitoreo.md
+#   - Capítulo 5 - Experimentación y Resultados:
+#       - Datasets de Prueba y Benchmarking: capitulo5/01_datasets.md
+#       - Cuadernos de Experimentación:
+#           - Métodos Estadísticos: notebooks/01_experimentos_estadisticos.ipynb
+#           - Machine Learning (PyOD & Isolation Forest): notebooks/02_experimentos_ml.ipynb
+#           - Deep Learning (Autoencoders): notebooks/03_experimentos_dl.ipynb
+#       - Comparativa de Desempeño y Latencia: capitulo5/02_analisis_resultados.md
+#       - Dashboard de Explicabilidad y Visualización: capitulo5/03_dashboard_evaluacion.md
+#   - Capítulo 6 - Conclusiones y Trabajo Futuro:
+#       - Conclusiones: capitulo6/01_conclusiones.md
+#       - Recomendaciones y Trabajo Futuro: capitulo6/02_trabajo_futuro.md
+#       - Productos Derivados y Publicaciones: capitulo6/03_productos.md
+#   - Referencias Bibliográficas: referencias.md
+#   - Apéndices y Referencia Técnica:
+#       - Guía de Despliegue Local y Producción: apendices/guia_despliegue.md
+#       - Especificación de APIs (Swagger/OpenAPI): apendices/api_endpoints.md
+#       - Referencia de Código Python: api_referencia.md
