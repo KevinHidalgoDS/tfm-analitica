@@ -26,6 +26,8 @@ dev = [
     "mkdocs-material",
     "mkdocstrings-python",
     "mkdocs-dracula-theme",
+    "mkdocs-with-pdf",
+    "mkdocs-glightbox",
     "mypy",
     "pydocstyle",
     "pylint",
