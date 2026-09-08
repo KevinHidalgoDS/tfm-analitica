@@ -29,7 +29,7 @@ theme:
   # Tipografía optimizada para lectura técnica y fórmulas matemáticas
   font:
     text: Roboto
-    code: Roboto Mono
+    code: JetBrains Mono
 
   # Esquemas de color adaptativos (Claro / Oscuro)
   palette:
@@ -109,7 +109,7 @@ plugins:
 
   # Gestión de referencias y citas académicas mediante BibTeX y CSL
   - bibtex:
-      bib_file: "docs/referencias_example.bib" # Ruta al archivo .bib de Scopus/IEEE/Zotero
+      bib_file: "docs/referencias.bib" # Ruta al archivo .bib de Scopus/IEEE/Zotero
       csl_file: "docs/ieee.csl"                # Estilo de citación formal IEEE
       cite_inline: true                        # Habilita citas en el texto tipo [@clave]
 
@@ -203,7 +203,7 @@ extra:
       link: https://github.com/KevinHidalgoDS
       name: GitHub
     - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/kevinhidalgo
+      link: https://www.linkedin.com/in/kevin-ferney-hidalgo-higuita-752ab5162/
       name: LinkedIn
     - icon: fontawesome/solid/graduation-cap
       link: https://unal.edu.co/
@@ -216,7 +216,13 @@ extra:
 nav:
   - Inicio: index.md
   - Preliminares:
-      - Introducción: 01_Introduccion.md
+      - Introducción: preliminares/01_Introduccion.md
+      - Problema de Investigación: preliminares/02_problema_de_investigacion.md
+      - Estado del arte: preliminares/03_estado_del_arte.md
+      - Hipótesis: preliminares/04_hipotesis.md
+      - Objetivos: preliminares/05_objetivos.md
+      - Metodologías: preliminares/06_metodologia.md
+      - Resultados esperados: preliminares/07_resultados_esperados.md
   - Referencia de MkDocs: api_referencia.md
 
 # nav:
