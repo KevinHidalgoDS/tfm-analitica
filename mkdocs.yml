@@ -2,10 +2,12 @@
 # BLOQUE 1: METADATOS INSTITUCIONALES Y DEL PROYECTO DE TESIS
 # =============================================================================
 site_name: Framework Híbrido para la Detección de Datos Atípicos
-site_description: "Tesis de Maestría en Ingeniería - Analítica: Detección de anomalías con microservicios y MLOps"
+site_description:
+  "Tesis de Maestría en Ingeniería - Analítica: Detección de anomalías con microservicios y MLOps"
 site_author: Kevin Hidalgo
 site_url: "https://kevinhidalgods.github.io/tfm-analitica/"
-copyright: "Copyright &copy; 2026 Kevin Hidalgo &bull; Universidad Nacional de Colombia - Sede Medellín"
+copyright:
+  "Copyright &copy; 2026 Kevin Hidalgo &bull; Universidad Nacional de Colombia - Sede Medellín"
 
 # Enlace al repositorio (crea el botón directo en la cabecera)
 repo_name: KevinHidalgoDS/tfm-analitica
@@ -17,9 +19,9 @@ edit_uri: "blob/main/docs/"
 # =============================================================================
 
 theme:
-#  name: dracula
-#  logo: img/dracula.png
-#  favicon: img/favicon.ico
+  #  name: dracula
+  #  logo: img/dracula.png
+  #  favicon: img/favicon.ico
   name: material
   language: es
   # Logotipos e isotipos institucionales
@@ -35,7 +37,7 @@ theme:
   palette:
     # Modo claro (Default para lectura académica)
     - scheme: default
-      primary: teal                 # Tono sobrio de ingeniería
+      primary: teal # Tono sobrio de ingeniería
       accent: deep orange
       toggle:
         icon: material/brightness-7
@@ -52,22 +54,22 @@ theme:
   # Capacidades de navegación y lectura para documentos extensos
   features:
     # Navegación SPA y fluidez
-    - navigation.instant           # Carga instantánea estilo SPA sin recargar toda la página
-    - navigation.tracking          # Actualiza la URL según el encabezado visible
-    - navigation.tabs              # Pestañas en la barra superior (capítulos principales)
-    - navigation.tabs.sticky       # Mantiene las pestañas visibles al hacer scroll
-    - navigation.sections          # Agrupación visual de secciones en la barra lateral
-    - navigation.indexes           # Permite que las carpetas tengan su propia página resumen
-    - navigation.top               # Botón flotante para regresar al inicio de la página
-    - navigation.path              # Migas de pan (Breadcrumbs) para orientar al lector
+    - navigation.instant # Carga instantánea estilo SPA sin recargar toda la página
+    - navigation.tracking # Actualiza la URL según el encabezado visible
+    - navigation.tabs # Pestañas en la barra superior (capítulos principales)
+    - navigation.tabs.sticky # Mantiene las pestañas visibles al hacer scroll
+    - navigation.sections # Agrupación visual de secciones en la barra lateral
+    - navigation.indexes # Permite que las carpetas tengan su propia página resumen
+    - navigation.top # Botón flotante para regresar al inicio de la página
+    - navigation.path # Migas de pan (Breadcrumbs) para orientar al lector
 
     # Herramientas de búsqueda y lectura de código
-    - search.suggest               # Autocompletado de búsqueda en tiempo real
-    - search.highlight             # Resaltado de términos coincidentes en el texto
-    - search.share                 # Permite compartir URLs con parámetros de búsqueda
-    - content.code.copy            # Botón para copiar bloques de código con un clic
-    - content.code.annotate        # Permite añadir explicaciones flotantes paso a paso en el código
-    - content.tooltips             # Tooltips enriquecidos en referencias y enlaces
+    - search.suggest # Autocompletado de búsqueda en tiempo real
+    - search.highlight # Resaltado de términos coincidentes en el texto
+    - search.share # Permite compartir URLs con parámetros de búsqueda
+    - content.code.copy # Botón para copiar bloques de código con un clic
+    - content.code.annotate # Permite añadir explicaciones flotantes paso a paso en el código
+    - content.tooltips # Tooltips enriquecidos en referencias y enlaces
 
 # =============================================================================
 # BLOQUE 3: PLUGINS PARA CIENCIA DE DATOS, BIBLIOGRAFÍA Y CÓDIGO
@@ -83,39 +85,39 @@ plugins:
       handlers:
         python:
           paths: #[.] # src Directorio donde reside tu código fuente Python
-            - .                     # Raíz del proyecto
-            - src                   # Módulos comunes / compartidos
-            - services              # Código fuente de los microservicios
+            - . # Raíz del proyecto
+            - src # Módulos comunes / compartidos
+            - services # Código fuente de los microservicios
           options:
             docstring_style: google # Compatible con formato Google Docstrings
-            members_order: source   # Ordena métodos según aparecen en el código fuente
+            members_order: source # Ordena métodos según aparecen en el código fuente
             show_root_heading: true # Muestra el nombre del módulo como título principal
-            show_source: true       # Muestra el código fuente
-            show_bases: true        # Muestra las clases base
+            show_source: true # Muestra el código fuente
+            show_bases: true # Muestra las clases base
             show_if_no_docstring: false # Muestra las clases si no tienen docstring
             separate_signature: true # Muestra la firma separada
             merge_init_into_class: true # Fusiona el método __init__ con la clase
             show_signature_annotations: true # Muestra las anotaciones de firma
             # show_attributes: false # <-- Oculta todas las variables y constantes
             filters:
-              - "!^_[^_]"             # (Por defecto) Oculta variables privadas con un solo guion bajo
+              - "!^_[^_]" # (Por defecto) Oculta variables privadas con un solo guion bajo
               - "!^__[a-zA-Z0-9_]+__$" # Oculta todas las variables dunder (__version__, __authors__, etc.)
 
   # Renderizado de cuadernos interactivos (Jupyter Notebooks)
   - mkdocs-jupyter:
-      include_source: true          # Muestra el código de las celdas
-      ignore_h1_titles: true        # Evita colisión de títulos con la cabecera de MkDocs
-      execute: false                # Evita re-ejecutar notebooks pesados durante el build
+      include_source: true # Muestra el código de las celdas
+      ignore_h1_titles: true # Evita colisión de títulos con la cabecera de MkDocs
+      execute: false # Evita re-ejecutar notebooks pesados durante el build
 
   # Gestión de referencias y citas académicas mediante BibTeX y CSL
   - bibtex:
       bib_file: "docs/referencias.bib" # Ruta al archivo .bib de Scopus/IEEE/Zotero
-      csl_file: "docs/ieee.csl"                # Estilo de citación formal IEEE
-      cite_inline: true                        # Habilita citas en el texto tipo [@clave]
+      csl_file: "docs/ieee.csl" # Estilo de citación formal IEEE
+      # cite_inline: true                        # Habilita citas en el texto tipo [@clave]
 
-# En el texto redactas: ...según los estudios sobre árboles de aislamiento [@liu2008isolation]... y
-# al final de la página colocas \bibliography o ## Referencias para que inyecte la lista
-# formateada automáticamente.
+  # En el texto redactas: ...según los estudios sobre árboles de aislamiento [@liu2008isolation]... y
+  # al final de la página colocas \bibliography o ## Referencias para que inyecte la lista
+  # formateada automáticamente.
 
   # Soporte para Generación de la Tesis en PDF (Requiere GTK3 / Pango en Windows para WeasyPrint)
   # - with-pdf:
@@ -141,44 +143,45 @@ plugins:
 markdown_extensions:
   # 1. Notificaciones, Teoremas, Definiciones y Notas Metodológicas
   - admonition
-  - pymdownx.details            # Bloques colapsables (??? note "Ver demostración")
+  - pymdownx.details # Bloques colapsables (??? note "Ver demostración")
   # 2. Tablas y Atributos de formato
   - tables
-  - attr_list                   # Clases y estilos a imágenes/tablas ({: width="80%" .center})
-  - md_in_html                  # Permite Markdown dentro de etiquetas HTML personalizadas
-  - def_list                    # Listas de definición (ideal para glosarios y terminología)
-  - abbr                        # Acrónimos flotantes (MLOps, IQR, LOF, AUC-ROC, etc.)
+  - attr_list # Clases y estilos a imágenes/tablas ({: width="80%" .center})
+  - md_in_html # Permite Markdown dentro de etiquetas HTML personalizadas
+  - def_list # Listas de definición (ideal para glosarios y terminología)
+  - abbr # Acrónimos flotantes (MLOps, IQR, LOF, AUC-ROC, etc.)
 
   # 3. Índice de contenidos y Anclas
   - toc:
-      permalink: true           # Enlaces directos a cada sección (§)
-      toc_depth: 3              # Profundidad de encabezados analizados
+      permalink: true # Enlaces directos a cada sección (§)
+      toc_depth: 3 # Profundidad de encabezados analizados
 
   # 4. Resaltado de sintaxis en código fuente
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-  - pymdownx.inlinehilite        # Resaltado para código incrustado en párrafos
+  - pymdownx.inlinehilite # Resaltado para código incrustado en párrafos
 
   # 5. Diagramas de arquitectura y Pestañas de código
   - pymdownx.superfences:
       custom_fences:
-        - name: mermaid  # Renderizado de diagramas de secuencia, C4 y flujos Kafka
+        - name: mermaid # Renderizado de diagramas de secuencia, C4 y flujos Kafka
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  # Pestañas para código múltiple (ej: Python / Bash)
+          format:
+            !!python/name:pymdownx.superfences.fence_code_format # Pestañas para código múltiple (ej: Python / Bash)
+
   - pymdownx.tabbed:
-      alternate_style: true  # Pestañas elegantes (ej: Python / Docker / cURL)
+      alternate_style: true # Pestañas elegantes (ej: Python / Docker / cURL)
 
   # 6. Ecuaciones matemáticas en LaTeX (Z-score, Mahalanobis, Funciones de pérdida)
   - pymdownx.arithmatex:
       generic: true
 
   # 7. Notas al pie académicas y listas de tareas
-  - footnotes                   # Notas al pie de página ([^1])
+  - footnotes # Notas al pie de página ([^1])
   - pymdownx.tasklist:
-      custom_checkbox: true     # Listas de chequeo para control de fases y experimentos
+      custom_checkbox: true # Listas de chequeo para control de fases y experimentos
 
 # =============================================================================
 # BLOQUE 5: SCRIPTS Y ESTILOS EXTERNOS (MathJax v3)
