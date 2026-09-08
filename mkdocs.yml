@@ -215,7 +215,8 @@ extra:
 
 nav:
   - Inicio: index.md
-  - Introducción: 01_Introduccion.md
+  - Preliminares:
+      - Introducción: 01_Introduccion.md
   - Referencia de MkDocs: api_referencia.md
 
 # nav:
