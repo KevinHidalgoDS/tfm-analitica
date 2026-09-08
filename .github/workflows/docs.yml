@@ -13,16 +13,20 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-#    environment:
-#      name: github-pages
+    #    environment:
+    #      name: github-pages
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Necesario para mkdocs-git-revision-date-localized-plugin
+      - name: Setup Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: 3.12 # 3.x
       - name: Install dependencies
         run: pip install -r requirements-docs.txt
       - name: Build documentation
