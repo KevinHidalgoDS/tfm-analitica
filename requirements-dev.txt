@@ -24,7 +24,11 @@ pytest
 # sphinx-math-dollar
 # pypandoc
 mkdocs
-mkdocs-material
-mkdocstrings-python
-mkdocs-jupyter
+mkdocs-bibtex
 mkdocs-dracula-theme
+mkdocs-git-revision-date-localized-plugin
+mkdocs-glightbox
+mkdocs-jupyter
+mkdocs-material
+mkdocs-with-pdf
+mkdocstrings-python
