@@ -2,7 +2,7 @@
 # BLOQUE 1: METADATOS INSTITUCIONALES Y DEL PROYECTO DE TESIS
 # =============================================================================
 site_name: Framework Híbrido para la Detección de Datos Atípicos
-site_description: Tesis de Maestría en Ingeniería - Analítica: Detección de anomalías con microservicios y MLOps
+site_description: "Tesis de Maestría en Ingeniería - Analítica: Detección de anomalías con microservicios y MLOps"
 site_author: Kevin Hidalgo
 site_url: "https://kevinhidalgods.github.io/tfm-analitica/"
 copyright: "Copyright &copy; 2026 Kevin Hidalgo &bull; Universidad Nacional de Colombia - Sede Medellín"
@@ -117,24 +117,19 @@ plugins:
 # al final de la página colocas \bibliography o ## Referencias para que inyecte la lista
 # formateada automáticamente.
 
-  # Soporte para Generación de la Tesis en PDF
-  - with-pdf:
-      author: "Kevin Hidalgo"
-      copyright: "Universidad Nacional de Colombia - Sede Medellín"
-      cover_title: "Framework Híbrido para la Detección de Datos Atípicos"
-      cover_subtitle: "Tesis de Maestría en Ingeniería - Analítica"
-      toc_title: "Tabla de Contenido"
-      output_path: "tesis_kevin_hidalgo.pdf"
+  # Soporte para Generación de la Tesis en PDF (Requiere GTK3 / Pango en Windows para WeasyPrint)
+  # - with-pdf:
+  #     author: "Kevin Hidalgo"
+  #     copyright: "Universidad Nacional de Colombia - Sede Medellín"
+  #     cover_title: "Framework Híbrido para la Detección de Datos Atípicos"
+  #     cover_subtitle: "Tesis de Maestría en Ingeniería - Analítica"
+  #     toc_title: "Tabla de Contenido"
+  #     output_path: "tesis_kevin_hidalgo.pdf"
 
   # Soporte para galería de imágenes con lightbox (zoom y navegación)
   - glightbox
-  # - glightbox:
-  #     selector: .glightbox
-  #     title: false
-  #     description: false
-  #     share: false
 
-  #  Trazabilidad de Versiones
+  # Trazabilidad de Versiones
   - git-revision-date-localized:
       locale: es
       type: timeago # o 'iso_date'
