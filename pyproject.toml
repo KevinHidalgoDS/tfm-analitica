@@ -106,6 +106,7 @@ pythonpath = ["."]
 
 [tool.coverage.run]
 source = ["src"]
+branch = true
 omit = ["tests/*", "**/__init__.py"]
 
 [tool.coverage.report]
