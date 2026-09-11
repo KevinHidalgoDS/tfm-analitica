@@ -102,6 +102,7 @@ exclude = "(^|/|\\\\)no_[^/\\\\]*\\.py$"
 testpaths = ["tests"]
 python_files = "test_*.py"
 addopts = "-ra -q"
+pythonpath = ["."]
 
 [tool.coverage.run]
 source = ["src"]
