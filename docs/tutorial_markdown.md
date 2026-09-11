@@ -290,3 +290,70 @@ db -> app
 app -> client
 @enduml
 ```
+
+## Prettier
+
+```powershell
+npx prettier --write "**/*.md"
+```
+
+<!-- prettier-ignore -->
+| Columna | Descripción | Valor |
+|:--------|:------------|------:|
+| A       | Texto       | 100   |
+| B       | Otro texto  | 200   |
+
+## Pandoc
+```
+pandoc entregable.md --citeproc -o entregable.pdf
+
+# si falla la anterior
+# 1. Generar el archivo fuente de LaTeX (.tex) en lugar del PDF directo
+pandoc docs/02_empatia.md --citeproc -s -o docs/02_empatia.tex
+
+# 2. Reemplazar la propiedad nueva (.initial:e) por su equivalente compatible clásica (.initial:n)
+(Get-Content docs/02_empatia.tex) -replace '\.initial:e', '.initial:n' | Set-Content docs/02_empatia.tex
+
+# 3. Compilar el PDF manualmente (se ejecuta dos veces para generar correctamente la Tabla de Contenido)
+pdflatex -output-directory=docs docs/02_empatia.tex
+pdflatex -interaction=nonstopmode -output-directory=docs docs/02_empatia.tex
+```
+
+```text
+---
+title: "Entregable 2: Fase de Empatía"
+author: "Kevin Ferney Hidalgo Higuita"
+lang: es-CO
+bibliography: referencias.bib
+csl: ieee.csl
+geometry: margin=2.5cm
+fontsize: 12pt
+---
+
+# Análisis de Resultados
+
+Durante la fase de empatía, se consolidaron los hallazgos en una matriz de necesidades. Como se puede observar en la [Tabla 1](#tbl-hallazgos), las principales frustraciones están ligadas a la sobrecarga de información. 
+
+Además, los usuarios expertos reportaron tiempos de ejecución más largos al buscar opciones avanzadas, detallado en la [Tabla 2](#tbl-tiempos).
+
+## Matrices de Empatía
+
+<a id="tbl-hallazgos"></a>
+| Perfil de Usuario | Necesidad Principal | Frustración Actual |
+| :--- | :--- | :--- |
+| Usuario Novato | Guía paso a paso en el sistema | Demasiados botones en la pantalla inicial |
+| Usuario Experto | Atajos de teclado para tareas | Flujos de trabajo muy largos |
+*Tabla 1: Matriz de hallazgos y frustraciones por perfil de usuario.*
+
+<br>
+
+<a id="tbl-tiempos"></a>
+| Tarea Evaluda | Tiempo Promedio (Segundos) | Tasa de Éxito (%) |
+| :--- | :---: | :---: |
+| Crear nuevo reporte | 45 | 90% |
+| Exportar datos | 120 | 65% |
+*Tabla 2: Métricas de usabilidad durante la observación contextual.*
+
+## Conclusiones
+Las referencias a la [Tabla 1](#tbl-hallazgos) funcionarán como hipervínculos internos tanto en la página web generada por MkDocs como en el PDF generado por Pandoc.
+```

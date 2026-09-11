@@ -14,6 +14,6 @@ Medellín**.
 El proyecto propone un framework híbrido para la detección de datos atípicos (outliers), integrando
 la interpretabilidad de los métodos estadísticos clásicos (z-score robusto, rango intercuartílico,
 distancia de Mahalanobis) con la capacidad de captura de patrones complejos de algoritmos de
-Machine Learning (Isolation Forest, Local Outlier Factor) y Deep Learning (Autoencoders).
-Toda la solución está orquestada sobre una arquitectura de microservicios escalable en la nube,
-facilitando el monitoreo continuo de la calidad de los datos en entornos organizacionales.
+Machine Learning (Isolation Forest, Local Outlier Factor) y Deep Learning (Autoencoders). Toda la
+solución está orquestada sobre una arquitectura de microservicios escalable en la nube, facilitando
+el monitoreo continuo de la calidad de los datos en entornos organizacionales.
