@@ -21,6 +21,7 @@ dev = [
     "black",
     "coverage",
     "flake8",
+    "isort",
     "mkdocs",
     "mkdocs-bibtex",
     "mkdocs-dracula-theme",
@@ -38,8 +39,7 @@ dev = [
     "pytest",
     "pytest-cov",
     "ruff",
-    "taskipy",
-    "unittest-xml-reporting",
+    "taskipy"
 ]
 
 [tool.black]

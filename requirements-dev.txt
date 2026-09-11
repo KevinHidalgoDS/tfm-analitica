@@ -13,9 +13,9 @@ mypy
 
 # tests
 coverage
-unittest-xml-reporting
 pyrefly
 pytest
+pytest-cov
 
 # doc
 # sphinx
