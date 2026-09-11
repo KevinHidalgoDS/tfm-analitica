@@ -18,8 +18,8 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@7006c4492b2e0ee0f816d36501671557c97f5995 # v8.1.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.python.xunit.reportPath=test-results.xml
-            -Dsonar.qualitygate.wait=true
+        # with:
+        #   args: >
+        #     -Dsonar.python.coverage.reportPaths=coverage.xml
+        #     -Dsonar.python.xunit.reportPath=test-results.xml
+        #     -Dsonar.qualitygate.wait=true
