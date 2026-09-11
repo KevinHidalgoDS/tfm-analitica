@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: task-format
+        name: Formatear código (Ruff & Black)
+        entry: task format
+        language: system
+        types: [python]
+        pass_filenames: false
+      - id: task-lint
+        name: Análisis estático general
+        entry: task lint
+        language: system
+        types: [python]
+        pass_filenames: false

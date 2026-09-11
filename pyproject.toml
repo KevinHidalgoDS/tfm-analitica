@@ -31,6 +31,7 @@ dev = [
     "mkdocs-with-pdf",
     "mkdocstrings-python",
     "mypy",
+    "pre-commit",
     "pydocstyle",
     "pylint",
     "pyrefly",
@@ -69,7 +70,7 @@ match = "(?!no_).*\\.py"
 
 # pip install taskipy
 [tool.taskipy.tasks]
-format = "python -m ruff check common tests --fix && python -m black ."
+format = "python -m ruff check src tests --fix && python -m black ."
 pylint = "python -X utf8 -m pylint common/ tests/ > pylint.log"
 flake8 = "python -m flake8 . > flake8.log"
 ruff = "python -m ruff check common tests --output-format=full > ruff.log"
@@ -77,7 +78,7 @@ pydocstyle = "python -m pydocstyle common/ tests/ > pydocstyle.log"
 mypy = "python -m mypy common/ tests/ > mypy.log"
 pyrefly = "pyrefly check common tests > pyrefly.log"
 test = "python -m pytest > pytest.log"
-test-cov = "python -X utf8 -m pytest --cov=common --cov-report=term-missing > pytestcov.log"
+test-cov = "python -X utf8 -m pytest --cov=src --cov-report=term-missing > pytestcov.log"
 lint = "task pylint && task ruff && task pydocstyle && task mypy && task pyrefly"
 
 # --- Comandos agregados para pip-tools ---
