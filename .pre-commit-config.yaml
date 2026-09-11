@@ -1,11 +1,26 @@
 repos:
   - repo: local
     hooks:
-      - id: task-format
-        name: Formatear código (Ruff & Black)
-        entry: task format
+      # - id: task-format
+      #   name: Formatear código (Ruff & Black)
+      #   # entry: task format
+      #   entry: bash -c 'python -m ruff check --fix "$@" && python -m black "$@"' --
+      #   language: system
+      #   types: [python]
+      #   pass_filenames: false
+      - id: ruff-format
+        name: Formatear con Ruff
+        entry: python -m ruff check
+        args: [ --fix, src, tests ]
         language: system
-        types: [python]
+        types: [ python ]
+        pass_filenames: false
+      - id: black-format
+        name: Formatear con Black
+        entry: python -m black
+        args: [ src, tests ]
+        language: system
+        types: [ python ]
         pass_filenames: false
       - id: task-lint
         name: Análisis estático general

@@ -9,7 +9,7 @@ maintainers = [
 ]
 description = "Descripción del proyecto"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = "==3.14"  # >=3.14
 dependencies = [
     # Agrega aquí tus dependencias de producción (ej. pandas, scikit-learn, etc.)
     "pandas"
@@ -44,12 +44,12 @@ dev = [
 
 [tool.black]
 line-length = 100
-include = '^(common|tests)/'
+include = '^(src|tests)/'
 
 [tool.isort]
 profile = "black"
 line_length = 100
-src_paths = ["common", "tests"]
+src_paths = ["src", "tests"]
 
 [tool.pylint.format]
 max-line-length = 100
@@ -70,13 +70,16 @@ match = "(?!no_).*\\.py"
 
 # pip install taskipy
 [tool.taskipy.tasks]
-format = "python -m ruff check src tests --fix && python -m black ."
-pylint = "python -X utf8 -m pylint common/ tests/ > pylint.log"
+format = "python -m ruff check src tests --fix && python -m black src tests"
+# format = "task format-ruff && task format-black"
+# format-ruff = "python -m ruff check src tests --fix"
+# format-black = "python -m black --fast src tests"
+pylint = "python -X utf8 -m pylint src/ tests/ > pylint.log"
 flake8 = "python -m flake8 . > flake8.log"
-ruff = "python -m ruff check common tests --output-format=full > ruff.log"
-pydocstyle = "python -m pydocstyle common/ tests/ > pydocstyle.log"
-mypy = "python -m mypy common/ tests/ > mypy.log"
-pyrefly = "pyrefly check common tests > pyrefly.log"
+ruff = "python -m ruff check src tests --output-format=full > ruff.log"
+pydocstyle = "python -m pydocstyle src/ tests/ > pydocstyle.log"
+mypy = "python -m mypy src/ tests/ > mypy.log"
+pyrefly = "pyrefly check src tests > pyrefly.log"
 test = "python -m pytest > pytest.log"
 test-cov = "python -X utf8 -m pytest --cov=src --cov-report=term-missing > pytestcov.log"
 lint = "task pylint && task ruff && task pydocstyle && task mypy && task pyrefly"
@@ -92,7 +95,7 @@ all = "task format && task lint && task test-cov"
 python_version = "3.14"
 strict = true
 ignore_missing_imports = true
-files = ["common", "tests"]
+files = ["src", "tests"]
 exclude = "(^|/|\\\\)no_[^/\\\\]*\\.py$"
 
 [tool.pytest.ini_options]
@@ -101,7 +104,7 @@ python_files = "test_*.py"
 addopts = "-ra -q"
 
 [tool.coverage.run]
-source = ["common"]
+source = ["src"]
 omit = ["tests/*", "**/__init__.py"]
 
 [tool.coverage.report]
@@ -115,8 +118,10 @@ build-backend = "setuptools.build_meta"
 [tool.pyrefly]
 python-version = "3.14"
 
+search-path = ["."]
+
 includes = [
-    "common",
+    "src",
     "tests"
 ]
 
@@ -131,7 +136,7 @@ excludes = [
 [tool.ruff]
 line-length = 100
 target-version = "py314"
-src = ["common", "tests"]
+src = ["src", "tests"]
 
 fix = true
 show-fixes = true

@@ -42,7 +42,7 @@ jobs:
             --junitxml=test-results.xml
 
       # - name: Ejecutar Suite Completa (Format, Lint, Tests)
-      #   # Esto ejecuta task format, task lint y task test-cov bloqueando el CI si falla alguno
+      #   # Esto ejecuta task format, task lint y task tests-cov bloqueando el CI si falla alguno
       #   run: task all
 
       - name: Verificar Cobertura
