@@ -1,4 +1,4 @@
-name: SonarQube
+name: Unittest
 
 on:
   push:
@@ -10,8 +10,8 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  sonarqube:
-    name: SonarQube
+  unittest:
+    name: Unittest
     runs-on: ubuntu-latest
 
     steps:
@@ -48,12 +48,3 @@ jobs:
         # Pytest fallará automáticamente si la cobertura baja de 80% gracias a fail_under=80 en
         # pyproject.toml
         run: echo "Validaciones completadas y cobertura aprobada."
-
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@7006c4492b2e0ee0f816d36501671557c97f5995 # v8.1.0
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.qualitygate.wait=true
