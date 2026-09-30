@@ -41,30 +41,33 @@ valores extremos, como el procedimiento propuesto por Grubbs [@grubbs1969procedu
 de los macrodatos y el aumento de la dimensionalidad han ampliado los desafíos de esta tarea, pues
 exigen considerar tanto las propiedades de los datos como la capacidad de los métodos para
 identificar distintos tipos de comportamiento atípico [@chandola2009anomaly; @aggarwal2017outlier].
-Entre los métodos estadísticos se encuentran procedimientos univariados basados en medidas
-robustas, como el rango intercuartílico, y pruebas que requieren supuestos específicos, como la
-prueba de Grubbs, que presupone normalidad [@grubbs1969procedures; @aggarwal2017outlier]. Estos
-métodos pueden ser eficientes e interpretables en escenarios acordes con sus supuestos, pero los
-enfoques univariados pueden no detectar observaciones definidas por relaciones entre variables.
-Asimismo, la validez de los procedimientos que dependen de una distribución específica puede verse
-comprometida cuando sus supuestos no se cumplen. Los métodos de aprendizaje automático y profundo
-ofrecen alternativas para distintos tipos de estructura en los datos, aunque su selección depende
-de los requisitos analíticos.
+Entre los métodos estadísticos se encuentran reglas univariadas basadas en medidas robustas,
+como el rango intercuartílico, que identifica valores alejados de los cuartiles sin requerir el
+supuesto de normalidad [@aggarwal2017outlier]. La prueba de Grubbs, en cambio, contrasta valores
+extremos bajo dicho supuesto [@grubbs1969procedures]. Por tanto, estos procedimientos difieren en
+sus fundamentos y condiciones de aplicación. Los métodos univariados pueden ofrecer resultados
+directos cuando la atipicidad se manifiesta en variables individuales, pero no necesariamente
+detectan observaciones definidas por relaciones entre variables. En general, la validez de cada
+procedimiento depende de que sus supuestos sean razonables para los datos analizados. Los métodos
+de aprendizaje automático y profundo ofrecen alternativas para otras estructuras, aunque su
+selección también depende de los requisitos analíticos.
 
 Entre estos métodos, Isolation Forest separa observaciones mediante particiones aleatorias;
-One-Class SVM estima una frontera que delimita la región de los datos considerados normales; y el
+la máquina de vectores de soporte de una clase (One-Class Support Vector Machine, denominada
+One-Class SVM) estima una frontera que delimita la región de los datos considerados habituales; y el
 factor local de observaciones atípicas (Local Outlier Factor, LOF) asigna puntuaciones elevadas a
 observaciones cuya densidad local es menor que la de sus vecinas [@liu2008isolation;
-@scholkopf2001estimating; @breunig2000lof]. Los autoencoders, por su parte, aprenden
-representaciones y pueden señalar observaciones con errores de reconstrucción elevados, mientras
-que ECOD estima el grado de atipicidad mediante funciones de distribución empírica acumulada
-[@pang2021deep; @li2022ecod]. Estos métodos no son intercambiables: difieren en sus supuestos,
-parámetros y capacidad para representar relaciones locales o globales, y su selección depende de
-las características de los datos y del objetivo analítico. Asimismo, sus costos computacionales y
-su interpretabilidad varían según el método y la implementación, por lo que deben evaluarse en el
-contexto de uso previsto [@aggarwal2017outlier; @pang2021deep]. Por consiguiente, la solución
-planteada debe permitir integrar métodos con características distintas y exponer sus resultados de
-manera comprensible, además de ofrecer criterios para valorar su desempeño.
+@scholkopf2001estimating; @breunig2000lof]. Los autocodificadores (*autoencoders*), una técnica de aprendizaje
+profundo, aprenden a reconstruir los datos y pueden señalar observaciones con errores de
+reconstrucción elevados [@sakurada2014autoencoders;
+@pang2021deep], mientras que ECOD es un método no supervisado basado en funciones de distribución
+empírica acumulada que estima el grado de atipicidad [@li2022ecod]. En esta tesis se
+explorará y evaluará un autocodificador para datos tabulares, comparándolo con métodos estadísticos
+y de aprendizaje automático seleccionados. Estos
+métodos difieren en sus supuestos, parámetros, requisitos computacionales y capacidades; por ello,
+su selección y eventual combinación deberán justificarse y evaluarse en el contexto de los datos
+[@aggarwal2017outlier; @pang2021deep]. La solución integrará los métodos seleccionados y expondrá
+sus resultados para facilitar su consulta e interpretación.
 
 Para responder a estos requisitos de integración y operación, la computación en la nube y las
 arquitecturas de microservicios ofrecen una alternativa para separar componentes de ingesta,
@@ -93,14 +96,16 @@ en flujos de datos en tiempo real ni especializarse en un sector económico part
 
 Con ese alcance, la tesis contempla un desarrollo progresivo. En una primera etapa, se implementará
 una interfaz de programación de aplicaciones (API, del inglés _application programming interface_)
-que integre métodos estadísticos clásicos y técnicas de analítica avanzada para detectar
-observaciones atípicas en los conjuntos de datos tabulares cargados por los usuarios. En una
-segunda etapa, se desarrollará una interfaz gráfica con un tablero de visualización que permita
-interactuar con la API y examinar e interpretar sus resultados. Finalmente, estos componentes se
-integrarán en una solución basada en una arquitectura de microservicios desplegada en la nube. El
-marco de trabajo será, por tanto, el resultado de esa integración. La evaluación contemplará tres
-dimensiones: el desempeño de los métodos de detección, medido mediante precisión, exhaustividad,
-medida F1, área bajo la curva ROC (AUC-ROC) y área bajo la curva precisión-exhaustividad (AUC-PR)
+que integre métodos estadísticos clásicos, métodos de aprendizaje automático y un autocodificador
+para detectar observaciones atípicas en los conjuntos de datos tabulares cargados por los usuarios.
+En una segunda etapa, se desarrollará una interfaz gráfica con un tablero de visualización que
+permita interactuar con la API y examinar e interpretar sus resultados. Finalmente, estos
+componentes se integrarán en una solución basada en una arquitectura de microservicios desplegada
+en la nube. El marco de trabajo será, por tanto, el resultado de esa integración. La evaluación
+contemplará tres dimensiones: el desempeño de los métodos de detección, medido mediante precisión,
+exhaustividad, medida F1, área bajo la curva de características operativas del receptor (ROC, del
+inglés *Receiver Operating Characteristic*; AUC-ROC) y área bajo la curva de precisión-exhaustividad
+(PR, del inglés *Precision-Recall*; AUC-PR)
 sobre conjuntos de referencia con observaciones atípicas etiquetadas; el comportamiento operativo
 de la solución, considerando tiempos de respuesta y escalabilidad ante distintos volúmenes de
 datos; y la utilidad percibida del tablero de visualización, valorada mediante una validación con

@@ -5,7 +5,8 @@
 La literatura ha desarrollado y sistematizado diversos métodos para detectar observaciones
 atípicas, con enfoques y supuestos distintos [@chandola2009anomaly; @pang2021deep]. Sin embargo,
 llevar estos métodos a una solución utilizable también plantea retos de integración, mantenimiento
-y despliegue, documentados en la literatura sobre sistemas de aprendizaje automático y MLOps
+y despliegue, documentados en la literatura sobre operaciones de sistemas de aprendizaje automático
+(MLOps, del inglés *Machine Learning Operations*)
 [@sculley2015hidden; @kreuzberger2023mlops]. En una solución aplicada, es necesario evaluar por
 separado el desempeño de detección, la respuesta ante distintos volúmenes de datos y la consulta
 de los resultados por parte de sus usuarios. Esta tesis aborda la integración de dichos
@@ -19,9 +20,10 @@ el comportamiento operativo y la utilidad del tablero para los usuarios?
 
 Esta pregunta se desglosa en tres preguntas específicas:
 
-1. ¿Qué desempeño de detección alcanza la combinación de métodos estadísticos clásicos y técnicas
-   de analítica y aprendizaje automático en comparación con cada método aplicado por separado sobre
-   conjuntos de datos tabulares etiquetados?
+1. ¿Qué desempeño de detección alcanzan los métodos estadísticos clásicos, los métodos de
+   aprendizaje automático seleccionados y un autocodificador de aprendizaje profundo aplicado a datos
+   tabulares, de manera individual y mediante el esquema de combinación definido, sobre conjuntos
+   etiquetados?
 2. ¿Cómo varían los tiempos de respuesta y el rendimiento de la solución ante distintos volúmenes
    de datos?
 3. ¿Qué utilidad y facilidad de consulta perciben los usuarios al explorar los resultados mediante
@@ -32,14 +34,14 @@ Esta pregunta se desglosa en tres preguntas específicas:
 La revisión de antecedentes, que se ampliará en el estado del arte, organiza el contexto de la
 investigación. Para delimitar la contribución propuesta, se consideran tres dimensiones de trabajo:
 
-- **Integración de métodos:** se comparará el desempeño de una combinación de métodos estadísticos
-  y de aprendizaje automático mediante un esquema de ensamblado por votación o combinación de
-  puntuaciones, y se contrastará con el desempeño de cada método individual en los conjuntos de
-  datos tabulares etiquetados seleccionados para el estudio. La utilidad del ensamblado se evaluará
-  empíricamente; no se presupone que los métodos estadísticos sean necesariamente más interpretables
-  ni que los métodos de aprendizaje automático detecten siempre patrones más complejos. Estas
-  propiedades dependen de la técnica concreta y de su aplicación. Los criterios de combinación y
-  ponderación se especificarán en la metodología.
+- **Integración de métodos:** se comparará el desempeño de los métodos estadísticos, los métodos de
+  aprendizaje automático seleccionados y un autocodificador de aprendizaje profundo para datos
+  tabulares, tanto de manera
+  individual como mediante un esquema de ensamblado por votación o combinación de puntuaciones.
+  La comparación se realizará sobre los conjuntos etiquetados seleccionados para el estudio. La
+  utilidad del ensamblado se evaluará empíricamente; no se presupone que una familia sea superior o
+  más interpretable que otra. Los criterios de combinación, normalización y ponderación se
+  especificarán en la metodología.
 - **Implementación y operación:** se integrarán los métodos seleccionados en una API y se desplegará
   la solución mediante microservicios; su comportamiento se evaluará bajo los volúmenes de datos y
   las condiciones experimentales definidos en la metodología.
