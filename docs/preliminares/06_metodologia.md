@@ -141,6 +141,12 @@ se contrastarán mediante pruebas estadísticas no paramétricas (por ejemplo, l
 con post-hoc de Nemenyi) adecuadas para la comparación de múltiples algoritmos sobre múltiples
 conjuntos de datos. La evaluación de la arquitectura de microservicios se realizará mediante
 pruebas de carga que midan la latencia y el throughput del sistema bajo volúmenes crecientes de
-datos, mientras que la evaluación del dashboard incorporará una validación cualitativa con un grupo
-reducido de usuarios (expertos de dominio o compañeros del programa de maestría), mediante un
-cuestionario breve de usabilidad y utilidad percibida.
+datos. La evaluación del tablero incorporará una prueba con tareas estandarizadas y una muestra
+intencional de usuarios representativos del perfil previsto, como analistas o científicos de datos.
+Las tareas incluirán cargar un conjunto tabular, ejecutar la detección, localizar observaciones
+señaladas e inspeccionar las variables asociadas. Se registrarán la proporción de tareas
+completadas, el tiempo requerido y los errores observados; además, se aplicará el cuestionario
+System Usability Scale (SUS) y preguntas de utilidad percibida. Estas medidas permitirán describir
+la efectividad, la eficiencia y la satisfacción de uso en la muestra evaluada
+[@iso9241-11-2018; @brooke1996sus]. Los resultados se interpretarán de forma descriptiva y
+contextualizada, sin extrapolarlos a poblaciones más amplias.

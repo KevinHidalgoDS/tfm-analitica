@@ -22,3 +22,4 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 Esta sección contiene la documentación automática de las funciones de ingeniería de características.
 
 ::: src.features.clean_transactions
+:::
