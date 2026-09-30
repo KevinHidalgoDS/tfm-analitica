@@ -24,10 +24,12 @@ Esta pregunta se desglosa en tres preguntas específicas:
    aprendizaje automático seleccionados y un autocodificador de aprendizaje profundo aplicado a datos
    tabulares, de manera individual y mediante el esquema de combinación definido, sobre conjuntos
    etiquetados?
-2. ¿Cómo varían los tiempos de respuesta y el rendimiento de la solución ante distintos volúmenes
-   de datos?
-3. ¿Qué utilidad y facilidad de consulta perciben los usuarios al explorar los resultados mediante
-   el tablero de visualización?
+2. ¿Cómo varían la latencia, el caudal de procesamiento y el uso de recursos de la solución ante
+   distintos volúmenes de datos y niveles de concurrencia, al comparar una arquitectura de
+   microservicios con una implementación monolítica equivalente?
+3. ¿En qué medida un tablero con puntuaciones de atipicidad y variables explicativas mejora la
+   comprensión, la exactitud y el tiempo de interpretación de los resultados frente a una lista de
+   observaciones detectadas?
 
 ## Antecedentes y alcance de la contribución
 
@@ -37,19 +39,21 @@ investigación. Para delimitar la contribución propuesta, se consideran tres di
 - **Integración de métodos:** se comparará el desempeño de los métodos estadísticos, los métodos de
   aprendizaje automático seleccionados y un autocodificador de aprendizaje profundo para datos
   tabulares, tanto de manera
-  individual como mediante un esquema de ensamblado por votación o combinación de puntuaciones.
+  individual como mediante un esquema de ensamblado por agregación ponderada de puntuaciones
+  normalizadas.
   La comparación se realizará sobre los conjuntos etiquetados seleccionados para el estudio. La
   utilidad del ensamblado se evaluará empíricamente; no se presupone que una familia sea superior o
-  más interpretable que otra. Los criterios de combinación, normalización y ponderación se
-  especificarán en la metodología.
+  más interpretable que otra. Los criterios de normalización, ponderación y selección del umbral se
+  especificarán en la metodología y se determinarán sin utilizar el conjunto de prueba.
 - **Implementación y operación:** se integrarán los métodos seleccionados en una API y se desplegará
   la solución mediante microservicios; su comportamiento se evaluará bajo los volúmenes de datos y
   las condiciones experimentales definidos en la metodología.
 - **Presentación de resultados:** se implementará un tablero para consultar los resultados de
-  detección. Analistas o científicos de datos representativos de los usuarios previstos realizarán
-  tareas definidas previamente: cargar un conjunto tabular, ejecutar la detección, localizar
-  observaciones señaladas e inspeccionar las variables asociadas a estas. Se registrarán la
-  proporción de tareas completadas, el tiempo de ejecución y los errores, y se aplicará el
+  detección. Usuarios no especializados en estadística, con experiencia básica en análisis de datos,
+  realizarán tareas definidas previamente: cargar un conjunto tabular, ejecutar la detección,
+  localizar observaciones señaladas e inspeccionar las variables asociadas a estas. Se registrarán
+  la proporción de respuestas correctas, el tiempo de respuesta, los errores y la comprensión
+  percibida, y se aplicará el
   cuestionario System Usability Scale (SUS) para medir la usabilidad percibida [@brooke1996sus].
   Estas medidas operacionalizan la efectividad, la eficiencia y la satisfacción de uso
   [@iso9241-11-2018]. La evaluación se refiere a la interfaz y a la presentación de resultados;

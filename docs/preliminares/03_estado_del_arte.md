@@ -35,6 +35,30 @@ como a la operación de sistemas de aprendizaje automático y al diseño de tabl
 se citan según el estilo IEEE configurado para el documento. Los años de publicación de las fuentes
 citadas reflejan su cobertura temporal, no un intervalo de búsqueda predefinido.
 
+## Tipos de observaciones atípicas y dimensionalidad
+
+Siguiendo la distinción conceptual de Hawkins [@hawkins1980identification] y la sistematización
+de Chandola, Banerjee y Kumar [@chandola2009anomaly], en esta tesis una observación atípica
+puntual es una observación individual que se desvía de manera marcada del patrón general de los
+datos. Una observación atípica contextual es inusual únicamente bajo un contexto determinado,
+definido por variables o condiciones de referencia, aunque pueda parecer normal en el conjunto
+global. Una anomalía colectiva corresponde a un conjunto de observaciones que, considerado en
+conjunto, presenta un patrón anómalo, aunque sus observaciones individuales no sean necesariamente
+atípicas.
+
+Estas categorías se utilizarán solo cuando estén representadas y etiquetadas en los conjuntos de
+datos seleccionados. En particular, el formato tabular por lotes no garantiza por sí mismo la
+presencia de anomalías contextuales o colectivas; su evaluación requerirá que las variables de
+contexto o las relaciones entre observaciones estén disponibles en los datos.
+
+Para el experimento factorial, la dimensionalidad se operacionalizará mediante el número de
+variables predictoras: baja dimensionalidad (hasta 10 variables), dimensionalidad media (de 11 a
+50) y alta dimensionalidad (más de 50). Estas categorías se construirán mediante la selección de
+conjuntos de datos que pertenezcan a cada rango o, cuando un conjunto lo permita, mediante
+selección de variables documentada aplicada únicamente dentro de cada partición de entrenamiento.
+No se considerará la reducción de dimensionalidad como una categoría de dimensionalidad, sino como
+una transformación que deberá mantenerse constante entre métodos dentro de cada escenario.
+
 ## Fundamentos estadísticos clásicos para detectar observaciones atípicas
 
 La detección estadística de observaciones atípicas comprende procedimientos con supuestos
@@ -174,11 +198,11 @@ decisiones
 metodológicas que lo requieran y, en prueba, para la comparación final. ECOD y la prueba de Grubbs
 se mantienen como contexto bibliográfico, pero no como métodos experimentales.
 
-La posible combinación de puntuaciones se tratará como una hipótesis empírica: las diferencias de
-escala y significado entre métodos exigen normalización y una regla de ensamblado documentadas, y
-la combinación podría no mejorar los resultados individuales. La tesis evaluará los métodos por
-separado y frente al esquema de combinación definido en la metodología, en conjuntos tabulares
-etiquetados procesados por lotes. La solución expondrá los resultados mediante una API y un
+La combinación de puntuaciones se tratará como una hipótesis empírica: las diferencias de escala y
+significado entre métodos exigen normalización y una regla de ensamblado documentadas, y la
+combinación podría no mejorar los resultados individuales. La tesis evaluará los métodos por
+separado y frente al esquema de agregación ponderada de puntuaciones normalizadas definido en la
+metodología, en conjuntos tabulares etiquetados procesados por lotes. La solución expondrá los resultados mediante una API y un
 tablero; también se medirá el comportamiento operativo y la utilidad de consulta. Las conclusiones
 se limitarán a los datos, configuraciones, cargas y participantes incluidos en la evaluación.
 

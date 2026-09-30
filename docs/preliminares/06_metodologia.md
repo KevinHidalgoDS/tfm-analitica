@@ -10,9 +10,9 @@ internas propias de un ciclo de desarrollo ágil: (1) revisión y selección de 
 del marco de trabajo de detección, (3) diseño e implementación de la arquitectura de microservicios
 en la nube, (4) construcción del tablero de visualización, y (5) evaluación integral del sistema.
 
-## Marco de trabajo propuesto para detectar observaciones atípicas
+## Marco de trabajo propuesto para la clasificación de anomalías
 
-El marco de trabajo de detección se concibe como un esquema de comparación y posible ensamblado
+El marco de trabajo de clasificación de anomalías se concibe como un esquema de comparación y posible ensamblado
 de métodos estadísticos, de aprendizaje automático y de aprendizaje profundo para conjuntos de
 datos tabulares procesados por lotes. La evaluación considerará como métodos estadísticos la
 puntuación z robusta basada en la mediana y la desviación absoluta mediana, el rango intercuartílico y,
@@ -24,10 +24,13 @@ puntuación de atipicidad se calculará a partir del error de reconstrucción
 observaciones atípicas; las etiquetas de validación podrán apoyar la selección de configuraciones
 y umbrales, y las de prueba se reservarán para la evaluación final. La arquitectura, la función de
 pérdida compatible con la representación de entrada y los hiperparámetros se definirán y
-documentarán usando únicamente los datos de entrenamiento y validación. La combinación se realizará
-mediante votación por umbral o agregación de puntuaciones; la metodología
-experimental especificará y justificará la estrategia seleccionada, así como la normalización de
-las puntuaciones y los umbrales empleados. No se contempla un metamodelo supervisado. Para
+documentarán usando únicamente los datos de entrenamiento y validación. Cada método producirá una
+puntuación continua de anomalía; la clasificación binaria se obtendrá al aplicar un umbral definido
+con los datos de validación. La combinación se realizará mediante la agregación ponderada de
+puntuaciones de anomalía normalizadas. Las ponderaciones, la regla de normalización y el umbral de decisión se seleccionarán
+exclusivamente con los datos de entrenamiento y validación; no se contempla un metamodelo
+supervisado. La estrategia se evaluará frente a cada detector individual y frente al mejor detector
+individual seleccionado mediante la medida F1 en validación. Para
 presentar los resultados, se expondrán las puntuaciones de detección y las variables asociadas
 según la información que proporcione cada método; no se presupone que todas las técnicas ofrezcan
 explicaciones equivalentes.
@@ -51,7 +54,44 @@ parámetros de imputación, escalado y codificación se ajustarán con el conjun
 se aplicarán sin reajuste a validación y prueba. Las etiquetas de observaciones atípicas no se utilizarán para
 entrenar el autocodificador; se reservarán para seleccionar configuraciones o umbrales con validación
 y para la evaluación final en prueba. Los datos procesados se almacenarán en un formato columnar
-(Parquet) para optimizar su lectura por parte de los microservicios de detección.
+(Parquet) para optimizar su lectura por parte de los microservicios de clasificación de anomalías.
+
+Los conjuntos de datos reales se seleccionarán según los siguientes criterios: disponibilidad de
+etiquetas de anomalía, documentación del proceso de generación de los datos, proporción de la clase
+anómala, número y tipo de variables, ausencia de duplicados entre particiones y pertinencia para
+datos tabulares procesados por lotes. Los datos sintéticos se utilizarán únicamente para controlar
+factores que no estén suficientemente representados en los datos reales. Se generarán mediante
+contaminación controlada de observaciones habituales, especificando el mecanismo de generación, la
+proporción de anomalías, el nivel de contaminación, la distribución de las variables y la semilla
+aleatoria. Las etiquetas sintéticas serán conocidas por construcción y no se utilizarán para
+ajustar los modelos; solo se emplearán en validación y prueba conforme al protocolo establecido.
+La similitud entre anomalías sintéticas y fenómenos plausibles se justificará para cada escenario,
+y los resultados sintéticos se presentarán separados de los resultados reales o semisintéticos.
+
+Para prevenir fuga de información, ninguna observación de prueba participará en el ajuste de
+imputadores, transformadores, hiperparámetros, ponderaciones, umbrales o selección de variables.
+Las transformaciones se ajustarán en entrenamiento y se aplicarán sin reajuste en validación y
+prueba. Se comprobará además que no existan duplicados, identificadores compartidos o información
+derivada de la etiqueta entre las particiones.
+
+## Protocolo de reproducibilidad y control de sesgos
+
+Cada ejecución registrará la semilla aleatoria, las versiones de código y dependencias, la
+configuración de hardware y nube, los parámetros de preprocesamiento, los hiperparámetros, el
+umbral de decisión, las ponderaciones del ensamblado y el identificador de los datos utilizados.
+Los métodos estocásticos se ejecutarán con un número predefinido de repeticiones y las particiones
+se generarán mediante un procedimiento reproducible. La selección de hiperparámetros se realizará
+exclusivamente con entrenamiento y validación, mediante validación cruzada dentro del conjunto de
+entrenamiento cuando el tamaño de los datos lo permita; la prueba se mantendrá intacta hasta el
+análisis final.
+
+Se informarán los valores faltantes, las reglas de imputación o exclusión, la normalización y la
+codificación categórica para cada conjunto. Los resultados se reportarán con intervalos de
+confianza obtenidos mediante remuestreo cuando sea apropiado, junto con tamaños de efecto y el
+número de repeticiones. El repositorio incluirá archivos de configuración, semillas, esquemas de
+datos, especificaciones de API, versiones de modelos y scripts necesarios para reproducir cada
+experimento. Las decisiones metodológicas se fijarán antes de consultar las etiquetas de prueba
+para reducir el riesgo de sobreajuste del protocolo a los resultados observados.
 
 ## Arquitectura de microservicios en la nube
 
@@ -132,27 +172,61 @@ _Tabla 2: Herramientas y tecnologías propuestas por componente._
 
 ## Diseño de la evaluación experimental
 
+La evaluación de HE2 seguirá un diseño factorial en el que los factores serán el método de
+detección, el tipo de observación atípica y la dimensionalidad. Los métodos incluidos serán la
+puntuación z robusta, el rango intercuartílico, la distancia de Mahalanobis cuando sea aplicable,
+Isolation Forest, Local Outlier Factor y el autocodificador denso. Los tipos de anomalía se
+clasificarán como puntual, contextual o colectiva únicamente cuando esa estructura esté presente y
+etiquetada en el conjunto correspondiente. La dimensionalidad se definirá por el número de
+variables predictoras: baja (hasta 10), media (11--50) y alta (más de 50). La dimensionalidad se
+variará mediante conjuntos de datos pertenecientes a esos rangos o mediante selección de variables
+documentada dentro del entrenamiento; no se utilizará la reducción de dimensionalidad para crear
+artificialmente una categoría. Se analizarán los efectos principales y la interacción entre los
+tres factores sobre la medida F1, con precisión, exhaustividad y AUC-PR como medidas secundarias.
+
 La evaluación del marco de trabajo se realizará mediante un diseño experimental comparativo en el
 que se contrastará el desempeño del esquema de ensamblado propuesto frente a: (a) cada método
 estadístico aplicado de forma aislada; (b) cada algoritmo de aprendizaje automático aplicado de
-forma aislada; y (c) el autocodificador, sobre los mismos conjuntos de datos y bajo las mismas
-particiones de entrenamiento, validación y prueba. El autocodificador se entrenará sin etiquetas de
+forma aislada; y (c) el autocodificador. También se comparará, para cada conjunto de datos y
+escenario, con el mejor método individual seleccionado exclusivamente mediante la medida F1
+obtenida en el conjunto de validación. Todas las comparaciones se realizarán sobre los mismos
+conjuntos de datos y bajo las mismas particiones de entrenamiento, validación y prueba; el conjunto
+de prueba no se utilizará para seleccionar el método de referencia. El autocodificador se entrenará
+sin etiquetas de
 observaciones atípicas; las etiquetas de validación podrán utilizarse para seleccionar configuraciones y
 umbrales, mientras que las etiquetas de prueba se reservarán para la evaluación final. Las
 métricas de desempeño incluirán
 precisión, exhaustividad, medida F1, área bajo la curva ROC (AUC-ROC) y área bajo la curva
 de precisión-exhaustividad (AUC-PR), esta última especialmente relevante dado el desbalance
-característico entre observaciones habituales y atípicas. Las diferencias de desempeño entre métodos
-se contrastarán mediante pruebas estadísticas no paramétricas (por ejemplo, la prueba de Friedman
-con post-hoc de Nemenyi) adecuadas para la comparación de múltiples algoritmos sobre múltiples
-conjuntos de datos. La evaluación de la arquitectura de microservicios se realizará mediante
-pruebas de carga que midan la latencia y el caudal de procesamiento del sistema bajo volúmenes crecientes de
-datos. La evaluación del tablero incorporará una prueba con tareas estandarizadas y una muestra
-intencional de usuarios representativos del perfil previsto, como analistas o científicos de datos.
-Las tareas incluirán cargar un conjunto tabular, ejecutar la detección, localizar observaciones
-señaladas e inspeccionar las variables asociadas. Se registrarán la proporción de tareas
-completadas, el tiempo requerido y los errores observados; además, se aplicará el cuestionario
-System Usability Scale (SUS, escala de usabilidad del sistema) y preguntas de utilidad percibida.
+característico entre observaciones habituales y atípicas. Las diferencias de desempeño entre métodos se contrastarán mediante pruebas estadísticas no
+paramétricas (por ejemplo, la prueba de Friedman con post-hoc de Nemenyi) adecuadas para la
+comparación de múltiples algoritmos sobre múltiples conjuntos de datos. Para HE1, se evaluará la
+reducción de la tasa de falsos positivos frente a cada referencia y la no inferioridad de la tasa
+de falsos negativos con un margen \(\delta = 0{,}05\), fijado antes de la evaluación. La evaluación
+de la arquitectura de microservicios se realizará mediante
+pruebas de carga que midan la latencia media, mediana, p95 y p99, el caudal de procesamiento, el uso de
+CPU y memoria, bajo al menos tres niveles crecientes de volumen de datos y de concurrencia. Se
+documentarán el tamaño de los mensajes, el procesamiento por lotes, el número de réplicas, la
+estrategia de escalado, las condiciones de red, el hardware y la configuración de almacenamiento.
+Cada escenario incluirá una fase de calentamiento, un número predefinido de repeticiones y las
+mismas condiciones de recursos para ambas arquitecturas. La prueba distinguirá los efectos de la
+latencia extremo a extremo y del procesamiento interno de cada servicio. La evaluación seguirá los
+atributos de eficiencia del desempeño relativos al comportamiento temporal y la utilización de
+recursos descritos en ISO/IEC 25010:2011 [@iso25010-2011].
+
+La evaluación del tablero incorporará un diseño entre sujetos con dos condiciones: tablero con
+puntuaciones y variables explicativas, y lista de observaciones detectadas sin dicho componente.
+La población objetivo estará compuesta por usuarios no especializados en estadística, con
+experiencia básica en análisis de datos; se seleccionará una muestra intencional cuyo tamaño y
+criterios de inclusión se documentarán antes de la prueba. Las tareas incluirán identificar
+observaciones señaladas, seleccionar la variable asociada más influyente e interpretar la
+puntuación de atipicidad. Se registrarán la proporción de respuestas correctas, los errores, el
+tiempo de respuesta y la confianza o comprensión percibida mediante una escala definida
+previamente. Se asignarán los participantes a una sola condición para evitar efectos de aprendizaje
+y contaminación entre interfaces. También se aplicará el cuestionario System Usability Scale (SUS)
+y preguntas de utilidad percibida basadas en Davis [@davis1989use]. Estas medidas se analizarán
+descriptivamente y mediante una comparación entre condiciones, sin extrapolar los resultados a
+poblaciones más amplias.
 Estas medidas permitirán describir
 la efectividad, la eficiencia y la satisfacción de uso en la muestra evaluada
 [@iso9241-11-2018; @brooke1996sus]. Los resultados se interpretarán de forma descriptiva y

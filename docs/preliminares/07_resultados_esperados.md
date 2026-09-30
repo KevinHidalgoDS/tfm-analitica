@@ -5,19 +5,26 @@
 - Un marco de trabajo para detectar observaciones atípicas, documentado y con código disponible, que integre al
   menos un método estadístico clásico, dos algoritmos de aprendizaje automático (Isolation Forest y
   Local Outlier Factor) y un componente de aprendizaje profundo (autocodificador), combinados mediante
-  un esquema de ensamblado configurable.
-- Evidencia empírica comparativa del desempeño del esquema híbrido frente a los métodos
-  individuales, sobre al menos tres conjuntos de referencia con observaciones atípicas etiquetadas,
+  un esquema de ensamblado mediante agregación ponderada de puntuaciones normalizadas,
+  configurable a partir de los datos de entrenamiento y validación.
+- Evidencia empírica comparativa del desempeño del esquema híbrido frente a cada método individual
+  y frente al mejor método individual seleccionado exclusivamente con el conjunto de validación,
+  sobre al menos tres conjuntos de referencia con observaciones atípicas etiquetadas,
   reportada mediante precisión, exhaustividad, medida F1, área bajo la curva ROC (AUC-ROC) y área
   bajo la curva de precisión-exhaustividad (AUC-PR), junto con las pruebas
   estadísticas de significancia correspondientes.
+- Evidencia sobre la interacción entre el método de detección, el tipo de observación atípica y la
+  dimensionalidad, mediante un diseño factorial aplicado a los escenarios definidos.
 - Una arquitectura de microservicios funcional, contenerizada y desplegada en un entorno de nube,
-  con documentación de su desempeño (latencia y caudal de procesamiento) bajo distintos volúmenes de datos, y
+  con documentación de su desempeño (latencia media, mediana, p95, p99, caudal, uso de CPU y
+  memoria) frente a una implementación monolítica equivalente, bajo distintos volúmenes y niveles
+  de concurrencia, y
   con una guía de portabilidad hacia al menos dos proveedores de nube adicionales al utilizado en
   la implementación de referencia.
 - Un prototipo funcional de tablero interactivo de visualización que presente las puntuaciones de
-  atipicidad y las métricas agregadas de desempeño del sistema,
-  validado mediante una evaluación de utilidad percibida con usuarios representativos.
+  atipicidad y las variables explicativas asociadas, validado mediante una comparación con una lista
+  de resultados que mida respuestas correctas, tiempo de interpretación, comprensión percibida y
+  utilidad con usuarios no especializados.
 - Un repositorio de código documentado (incluyendo diagramas de arquitectura, especificación de
   APIs y guía de despliegue) que permita la replicabilidad del sistema desarrollado por parte de
   terceros interesados.

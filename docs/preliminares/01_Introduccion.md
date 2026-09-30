@@ -34,10 +34,15 @@ de un conjunto de datos y que pueden originarse por errores de medición, fraude
 sistemas, eventos excepcionales genuinos o procesos generadores de datos heterogéneos
 [@chandola2009anomaly].
 
-La detección de observaciones atípicas, entendida como el proceso de identificar patrones que no se
+La detección de anomalías, entendida como el proceso de identificar patrones que no se
 ajustan a la noción de comportamiento normal dentro de un conjunto de datos, cuenta con
 antecedentes en los trabajos de la estadística clásica sobre pruebas de discordancia y detección de
 valores extremos, como el procedimiento propuesto por Grubbs [@grubbs1969procedures]. La expansión
+En esta tesis se utilizará «anomalía» como término general para referirse a una observación cuyo
+comportamiento se desvía del patrón esperado, y «clasificación de anomalías» para la decisión
+binaria obtenida al aplicar un umbral a la puntuación continua producida por un método. La expresión
+«observación atípica» se conservará cuando se describan las fuentes bibliográficas o las etiquetas
+originales de los conjuntos de datos. La expansión
 de los macrodatos y el aumento de la dimensionalidad han ampliado los desafíos de esta tarea, pues
 exigen considerar tanto las propiedades de los datos como la capacidad de los métodos para
 identificar distintos tipos de comportamiento atípico [@chandola2009anomaly; @aggarwal2017outlier].
