@@ -9,6 +9,11 @@ site_url: "https://kevinhidalgods.github.io/tfm-analitica/"
 copyright:
   "Copyright &copy; 2026 Kevin Hidalgo &bull; Universidad Nacional de Colombia - Sede Medellín"
 
+# Material de referencia y borradores no destinados al sitio publicado.
+exclude_docs: |
+  /referenciatmp.md
+  /tutorial_markdown.md
+
 # Enlace al repositorio (crea el botón directo en la cabecera)
 repo_name: KevinHidalgoDS/tfm-analitica
 repo_url: https://github.com/KevinHidalgoDS/tfm-analitica
@@ -226,6 +231,9 @@ nav:
       - Objetivos: preliminares/05_objetivos.md
       - Metodologías: preliminares/06_metodologia.md
       - Resultados esperados: preliminares/07_resultados_esperados.md
+#  - Recursos técnicos:
+#      - Instalación de Poetry: instalacion_poetry.md
+#      - Referencia de la API: api_referencia.md
 
 # nav:
 #   - Inicio: index.md
