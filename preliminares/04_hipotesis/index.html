@@ -599,6 +599,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hipotesis-nulas-y-reglas-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hipótesis nulas y reglas de decisión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operacionalizacion-de-las-hipotesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operacionalización de las hipótesis
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -747,6 +769,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hipotesis-nulas-y-reglas-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hipótesis nulas y reglas de decisión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operacionalizacion-de-las-hipotesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operacionalización de las hipótesis
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -817,36 +861,137 @@
 
 <h1 id="hipotesis">Hipótesis<a class="headerlink" href="#hipotesis" title="Permanent link">¶</a></h1>
 <h2 id="hipotesis-general">Hipótesis general<a class="headerlink" href="#hipotesis-general" title="Permanent link">¶</a></h2>
-<p><strong>H1:</strong> Un framework híbrido de detección de datos atípicos que combine métodos estadísticos
-clásicos y técnicas de analítica/aprendizaje automático, desplegado sobre una arquitectura de
-microservicios en la nube, presenta un desempeño de detección (medido en términos de precisión,
-exhaustividad y F1-score, así como del área bajo la curva ROC y bajo la curva de
-precisión-exhaustividad) superior al de la aplicación aislada de un único método estadístico o de
-un único algoritmo de aprendizaje automático, sin comprometer significativamente los tiempos de
-respuesta del sistema.</p>
+<p><strong>HG:</strong> Un marco de trabajo híbrido para la clasificación de anomalías, que combine métodos
+estadísticos clásicos, técnicas de aprendizaje automático y un autocodificador de aprendizaje
+profundo, alcanzará un desempeño de clasificación de anomalías superior al de cada método individual y al del mejor
+método individual seleccionado exclusivamente, para cada conjunto de datos y escenario, a partir
+del conjunto de validación.
+Debido al posible desequilibrio entre observaciones habituales y atípicas, la superioridad se
+evaluará mediante la medida F1 como métrica primaria, pues resume el equilibrio entre precisión y
+exhaustividad. La precisión, la exhaustividad y el área bajo la curva de precisión-exhaustividad
+(AUC-PR) se utilizarán como métricas secundarias, mientras que el área bajo la curva ROC (AUC-ROC)
+se reportará con finalidad complementaria. No se utilizará la exactitud como criterio principal,
+dado que puede resultar poco informativa cuando las observaciones atípicas son minoritarias. La
+comparación se realizará sobre los conjuntos de datos y escenarios experimentales definidos, sin
+seleccionar el método de referencia mediante los resultados del conjunto de prueba.</p>
 <h2 id="hipotesis-especificas">Hipótesis específicas<a class="headerlink" href="#hipotesis-especificas" title="Permanent link">¶</a></h2>
 <ul>
-<li><strong>H1a:</strong> La combinación de métodos estadísticos y de aprendizaje automático mediante un esquema
-  de ensamblado o de votación ponderada reduce la tasa de falsos positivos respecto de la
-  aplicación individual de cada método, sin incrementar de manera proporcional la tasa de falsos
-  negativos.</li>
-<li><strong>H1b:</strong> El desempeño relativo de los distintos métodos de detección (estadísticos, de
-  aprendizaje automático y de aprendizaje profundo) varía significativamente según el tipo de
-  anomalía (puntual, contextual o colectiva) y según la dimensionalidad del conjunto de datos, por
-  lo que ningún método individual domina de manera uniforme sobre todos los escenarios evaluados.</li>
-<li><strong>H1c:</strong> El despliegue del framework de detección mediante una arquitectura de microservicios
-  permite mantener tiempos de procesamiento y de respuesta compatibles con escenarios de monitoreo
-  cuasi-continuo, en comparación con una implementación monolítica equivalente, a medida que
-  aumenta el volumen de datos procesados.</li>
-<li><strong>H1d:</strong> Un dashboard que presente los puntajes de anomalía junto con explicaciones sobre las
-  variables que más contribuyen a cada anomalía detectada mejora la comprensión e interpretabilidad
-  percibida de los resultados por parte de usuarios no especializados en estadística, en
-  comparación con la presentación de los resultados sin dicho componente explicativo.</li>
+<li><strong>HE1:</strong> El esquema de ensamblado, implementado mediante la agregación ponderada de puntuaciones
+  de atipicidad normalizadas, reduce la tasa de falsos positivos respecto de cada método individual
+  y del mejor método individual seleccionado para cada conjunto de datos y escenario con los datos
+  de validación, sin aumentar la tasa de falsos negativos en más de <span class="arithmatex">\(\delta = 0{,}05\)</span>, equivalente
+  a cinco puntos porcentuales.</li>
+<li><strong>HE2:</strong> Existe una interacción significativa entre el método de clasificación de anomalías, el
+  tipo de anomalía y la dimensionalidad del conjunto de datos, de modo que el método con mejor
+  desempeño depende del escenario experimental evaluado.</li>
+<li><strong>HE3:</strong> Ante incrementos controlados del volumen de datos y manteniendo equivalentes los recursos
+  computacionales, la arquitectura de microservicios presentará una degradación de la latencia y un
+  aumento del caudal de procesamiento no mayores que los de una implementación monolítica
+  equivalente.</li>
+<li><strong>HE4:</strong> Los usuarios no especializados que consulten una interfaz de visualización con puntuaciones de atipicidad y
+  variables explicativas obtendrán mejores resultados de comprensión e interpretación que los
+  usuarios que consulten únicamente una lista de observaciones detectadas, considerando la
+  proporción de respuestas correctas, el tiempo de respuesta y la comprensión percibida.</li>
+</ul>
+<h2 id="hipotesis-nulas-y-reglas-de-decision">Hipótesis nulas y reglas de decisión<a class="headerlink" href="#hipotesis-nulas-y-reglas-de-decision" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>H0-HG:</strong> No existen diferencias estadísticamente significativas en la medida F1 entre el marco
+  híbrido y los métodos individuales ni entre el marco híbrido y el mejor método individual
+  seleccionado en validación.</li>
+<li><strong>H0-HE1:</strong> El ensamblado no reduce la tasa de falsos positivos frente a las referencias ni
+  mantiene la tasa de falsos negativos dentro del margen de no inferioridad <span class="arithmatex">\(\delta = 0{,}05\)</span>.</li>
+<li><strong>H0-HE2:</strong> No existe una interacción estadísticamente significativa entre el método de
+  clasificación de anomalías, el tipo de anomalía y la dimensionalidad sobre la medida F1.</li>
+<li><strong>H0-HE3:</strong> Ante incrementos controlados del volumen de datos, no existen diferencias en la
+  degradación de la latencia, el caudal de procesamiento ni el uso de recursos entre las
+  arquitecturas de microservicios y monolítica.</li>
+<li><strong>H0-HE4:</strong> No existen diferencias estadísticamente significativas entre las condiciones de
+  interfaz en comprensión, exactitud o tiempo de respuesta.</li>
 </ul>
 <p>Estas hipótesis serán contrastadas empíricamente a partir de los experimentos descritos en la
 sección de Metodología, mediante el diseño de escenarios controlados sobre conjuntos de datos con
-anomalías etiquetadas (reales y/o sintéticas) y la aplicación de pruebas estadísticas de
-comparación de desempeño entre métodos.</p>
+observaciones atípicas etiquetadas (reales o sintéticas) y la aplicación de pruebas estadísticas de
+comparación de desempeño entre métodos. La comparación de HG incluirá cada método individual y el
+mejor método individual para cada conjunto de datos y escenario, seleccionado exclusivamente
+mediante la medida F1 obtenida en validación;
+el conjunto de prueba se utilizará únicamente para la comparación final. Esta separación es
+pertinente porque el desempeño de los métodos de clasificación de anomalías depende del tipo de anomalía, la
+disponibilidad de etiquetas y el diseño de los datos de referencia <sup id="fnref:chandola2009anomaly"><a class="footnote-ref" href="#fn:chandola2009anomaly">1</a></sup>. Para HG,
+se considerará que existe una diferencia
+estadísticamente significativa cuando el análisis inferencial alcance un nivel de significancia de
+alfa = 0,05; además, se reportarán intervalos de confianza y tamaños de efecto para valorar la
+relevancia práctica de las diferencias. Para HE1, la reducción de falsos positivos se contrastará
+como una diferencia favorable respecto de cada referencia, y el aumento de falsos negativos se
+evaluará mediante un criterio de no inferioridad con margen <span class="arithmatex">\(\delta = 0{,}05\)</span>. Este margen se
+justifica como una tolerancia máxima de cinco puntos porcentuales para priorizar la reducción de
+alertas falsas sin deteriorar sustancialmente la detección de anomalías. La selección de umbrales
+de decisión, la normalización de puntuaciones, las ponderaciones y los demás parámetros del
+experimento se realizará con los datos de entrenamiento y validación, y las etiquetas del
+conjunto de prueba se reservarán para la evaluación final. En HE3, los umbrales de latencia y
+caudal se fijarán antes de ejecutar las pruebas de carga y se mantendrán constantes al comparar
+ambas arquitecturas.</p>
+<p>La decisión estadística se expresará como rechazo o no rechazo de la hipótesis nula, con un nivel
+de significancia de <span class="arithmatex">\(\alpha = 0{,}05\)</span>. No rechazar una hipótesis nula no se interpretará como
+evidencia de equivalencia. Para las comparaciones de no inferioridad se utilizará el margen
+<span class="arithmatex">\(\delta = 0{,}05\)</span>, fijado a priori, y se reportarán intervalos de confianza, tamaños de efecto y
+la dirección de las diferencias.</p>
+<h2 id="operacionalizacion-de-las-hipotesis">Operacionalización de las hipótesis<a class="headerlink" href="#operacionalizacion-de-las-hipotesis" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Hipótesis</th>
+<th style="text-align: left;">Variable independiente</th>
+<th style="text-align: left;">Variables dependientes</th>
+<th style="text-align: left;">Comparación</th>
+<th style="text-align: left;">Diseño y análisis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">HG</td>
+<td style="text-align: left;">Tipo de método</td>
+<td style="text-align: left;">F1, precisión, exhaustividad y AUC-PR</td>
+<td style="text-align: left;">Marco híbrido frente a cada método y al mejor método individual</td>
+<td style="text-align: left;">Comparación pareada, pruebas no paramétricas y tamaño de efecto</td>
+</tr>
+<tr>
+<td style="text-align: left;">HE1</td>
+<td style="text-align: left;">Estrategia de combinación</td>
+<td style="text-align: left;">Tasa de falsos positivos y tasa de falsos negativos</td>
+<td style="text-align: left;">Ensamblado frente a cada referencia y al mejor método</td>
+<td style="text-align: left;">Prueba de diferencia y no inferioridad con <span class="arithmatex">\(\delta = 0{,}05\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">HE2</td>
+<td style="text-align: left;">Método, tipo de anomalía y dimensionalidad</td>
+<td style="text-align: left;">F1, precisión, exhaustividad y AUC-PR</td>
+<td style="text-align: left;">Métodos entre escenarios factoriales</td>
+<td style="text-align: left;">Análisis de efectos principales e interacción</td>
+</tr>
+<tr>
+<td style="text-align: left;">HE3</td>
+<td style="text-align: left;">Arquitectura y volumen de carga</td>
+<td style="text-align: left;">Latencia, caudal, CPU y memoria</td>
+<td style="text-align: left;">Microservicios frente a monolito</td>
+<td style="text-align: left;">Prueba de carga con varios niveles y análisis de escalabilidad</td>
+</tr>
+<tr>
+<td style="text-align: left;">HE4</td>
+<td style="text-align: left;">Tipo de interfaz</td>
+<td style="text-align: left;">Comprensión, respuestas correctas, tiempo y confianza</td>
+<td style="text-align: left;">Interfaz explicativa frente a lista de resultados</td>
+<td style="text-align: left;">Experimento con usuarios y comparación entre condiciones</td>
+</tr>
+</tbody>
+</table>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:chandola2009anomaly">
+<p>V. Chandola, A. Banerjee, and V. Kumar, "Anomaly detection: A survey," <em>ACM Computing Surveys</em>, vol. 41, no. 3, pp. Article 15, 2009, doi: <a href="https://doi.org/10.1145/1541880.1541882">10.1145/1541880.1541882</a>.&nbsp;<a class="footnote-backref" href="#fnref:chandola2009anomaly" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -867,7 +1012,7 @@ comparación de desempeño entre métodos.</p>
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="8 de septiembre de 2026 23:31:00 UTC"><span class="timeago" datetime="2026-09-08T23:31:00+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="8 de septiembre de 2026 23:31:00 UTC">2026-09-08</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="30 de septiembre de 2026 20:47:31 UTC"><span class="timeago" datetime="2026-09-30T20:47:31+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="30 de septiembre de 2026 20:47:31 UTC">2026-09-30</span>
   </span>
 
     

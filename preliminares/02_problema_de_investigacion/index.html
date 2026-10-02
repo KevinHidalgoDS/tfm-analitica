@@ -533,10 +533,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vacio-de-conocimiento" class="md-nav__link">
+  <a href="#antecedentes-y-alcance-de-la-contribucion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vacío de conocimiento
+        Antecedentes y alcance de la contribución
       
     </span>
   </a>
@@ -748,10 +748,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vacio-de-conocimiento" class="md-nav__link">
+  <a href="#antecedentes-y-alcance-de-la-contribucion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vacío de conocimiento
+        Antecedentes y alcance de la contribución
       
     </span>
   </a>
@@ -839,59 +839,101 @@
 
 <h1 id="problema-de-investigacion">Problema de Investigación<a class="headerlink" href="#problema-de-investigacion" title="Permanent link">¶</a></h1>
 <h2 id="planteamiento-del-problema">Planteamiento del problema<a class="headerlink" href="#planteamiento-del-problema" title="Permanent link">¶</a></h2>
-<p>A pesar de la extensa producción académica sobre algoritmos de detección de datos atípicos,
-persiste una desconexión relevante entre el desarrollo metodológico de dichos algoritmos y su
-implementación como sistemas operativos, escalables y accesibles para los equipos de analítica y
-ciencia de datos. La mayoría de los estudios existentes evalúan el desempeño de los métodos de
-detección de anomalías en entornos de laboratorio, sobre conjuntos de datos estáticos, sin
-considerar las restricciones propias de un entorno productivo: variabilidad en el volumen de datos,
-necesidad de reentrenamiento o recalibración periódica, heterogeneidad de las fuentes de datos,
-requerimientos de disponibilidad y latencia, y la necesidad de comunicar los resultados de manera
-comprensible a usuarios no especializados en estadística o en aprendizaje automático.</p>
-<p>En términos concretos, el problema de investigación puede formularse mediante la siguiente
-pregunta: ¿en qué medida un framework de detección de datos atípicos que combine métodos
-estadísticos clásicos y técnicas de analítica/aprendizaje automático, desplegado sobre una
-arquitectura de microservicios en la nube, permite mejorar la precisión, la escalabilidad y la
-interpretabilidad de la detección de anomalías respecto de enfoques monolíticos o de un único
-método, y cómo puede dicho framework traducirse en un dashboard que facilite la toma de decisiones
-basada en datos?</p>
-<h2 id="vacio-de-conocimiento">Vacío de conocimiento<a class="headerlink" href="#vacio-de-conocimiento" title="Permanent link">¶</a></h2>
-<p>La revisión preliminar de la literatura (desarrollada con mayor profundidad en el Estado del Arte)
-evidencia tres vacíos específicos que esta investigación busca abordar:</p>
+<p>La literatura ha desarrollado y sistematizado diversos métodos para detectar observaciones
+atípicas, con enfoques y supuestos distintos <sup id="fnref:chandola2009anomaly"><a class="footnote-ref" href="#fn:chandola2009anomaly">1</a></sup> <sup id="fnref:pang2021deep"><a class="footnote-ref" href="#fn:pang2021deep">2</a></sup>. Sin embargo,
+llevar estos métodos a una solución utilizable también plantea retos de integración, mantenimiento
+y despliegue, documentados en la literatura sobre operaciones de sistemas de aprendizaje automático
+(MLOps, del inglés <em>Machine Learning Operations</em>)
+<sup id="fnref:sculley2015hidden"><a class="footnote-ref" href="#fn:sculley2015hidden">3</a></sup> <sup id="fnref:kreuzberger2023mlops"><a class="footnote-ref" href="#fn:kreuzberger2023mlops">4</a></sup>. En una solución aplicada, es necesario evaluar por
+separado el desempeño de detección, la respuesta ante distintos volúmenes de datos y la consulta
+de los resultados por parte de sus usuarios. Esta tesis aborda la integración de dichos
+componentes y su evaluación en un contexto delimitado de análisis por lotes.</p>
+<p>En términos concretos, el problema de investigación se formula mediante la siguiente pregunta
+principal: ¿cómo diseñar e implementar una solución basada en microservicios que integre una API
+para detectar observaciones atípicas en conjuntos de datos tabulares procesados por lotes y un
+tablero de visualización para consultar sus resultados, y cómo evaluar el desempeño de detección,
+el comportamiento operativo y la utilidad del tablero para los usuarios?</p>
+<p>Esta pregunta se desglosa en tres preguntas específicas:</p>
+<ol>
+<li>¿Qué desempeño de detección alcanzan los métodos estadísticos clásicos, los métodos de
+   aprendizaje automático seleccionados y un autocodificador de aprendizaje profundo aplicado a datos
+   tabulares, de manera individual y mediante el esquema de combinación definido, sobre conjuntos
+   etiquetados?</li>
+<li>¿Cómo varían la latencia, el caudal de procesamiento y el uso de recursos de la solución ante
+   distintos volúmenes de datos y niveles de concurrencia, al comparar una arquitectura de
+   microservicios con una implementación monolítica equivalente?</li>
+<li>¿En qué medida un tablero con puntuaciones de atipicidad y variables explicativas mejora la
+   comprensión, la exactitud y el tiempo de interpretación de los resultados frente a una lista de
+   observaciones detectadas?</li>
+</ol>
+<h2 id="antecedentes-y-alcance-de-la-contribucion">Antecedentes y alcance de la contribución<a class="headerlink" href="#antecedentes-y-alcance-de-la-contribucion" title="Permanent link">¶</a></h2>
+<p>La revisión de antecedentes, que se ampliará en el estado del arte, organiza el contexto de la
+investigación. Para delimitar la contribución propuesta, se consideran tres dimensiones de trabajo:</p>
 <ul>
-<li><strong>Vacío metodológico:</strong> la mayor parte de los estudios comparan algoritmos de detección de
-  anomalías de forma aislada (estadísticos frente a machine learning, o machine learning frente a
-  deep learning), pero existen pocas propuestas que evalúen sistemáticamente esquemas híbridos que
-  combinen la interpretabilidad de los métodos estadísticos con la capacidad de captura de patrones
-  complejos de los métodos de aprendizaje automático, aplicados de forma complementaria según las
-  características de los datos.</li>
-<li><strong>Vacío arquitectónico y operativo:</strong> la literatura sobre detección de anomalías rara vez discute
-  su implementación como microservicios independientes, versionables y escalables en la nube, lo
-  que limita la comprensión de cómo trasladar los hallazgos algorítmicos hacia soluciones de nivel
-  productivo (MLOps) y las implicaciones de dicho tránsito sobre el desempeño, el costo
-  computacional y la mantenibilidad.</li>
-<li><strong>Vacío en la interpretabilidad y comunicación de resultados:</strong> existe escasa evidencia
-  sistematizada sobre el diseño de tableros (dashboards) que traduzcan los resultados de los
-  modelos de detección de anomalías —puntajes de anomalía, explicaciones de las variables
-  contribuyentes, tendencias temporales— en insights comprensibles y accionables para usuarios de
-  negocio, lo cual limita la adopción práctica de estas soluciones en las organizaciones.</li>
+<li><strong>Integración de métodos:</strong> se comparará el desempeño de los métodos estadísticos, los métodos de
+  aprendizaje automático seleccionados y un autocodificador de aprendizaje profundo para datos
+  tabulares, tanto de manera
+  individual como mediante un esquema de ensamblado por agregación ponderada de puntuaciones
+  normalizadas.
+  La comparación se realizará sobre los conjuntos etiquetados seleccionados para el estudio. La
+  utilidad del ensamblado se evaluará empíricamente; no se presupone que una familia sea superior o
+  más interpretable que otra. Los criterios de normalización, ponderación y selección del umbral se
+  especificarán en la metodología y se determinarán sin utilizar el conjunto de prueba.</li>
+<li><strong>Implementación y operación:</strong> se integrarán los métodos seleccionados en una API y se desplegará
+  la solución mediante microservicios; su comportamiento se evaluará bajo los volúmenes de datos y
+  las condiciones experimentales definidos en la metodología.</li>
+<li><strong>Presentación de resultados:</strong> se implementará un tablero para consultar los resultados de
+  detección. Usuarios no especializados en estadística, con experiencia básica en análisis de datos,
+  realizarán tareas definidas previamente: cargar un conjunto tabular, ejecutar la detección,
+  localizar observaciones señaladas e inspeccionar las variables asociadas a estas. Se registrarán
+  la proporción de respuestas correctas, el tiempo de respuesta, los errores y la comprensión
+  percibida, y se aplicará el
+  cuestionario System Usability Scale (SUS) para medir la usabilidad percibida <sup id="fnref:brooke1996sus"><a class="footnote-ref" href="#fn:brooke1996sus">5</a></sup>.
+  Estas medidas operacionalizan la efectividad, la eficiencia y la satisfacción de uso
+  <sup id="fnref:iso9241-11-2018"><a class="footnote-ref" href="#fn:iso9241-11-2018">6</a></sup>. La evaluación se refiere a la interfaz y a la presentación de resultados;
+  no pretende medir la interpretabilidad intrínseca de los modelos. El diseño del tablero seguirá
+  principios de comunicación visual de información <sup id="fnref:few2006dashboard"><a class="footnote-ref" href="#fn:few2006dashboard">7</a></sup>.</li>
 </ul>
-<p>Cerrar estos vacíos es relevante no solo desde una perspectiva académica, sino también práctica:
-las organizaciones requieren cada vez más sistemas de monitoreo de calidad de datos y detección de
-anomalías que sean simultáneamente rigurosos desde el punto de vista estadístico, escalables desde
-el punto de vista de ingeniería, y comprensibles desde el punto de vista de negocio. Esta tesis, en
-su modalidad de profundización, busca aportar una solución aplicada y evaluada empíricamente a este
-problema, sin pretender un desarrollo puramente algorítmico novedoso, sino una integración
-metodológica y tecnológica rigurosa, documentada y replicable.</p>
+<p>Esta tesis, en su modalidad de profundización, busca implementar y evaluar la solución integrada
+para conjuntos de datos tabulares procesados por lotes. Su aporte se circunscribe a los métodos,
+componentes de software, datos, cargas y participantes incluidos en la evaluación; no propone un
+algoritmo novedoso ni pretende generalizar sus resultados más allá de esas condiciones.</p>
 <h2 id="justificacion">Justificación<a class="headerlink" href="#justificacion" title="Permanent link">¶</a></h2>
-<p>La pertinencia de este trabajo se sustenta en tres dimensiones. En primer lugar, una dimensión
-académica: contribuye a la literatura sobre integración de métodos estadísticos y de aprendizaje
-automático para detección de anomalías, aportando evidencia empírica comparativa bajo condiciones
-controladas. En segundo lugar, una dimensión tecnológica: propone y documenta un patrón de
-arquitectura de microservicios para el despliegue de modelos de detección de anomalías,
-contribuyendo a la práctica de MLOps aplicada a la calidad de datos. En tercer lugar, una dimensión
-de aplicabilidad: el dashboard resultante constituye un artefacto tangible que puede ser adoptado o
-adaptado por organizaciones interesadas en fortalecer sus procesos de gobierno y calidad de datos.</p>
+<p>La pertinencia de este trabajo de profundización radica en el diseño, la integración y la evaluación
+contextualizada de una solución aplicada para detectar observaciones atípicas en datos tabulares
+procesados por lotes. En la dimensión académica, se reportarán resultados comparativos de los
+métodos seleccionados en los conjuntos de datos y bajo las condiciones experimentales definidas. En
+la dimensión tecnológica, se implementará y documentará la API y su integración en una arquitectura
+de microservicios. En la dimensión aplicada, se desarrollará un tablero para consultar los
+resultados y se evaluará su utilidad con usuarios representativos. Las conclusiones se limitarán
+a las técnicas, los conjuntos de datos, las cargas y los participantes incluidos; no se afirmará
+una generalización a otros contextos sin evidencia adicional.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:chandola2009anomaly">
+<p>V. Chandola, A. Banerjee, and V. Kumar, "Anomaly detection: A survey," <em>ACM Computing Surveys</em>, vol. 41, no. 3, pp. Article 15, 2009, doi: <a href="https://doi.org/10.1145/1541880.1541882">10.1145/1541880.1541882</a>.&nbsp;<a class="footnote-backref" href="#fnref:chandola2009anomaly" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:pang2021deep">
+<p>G. Pang, C. Shen, L. Cao, and A. Van Den Hengel, "Deep learning for anomaly detection: A review," <em>ACM Computing Surveys</em>, vol. 54, no. 2, pp. 1--38, 2021, doi: <a href="https://doi.org/10.1145/3439950">10.1145/3439950</a>.&nbsp;<a class="footnote-backref" href="#fnref:pang2021deep" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:sculley2015hidden">
+<p>D. Sculley <em>et al.</em>, "Hidden technical debt in machine learning systems," in <em>Advances in neural information processing systems 28</em>, 2015, pp. 2503--2511.&nbsp;<a class="footnote-backref" href="#fnref:sculley2015hidden" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
+<li id="fn:kreuzberger2023mlops">
+<p>D. Kreuzberger, N. Kühl, and S. Hirschl, "Machine learning operations (MLOps): Overview, definition, and architecture," <em>IEEE Access</em>, vol. 11, pp. 31866--31879, 2023, doi: <a href="https://doi.org/10.1109/ACCESS.2023.3262138">10.1109/ACCESS.2023.3262138</a>.&nbsp;<a class="footnote-backref" href="#fnref:kreuzberger2023mlops" title="Jump back to footnote 4 in the text">↩</a></p>
+</li>
+<li id="fn:brooke1996sus">
+<p>J. Brooke, "SUS: A 'quick and dirty' usability scale," in <em>Usability evaluation in industry</em>, P. W. Jordan, B. Thomas, B. A. Weerdmeester, and I. L. McClelland, Eds., Taylor\ &amp; Francis, 1996, pp. 189--194.&nbsp;<a class="footnote-backref" href="#fnref:brooke1996sus" title="Jump back to footnote 5 in the text">↩</a></p>
+</li>
+<li id="fn:iso9241-11-2018">
+<p><em>Ergonomics of human-system interaction---part 11: Usability: Definitions and concepts</em>. Geneva, Switzerland: International Organization for Standardization, 2018.&nbsp;<a class="footnote-backref" href="#fnref:iso9241-11-2018" title="Jump back to footnote 6 in the text">↩</a></p>
+</li>
+<li id="fn:few2006dashboard">
+<p>S. Few, <em>Information dashboard design: The effective visual communication of data</em>. O'Reilly Media, 2006.&nbsp;<a class="footnote-backref" href="#fnref:few2006dashboard" title="Jump back to footnote 7 in the text">↩</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -912,7 +954,7 @@ adaptado por organizaciones interesadas en fortalecer sus procesos de gobierno y
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="8 de septiembre de 2026 23:31:00 UTC"><span class="timeago" datetime="2026-09-08T23:31:00+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="8 de septiembre de 2026 23:31:00 UTC">2026-09-08</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="30 de septiembre de 2026 20:47:31 UTC"><span class="timeago" datetime="2026-09-30T20:47:31+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="30 de septiembre de 2026 20:47:31 UTC">2026-09-30</span>
   </span>
 
     
