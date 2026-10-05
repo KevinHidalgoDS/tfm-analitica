@@ -2,7 +2,8 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.14%2B-blue.svg)](https://www.python.org/)
 [![Cloud: Azure](https://img.shields.io/badge/cloud-Azure-0078D4.svg)](https://azure.microsoft.com/)
-[![Architecture: Microservices](https://img.shields.io/badge/architecture-Microservices_|_K8s-326ce5.svg)](https://kubernetes.io/)
+
+[//]: # ([![Architecture: Microservices]&#40;https://img.shields.io/badge/architecture-Microservices_|_K8s-326ce5.svg&#41;]&#40;https://kubernetes.io/&#41;)
 [![Linter: SonarQube](https://img.shields.io/badge/linter-SonarQube-brightgreen.svg)](https://www.sonarqube.org/)
 
 ## 📖 Descripción del Proyecto
