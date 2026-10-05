@@ -231,6 +231,12 @@ nav:
       - Objetivos: preliminares/05_objetivos.md
       - Metodologías: preliminares/06_metodologia.md
       - Resultados esperados: preliminares/07_resultados_esperados.md
+  - Posibles escenarios:
+      - Escenario 1: escenarios/escenario_01.md
+      - Escenario 2: escenarios/escenario_02.md
+      - Escenario 3: escenarios/escenario_03.md
+      - Escenario 4: escenarios/escenario_04.md
+      - Escenario 5: escenarios/escenario_05.md
 #  - Recursos técnicos:
 #      - Instalación de Poetry: instalacion_poetry.md
 #      - Referencia de la API: api_referencia.md
