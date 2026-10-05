@@ -2,42 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/api_referencia/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://kevinhidalgods.github.io/tfm-analitica/hallazgos/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/instalacion_poetry/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://kevinhidalgods.github.io/tfm-analitica/escenarios/escenario_01/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://kevinhidalgods.github.io/tfm-analitica/escenarios/escenario_02/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://kevinhidalgods.github.io/tfm-analitica/escenarios/escenario_03/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://kevinhidalgods.github.io/tfm-analitica/escenarios/escenario_04/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://kevinhidalgods.github.io/tfm-analitica/escenarios/escenario_05/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/preliminares/01_Introduccion/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/preliminares/02_problema_de_investigacion/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/preliminares/03_estado_del_arte/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/preliminares/04_hipotesis/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/preliminares/05_objetivos/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/preliminares/06_metodologia/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://kevinhidalgods.github.io/tfm-analitica/preliminares/07_resultados_esperados/</loc>
-         <lastmod>2026-10-02</lastmod>
+         <lastmod>2026-10-05</lastmod>
     </url>
 </urlset>

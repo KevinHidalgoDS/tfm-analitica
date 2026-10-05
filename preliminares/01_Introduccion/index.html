@@ -276,6 +276,28 @@
   
 
       
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../escenarios/escenario_01/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Posibles escenarios
+
+        </a>
+      </li>
+    
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -640,6 +662,217 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Posibles escenarios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Posibles escenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../escenarios/escenario_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escenario 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../escenarios/escenario_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escenario 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../escenarios/escenario_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escenario 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../escenarios/escenario_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escenario 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../escenarios/escenario_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escenario 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -741,7 +974,7 @@ sistemas, eventos excepcionales genuinos o procesos generadores de datos heterog
 ajustan a la noción de comportamiento normal dentro de un conjunto de datos, cuenta con
 antecedentes en los trabajos de la estadística clásica sobre pruebas de discordancia y detección de
 valores extremos, como el procedimiento propuesto por Grubbs <sup id="fnref:grubbs1969procedures"><a class="footnote-ref" href="#fn:grubbs1969procedures">2</a></sup>. La expansión
-En esta tesis se utilizará «anomalía» como término general para referirse a una observación cuyo
+en esta tesis se utilizará «anomalía» como término general para referirse a una observación cuyo
 comportamiento se desvía del patrón esperado, y «clasificación de anomalías» para la decisión
 binaria obtenida al aplicar un umbral a la puntuación continua producida por un método. La expresión
 «observación atípica» se conservará cuando se describan las fuentes bibliográficas o las etiquetas
@@ -763,30 +996,30 @@ selección también depende de los requisitos analíticos.</p>
 la máquina de vectores de soporte de una clase (One-Class Support Vector Machine, denominada
 One-Class SVM) estima una frontera que delimita la región de los datos considerados habituales; y el
 factor local de observaciones atípicas (Local Outlier Factor, LOF) asigna puntuaciones elevadas a
-observaciones cuya densidad local es menor que la de sus vecinas [@liu2008isolation;
-@scholkopf2001estimating; @breunig2000lof]. Los autocodificadores (<em>autoencoders</em>), una técnica de aprendizaje
-profundo, aprenden a reconstruir los datos y pueden señalar observaciones con errores de
-reconstrucción elevados [@sakurada2014autoencoders;
-@pang2021deep], mientras que ECOD es un método no supervisado basado en funciones de distribución
-empírica acumulada que estima el grado de atipicidad <sup id="fnref:li2022ecod"><a class="footnote-ref" href="#fn:li2022ecod">4</a></sup>. En esta tesis se
-explorará y evaluará un autocodificador para datos tabulares, comparándolo con métodos estadísticos
-y de aprendizaje automático seleccionados. Estos
+observaciones cuya densidad local es menor que la de sus vecinas 
+<sup id="fnref:liu2008isolation"><a class="footnote-ref" href="#fn:liu2008isolation">4</a></sup> <sup id="fnref:scholkopf2001estimating"><a class="footnote-ref" href="#fn:scholkopf2001estimating">5</a></sup> <sup id="fnref:breunig2000lof"><a class="footnote-ref" href="#fn:breunig2000lof">6</a></sup>. Los autocodificadores
+(<em>autoencoders</em>), una técnica de aprendizaje profundo, aprenden a reconstruir los datos y pueden
+señalar observaciones con errores de reconstrucción elevados
+<sup id="fnref:sakurada2014autoencoders"><a class="footnote-ref" href="#fn:sakurada2014autoencoders">7</a></sup> <sup id="fnref:pang2021deep"><a class="footnote-ref" href="#fn:pang2021deep">8</a></sup>, mientras que ECOD es un método no supervisado basado en
+funciones de distribución empírica acumulada que estima el grado de atipicidad <sup id="fnref:li2022ecod"><a class="footnote-ref" href="#fn:li2022ecod">9</a></sup>. En
+esta tesis se explorará y evaluará un autocodificador para datos tabulares, comparándolo con métodos
+estadísticos y de aprendizaje automático seleccionados. Estos
 métodos difieren en sus supuestos, parámetros, requisitos computacionales y capacidades; por ello,
 su selección y eventual combinación deberán justificarse y evaluarse en el contexto de los datos
-<sup id="fnref3:aggarwal2017outlier"><a class="footnote-ref" href="#fn:aggarwal2017outlier">3</a></sup> <sup id="fnref:pang2021deep"><a class="footnote-ref" href="#fn:pang2021deep">5</a></sup>. La solución integrará los métodos seleccionados y expondrá
+<sup id="fnref3:aggarwal2017outlier"><a class="footnote-ref" href="#fn:aggarwal2017outlier">3</a></sup> <sup id="fnref2:pang2021deep"><a class="footnote-ref" href="#fn:pang2021deep">8</a></sup>. La solución integrará los métodos seleccionados y expondrá
 sus resultados para facilitar su consulta e interpretación.</p>
 <p>Para responder a estos requisitos de integración y operación, la computación en la nube y las
 arquitecturas de microservicios ofrecen una alternativa para separar componentes de ingesta,
 procesamiento, modelado y visualización. Esta separación puede facilitar su mantenimiento y
 despliegue independiente, así como la adaptación de los recursos a las necesidades de cada
-componente <sup id="fnref:newman2021microservices"><a class="footnote-ref" href="#fn:newman2021microservices">6</a></sup> <sup id="fnref:kreuzberger2023mlops"><a class="footnote-ref" href="#fn:kreuzberger2023mlops">7</a></sup>. Las revisiones sobre detección de
+componente <sup id="fnref:newman2021microservices"><a class="footnote-ref" href="#fn:newman2021microservices">10</a></sup> <sup id="fnref:kreuzberger2023mlops"><a class="footnote-ref" href="#fn:kreuzberger2023mlops">11</a></sup>. Las revisiones sobre detección de
 observaciones atípicas describen las definiciones del problema, las familias de métodos y sus
-ámbitos de aplicación <sup id="fnref3:chandola2009anomaly"><a class="footnote-ref" href="#fn:chandola2009anomaly">1</a></sup> <sup id="fnref2:pang2021deep"><a class="footnote-ref" href="#fn:pang2021deep">5</a></sup>. Por su parte, los trabajos sobre
+ámbitos de aplicación <sup id="fnref3:chandola2009anomaly"><a class="footnote-ref" href="#fn:chandola2009anomaly">1</a></sup> <sup id="fnref3:pang2021deep"><a class="footnote-ref" href="#fn:pang2021deep">8</a></sup>. Por su parte, los trabajos sobre
 operación de sistemas de aprendizaje automático describen retos de mantenimiento, integración y
-despliegue en producción <sup id="fnref:sculley2015hidden"><a class="footnote-ref" href="#fn:sculley2015hidden">8</a></sup> <sup id="fnref2:kreuzberger2023mlops"><a class="footnote-ref" href="#fn:kreuzberger2023mlops">7</a></sup>. Estos ámbitos ofrecen
+despliegue en producción <sup id="fnref:sculley2015hidden"><a class="footnote-ref" href="#fn:sculley2015hidden">12</a></sup> <sup id="fnref2:kreuzberger2023mlops"><a class="footnote-ref" href="#fn:kreuzberger2023mlops">11</a></sup>. Estos ámbitos ofrecen
 perspectivas complementarias para estudiar la integración de métodos de detección en una solución
 aplicada y la presentación de resultados mediante un tablero orientado a sus usuarios, siguiendo
-principios de comunicación visual de información <sup id="fnref:few2006dashboard"><a class="footnote-ref" href="#fn:few2006dashboard">9</a></sup>. En consecuencia, la
+principios de comunicación visual de información <sup id="fnref:few2006dashboard"><a class="footnote-ref" href="#fn:few2006dashboard">13</a></sup>. En consecuencia, la
 contribución propuesta se centra en integrar los métodos seleccionados y los componentes de
 software en una solución evaluable, no en asumir que una arquitectura distribuida mejora por sí
 misma la detección. La revisión bibliográfica del estado del arte permitirá precisar el alcance de
@@ -829,23 +1062,35 @@ detección con el diseño y la evaluación de una solución de software.</p>
 <li id="fn:aggarwal2017outlier">
 <p>C. C. Aggarwal, <em>Outlier analysis</em>, 2nd ed. Cham, Switzerland: Springer, 2017, pp. XXII, 466. doi: <a href="https://doi.org/10.1007/978-3-319-47578-3">10.1007/978-3-319-47578-3</a>.&nbsp;<a class="footnote-backref" href="#fnref:aggarwal2017outlier" title="Jump back to footnote 3 in the text">↩</a><a class="footnote-backref" href="#fnref2:aggarwal2017outlier" title="Jump back to footnote 3 in the text">↩</a><a class="footnote-backref" href="#fnref3:aggarwal2017outlier" title="Jump back to footnote 3 in the text">↩</a></p>
 </li>
-<li id="fn:li2022ecod">
-<p>Z. Li, Y. Zhao, X. Hu, N. Botta, C. Ionescu, and G. H. Chen, "ECOD: Unsupervised outlier detection using empirical cumulative distribution functions," <em>IEEE Transactions on Knowledge and Data Engineering</em>, vol. 35, no. 12, pp. 12181--12193, 2022, doi: <a href="https://doi.org/10.1109/TKDE.2022.3159580">10.1109/TKDE.2022.3159580</a>.&nbsp;<a class="footnote-backref" href="#fnref:li2022ecod" title="Jump back to footnote 4 in the text">↩</a></p>
+<li id="fn:liu2008isolation">
+<p>F. T. Liu, K. M. Ting, and Z.-H. Zhou, "Isolation forest," in <em>Proceedings of the 2008 eighth IEEE international conference on data mining</em>, IEEE, 2008, pp. 413--422. doi: <a href="https://doi.org/10.1109/ICDM.2008.17">10.1109/ICDM.2008.17</a>.&nbsp;<a class="footnote-backref" href="#fnref:liu2008isolation" title="Jump back to footnote 4 in the text">↩</a></p>
+</li>
+<li id="fn:scholkopf2001estimating">
+<p>B. Schölkopf, J. C. Platt, J. Shawe-Taylor, A. J. Smola, and R. C. Williamson, "Estimating the support of a high-dimensional distribution," <em>Neural Computation</em>, vol. 13, no. 7, pp. 1443--1471, 2001, doi: <a href="https://doi.org/10.1162/089976601750264965">10.1162/089976601750264965</a>.&nbsp;<a class="footnote-backref" href="#fnref:scholkopf2001estimating" title="Jump back to footnote 5 in the text">↩</a></p>
+</li>
+<li id="fn:breunig2000lof">
+<p>M. M. Breunig, H.-P. Kriegel, R. T. Ng, and J. Sander, "LOF: Identifying density-based local outliers," in <em>Proceedings of the 2000 ACM SIGMOD international conference on management of data</em>, 2000, pp. 93--104. doi: <a href="https://doi.org/10.1145/335191.335388">10.1145/335191.335388</a>.&nbsp;<a class="footnote-backref" href="#fnref:breunig2000lof" title="Jump back to footnote 6 in the text">↩</a></p>
+</li>
+<li id="fn:sakurada2014autoencoders">
+<p>M. Sakurada and T. Yairi, "Anomaly detection using autoencoders with nonlinear dimensionality reduction," in <em>Proceedings of the MLSDA 2014 2nd workshop on machine learning for sensory data analysis</em>, Association for Computing Machinery, 2014, pp. 4--11. doi: <a href="https://doi.org/10.1145/2689746.2689747">10.1145/2689746.2689747</a>.&nbsp;<a class="footnote-backref" href="#fnref:sakurada2014autoencoders" title="Jump back to footnote 7 in the text">↩</a></p>
 </li>
 <li id="fn:pang2021deep">
-<p>G. Pang, C. Shen, L. Cao, and A. Van Den Hengel, "Deep learning for anomaly detection: A review," <em>ACM Computing Surveys</em>, vol. 54, no. 2, pp. 1--38, 2021, doi: <a href="https://doi.org/10.1145/3439950">10.1145/3439950</a>.&nbsp;<a class="footnote-backref" href="#fnref:pang2021deep" title="Jump back to footnote 5 in the text">↩</a><a class="footnote-backref" href="#fnref2:pang2021deep" title="Jump back to footnote 5 in the text">↩</a></p>
+<p>G. Pang, C. Shen, L. Cao, and A. Van Den Hengel, "Deep learning for anomaly detection: A review," <em>ACM Computing Surveys</em>, vol. 54, no. 2, pp. 1--38, 2021, doi: <a href="https://doi.org/10.1145/3439950">10.1145/3439950</a>.&nbsp;<a class="footnote-backref" href="#fnref:pang2021deep" title="Jump back to footnote 8 in the text">↩</a><a class="footnote-backref" href="#fnref2:pang2021deep" title="Jump back to footnote 8 in the text">↩</a><a class="footnote-backref" href="#fnref3:pang2021deep" title="Jump back to footnote 8 in the text">↩</a></p>
+</li>
+<li id="fn:li2022ecod">
+<p>Z. Li, Y. Zhao, X. Hu, N. Botta, C. Ionescu, and G. H. Chen, "ECOD: Unsupervised outlier detection using empirical cumulative distribution functions," <em>IEEE Transactions on Knowledge and Data Engineering</em>, vol. 35, no. 12, pp. 12181--12193, 2022, doi: <a href="https://doi.org/10.1109/TKDE.2022.3159580">10.1109/TKDE.2022.3159580</a>.&nbsp;<a class="footnote-backref" href="#fnref:li2022ecod" title="Jump back to footnote 9 in the text">↩</a></p>
 </li>
 <li id="fn:newman2021microservices">
-<p>S. Newman, <em>Building microservices: Designing fine-grained systems</em>, 2nd ed. O'Reilly Media, 2021.&nbsp;<a class="footnote-backref" href="#fnref:newman2021microservices" title="Jump back to footnote 6 in the text">↩</a></p>
+<p>S. Newman, <em>Building microservices: Designing fine-grained systems</em>, 2nd ed. O'Reilly Media, 2021.&nbsp;<a class="footnote-backref" href="#fnref:newman2021microservices" title="Jump back to footnote 10 in the text">↩</a></p>
 </li>
 <li id="fn:kreuzberger2023mlops">
-<p>D. Kreuzberger, N. Kühl, and S. Hirschl, "Machine learning operations (MLOps): Overview, definition, and architecture," <em>IEEE Access</em>, vol. 11, pp. 31866--31879, 2023, doi: <a href="https://doi.org/10.1109/ACCESS.2023.3262138">10.1109/ACCESS.2023.3262138</a>.&nbsp;<a class="footnote-backref" href="#fnref:kreuzberger2023mlops" title="Jump back to footnote 7 in the text">↩</a><a class="footnote-backref" href="#fnref2:kreuzberger2023mlops" title="Jump back to footnote 7 in the text">↩</a></p>
+<p>D. Kreuzberger, N. Kühl, and S. Hirschl, "Machine learning operations (MLOps): Overview, definition, and architecture," <em>IEEE Access</em>, vol. 11, pp. 31866--31879, 2023, doi: <a href="https://doi.org/10.1109/ACCESS.2023.3262138">10.1109/ACCESS.2023.3262138</a>.&nbsp;<a class="footnote-backref" href="#fnref:kreuzberger2023mlops" title="Jump back to footnote 11 in the text">↩</a><a class="footnote-backref" href="#fnref2:kreuzberger2023mlops" title="Jump back to footnote 11 in the text">↩</a></p>
 </li>
 <li id="fn:sculley2015hidden">
-<p>D. Sculley <em>et al.</em>, "Hidden technical debt in machine learning systems," in <em>Advances in neural information processing systems 28</em>, 2015, pp. 2503--2511.&nbsp;<a class="footnote-backref" href="#fnref:sculley2015hidden" title="Jump back to footnote 8 in the text">↩</a></p>
+<p>D. Sculley <em>et al.</em>, "Hidden technical debt in machine learning systems," in <em>Advances in neural information processing systems 28</em>, 2015, pp. 2503--2511.&nbsp;<a class="footnote-backref" href="#fnref:sculley2015hidden" title="Jump back to footnote 12 in the text">↩</a></p>
 </li>
 <li id="fn:few2006dashboard">
-<p>S. Few, <em>Information dashboard design: The effective visual communication of data</em>. O'Reilly Media, 2006.&nbsp;<a class="footnote-backref" href="#fnref:few2006dashboard" title="Jump back to footnote 9 in the text">↩</a></p>
+<p>S. Few, <em>Information dashboard design: The effective visual communication of data</em>. O'Reilly Media, 2006.&nbsp;<a class="footnote-backref" href="#fnref:few2006dashboard" title="Jump back to footnote 13 in the text">↩</a></p>
 </li>
 </ol>
 </div>
@@ -869,7 +1114,7 @@ detección con el diseño y la evaluación de una solución de software.</p>
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="30 de septiembre de 2026 20:47:31 UTC"><span class="timeago" datetime="2026-09-30T20:47:31+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="30 de septiembre de 2026 20:47:31 UTC">2026-09-30</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="5 de octubre de 2026 14:54:17 UTC"><span class="timeago" datetime="2026-10-05T14:54:17+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="5 de octubre de 2026 14:54:17 UTC">2026-10-05</span>
   </span>
 
     
