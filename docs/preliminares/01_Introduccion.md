@@ -38,7 +38,7 @@ La detección de anomalías, entendida como el proceso de identificar patrones q
 ajustan a la noción de comportamiento normal dentro de un conjunto de datos, cuenta con
 antecedentes en los trabajos de la estadística clásica sobre pruebas de discordancia y detección de
 valores extremos, como el procedimiento propuesto por Grubbs [@grubbs1969procedures]. La expansión
-En esta tesis se utilizará «anomalía» como término general para referirse a una observación cuyo
+en esta tesis se utilizará «anomalía» como término general para referirse a una observación cuyo
 comportamiento se desvía del patrón esperado, y «clasificación de anomalías» para la decisión
 binaria obtenida al aplicar un umbral a la puntuación continua producida por un método. La expresión
 «observación atípica» se conservará cuando se describan las fuentes bibliográficas o las etiquetas
@@ -61,14 +61,14 @@ Entre estos métodos, Isolation Forest separa observaciones mediante particiones
 la máquina de vectores de soporte de una clase (One-Class Support Vector Machine, denominada
 One-Class SVM) estima una frontera que delimita la región de los datos considerados habituales; y el
 factor local de observaciones atípicas (Local Outlier Factor, LOF) asigna puntuaciones elevadas a
-observaciones cuya densidad local es menor que la de sus vecinas [@liu2008isolation;
-@scholkopf2001estimating; @breunig2000lof]. Los autocodificadores (*autoencoders*), una técnica de aprendizaje
-profundo, aprenden a reconstruir los datos y pueden señalar observaciones con errores de
-reconstrucción elevados [@sakurada2014autoencoders;
-@pang2021deep], mientras que ECOD es un método no supervisado basado en funciones de distribución
-empírica acumulada que estima el grado de atipicidad [@li2022ecod]. En esta tesis se
-explorará y evaluará un autocodificador para datos tabulares, comparándolo con métodos estadísticos
-y de aprendizaje automático seleccionados. Estos
+observaciones cuya densidad local es menor que la de sus vecinas 
+[@liu2008isolation; @scholkopf2001estimating; @breunig2000lof]. Los autocodificadores
+(*autoencoders*), una técnica de aprendizaje profundo, aprenden a reconstruir los datos y pueden
+señalar observaciones con errores de reconstrucción elevados
+[@sakurada2014autoencoders; @pang2021deep], mientras que ECOD es un método no supervisado basado en
+funciones de distribución empírica acumulada que estima el grado de atipicidad [@li2022ecod]. En
+esta tesis se explorará y evaluará un autocodificador para datos tabulares, comparándolo con métodos
+estadísticos y de aprendizaje automático seleccionados. Estos
 métodos difieren en sus supuestos, parámetros, requisitos computacionales y capacidades; por ello,
 su selección y eventual combinación deberán justificarse y evaluarse en el contexto de los datos
 [@aggarwal2017outlier; @pang2021deep]. La solución integrará los métodos seleccionados y expondrá
