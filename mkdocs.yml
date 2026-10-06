@@ -237,6 +237,8 @@ nav:
       - Escenario 3: escenarios/escenario_03.md
       - Escenario 4: escenarios/escenario_04.md
       - Escenario 5: escenarios/escenario_05.md
+  - Cuadernos Jupyter:
+      - Escenario 1: notebooks/escenario_01.ipynb
 #  - Recursos técnicos:
 #      - Instalación de Poetry: instalacion_poetry.md
 #      - Referencia de la API: api_referencia.md

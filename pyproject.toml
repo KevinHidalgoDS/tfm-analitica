@@ -12,7 +12,11 @@ readme = "README.md"
 requires-python = "==3.14"  # >=3.14
 dependencies = [
     # Agrega aquí tus dependencias de producción (ej. pandas, scikit-learn, etc.)
-    "pandas"
+    "pandas",
+    "pydataxm",
+    "numpy",
+    "matplotlib",
+    "seaborn",
 ]
 
 [dependency-groups]
