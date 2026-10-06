@@ -6,9 +6,10 @@
 | Nombre del dataset | Descripción breve | Relevancia para análisis de anomalías | Casos de uso prácticos | Importancia estratégica | Antecedentes de análisis similar | Enlace directo al portal |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Demanda Comercial del SIN | Consumo real de energía facturado por los comercializadores en distintas regiones del país.<br><br>Periodicidad: Horaria.| Exhibe marcada estacionalidad. La detección de outliers permite identificar tempranamente fallas en infraestructura de medida, incremento en pérdidas no técnicas (fraude) o choques macroeconómicos modelando covariables de calendario. | Distribuidores y Operadores de Red (balanceo de carga, control de pérdidas), XM (planeación operativa), Investigadores (pronóstico de demanda). | Es vital minimizar el error de pronóstico operativo y asegurar la precisión absoluta en la liquidación de cuentas y cargos del mercado por parte del ASIC. | Reportes de XM sobre desviaciones operativas vs. comerciales; múltiples tesis académicas en repositorios (ej. UNAL) sobre pronóstico y limpieza de demanda usando RNNs. | [Catálogo - Información Comercial](https://www.google.com/search?q=https://www.simem.co/datos/informacion-comercial) |
-Datasets a cruzar: Precio de Bolsa Nacional + Aportes Hídricos + Generación Real. Técnicas
-posibles: Autoencoders Multivariados, Redes LSTMs (Long Short-Term Memory) o Transformers para
-series de tiempo.
+
+Datasets a cruzar: Demanda Comercial del SIN + Variables Calendario/Climáticas. Técnicas
+recomendadas: Isolation Forests multivariados, Redes Neuronales Recurrentes (RNNs) con variables
+exógenas.
 
 - **Por qué:** La demanda eléctrica es fuertemente estacional. El principal reto analítico aquí es
   separar el ruido (efectos de fines de semana, festivos, olas de calor) de las verdaderas
