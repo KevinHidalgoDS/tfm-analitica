@@ -4,6 +4,7 @@
 [![Cloud: Azure](https://img.shields.io/badge/cloud-Azure-0078D4.svg)](https://azure.microsoft.com/)
 [![Architecture: Microservices](https://img.shields.io/badge/architecture-Microservices_|_K8s-326ce5.svg)](https://kubernetes.io/)
 [![Linter: SonarQube](https://img.shields.io/badge/linter-SonarQube-brightgreen.svg)](https://www.sonarqube.org/)
+[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=KevinHidalgoDS_tfm-analitica&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=KevinHidalgoDS_tfm-analitica)
 
 ## 📖 Descripción del Proyecto
 

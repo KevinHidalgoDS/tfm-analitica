@@ -9,7 +9,7 @@ maintainers = [
 ]
 description = "Descripción del proyecto"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = "==3.14"  # >=3.14
 dependencies = [
     # Agrega aquí tus dependencias de producción (ej. pandas, scikit-learn, etc.)
     "pandas",
@@ -25,6 +25,7 @@ dev = [
     "black",
     "coverage",
     "flake8",
+    "isort",
     "mkdocs",
     "mkdocs-bibtex",
     "mkdocs-dracula-theme",
@@ -36,14 +37,14 @@ dev = [
     "mkdocstrings-python",
     "mypy",
     "notebook",
+    "pre-commit",
     "pydocstyle",
     "pylint",
     "pyrefly",
     "pytest",
     "pytest-cov",
     "ruff",
-    "taskipy",
-    "unittest-xml-reporting",
+    "taskipy"
 ]
 
 [tool.black]
@@ -103,9 +104,11 @@ exclude = "(^|/|\\\\)no_[^/\\\\]*\\.py$"
 testpaths = ["tests"]
 python_files = "test_*.py"
 addopts = "-ra -q"
+pythonpath = ["."]
 
 [tool.coverage.run]
 source = ["src"]
+branch = true
 omit = ["tests/*", "**/__init__.py"]
 
 [tool.coverage.report]
@@ -118,6 +121,8 @@ build-backend = "setuptools.build_meta"
 
 [tool.pyrefly]
 python-version = "3.14"
+
+search-path = ["."]
 
 includes = [
     "src",
