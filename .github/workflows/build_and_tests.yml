@@ -28,6 +28,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pip-tools==7.6.1 taskipy==1.14.1
           task pip-sync
+        # task pip-sync-linux
 
       - name: Run tests
         run: |
