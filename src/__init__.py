@@ -1,1 +1,1 @@
-"""Paquete src del proyecto tfm-analitica."""
+"""Funciones y módulos del paquete de analítica."""

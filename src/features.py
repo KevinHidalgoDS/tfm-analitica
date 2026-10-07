@@ -1,37 +1,25 @@
 #!/usr/bin/env python
-"""Módulo de procesamiento y comparación de garantías bancarias.
+"""Cliente HTTP para la orquestación y consumo de la API IA OCR BCT.
 
-Este módulo proporciona funciones para descargar archivos, conectar a un Key Vault,
-generar archivos Excel, comparar textos y realizar diversas operaciones relacionadas
-con las garantías bancarias.
+Proporciona métodos tipados para interactuar con los endpoints de registro,
+análisis de malware y procesamiento de documentos. Implementa inyección
+segura de credenciales y políticas de reintento transitorias.
 
-Programa: functions.py
+Programa: bct_iaocr_client.py
 
 Soporte: kevin.hidalgo@globalmvm.com
 
-Versión: 2.0.0
+Versión: 1.0.0
 
 Lenguaje: Python 3.11.9
 
-CD: 20230809
+CD: 20260917
 
-LUD: 20250820
+LUD: 20260918
 
 Comentarios:
-    * 20250430 Kevin Hidalgo -> PEP8.
-    * 20250523 Kevin Hidalgo -> funciones candidatas para reducir complejidad.
-    * 20250617 Kevin Hidalgo -> HU 447455
-    * 20250820 Kevin Hidalgo -> HU 465025
+    - 20260917 Kevin Hidalgo -> HU 22665.
 """
-
-__authors__ = ["David Imbajoa"]
-__contact__ = "david.imbajoa@globalmvm.com"
-__copyright__ = "Copyright 2023, MVM ingenieria de software"
-__credits__ = ["David Imbajoa"]
-__email__ = "david.imbajoa@globalmvm.com"
-__status__ = "Desarrollo"
-__version__ = "1.0.0"
-__date__ = "2023-08-08"
 
 import pandas as pd
 

@@ -19,6 +19,12 @@ repo_name: KevinHidalgoDS/tfm-analitica
 repo_url: https://github.com/KevinHidalgoDS/tfm-analitica
 edit_uri: "blob/main/docs/"
 
+hooks:
+  - hooks/notebooks.py
+
+watch:
+  - notebook
+
 # =============================================================================
 # BLOQUE 2: CONFIGURACIÓN DEL TEMA
 # =============================================================================
@@ -36,7 +42,7 @@ theme:
   # Tipografía optimizada para lectura técnica y fórmulas matemáticas
   font:
     text: Roboto
-    code: JetBrains Mono
+    code: JetBrainsMono NFM
 
   # Esquemas de color adaptativos (Claro / Oscuro)
   palette:
@@ -113,6 +119,9 @@ plugins:
       include_source: true # Muestra el código de las celdas
       ignore_h1_titles: true # Evita colisión de títulos con la cabecera de MkDocs
       execute: false # Evita re-ejecutar notebooks pesados durante el build
+      remove_tag_config: # Elimina celdas de código con etiquetas específicas (ej: hide_code)
+        remove_input_tags:
+          - hide_code
 
   # Gestión de referencias y citas académicas mediante BibTeX y CSL
   - bibtex:
@@ -238,7 +247,7 @@ nav:
       - Escenario 4: escenarios/escenario_04.md
       - Escenario 5: escenarios/escenario_05.md
   - Cuadernos Jupyter:
-      - Escenario 1: notebooks/escenario_01.ipynb
+      - Escenario 1: notebook/escenario_01.ipynb
 #  - Recursos técnicos:
 #      - Instalación de Poetry: instalacion_poetry.md
 #      - Referencia de la API: api_referencia.md

@@ -19,7 +19,7 @@ dependencies = [
     "seaborn",
 ]
 
-[dependency-groups]
+[project.optional-dependencies]
 dev = [
     "pip-tools",
     "black",
@@ -36,6 +36,7 @@ dev = [
     "mkdocs-with-pdf",
     "mkdocstrings-python",
     "mypy",
+    # "notebook",
     "pre-commit",
     "pydocstyle",
     "pylint",
@@ -74,24 +75,24 @@ match = "(?!no_).*\\.py"
 
 # pip install taskipy
 [tool.taskipy.tasks]
-format = "python -m ruff check src tests --fix && python -m black src tests"
-# format = "task format-ruff && task format-black"
-# format-ruff = "python -m ruff check src tests --fix"
-# format-black = "python -m black --fast src tests"
+format = "python -m ruff check src/ tests --fix && python -m black ."
 pylint = "python -X utf8 -m pylint src/ tests/ > pylint.log"
 flake8 = "python -m flake8 . > flake8.log"
-ruff = "python -m ruff check src tests --output-format=full > ruff.log"
+ruff = "python -m ruff check src/ tests --output-format=full > ruff.log"
 pydocstyle = "python -m pydocstyle src/ tests/ > pydocstyle.log"
 mypy = "python -m mypy src/ tests/ > mypy.log"
-pyrefly = "pyrefly check src tests > pyrefly.log"
+pyrefly = "pyrefly check src/ tests > pyrefly.log"
 test = "python -m pytest > pytest.log"
 test-cov = "python -X utf8 -m pytest --cov=src --cov-report=term-missing > pytestcov.log"
 lint = "task pylint && task ruff && task pydocstyle && task mypy && task pyrefly"
 
 # --- Comandos agregados para pip-tools ---
 pip-compile = "pip-compile pyproject.toml --output-file=requirements.txt"  # Generar requirements.txt (Solo Producción)
-pip-compile-dev = "pip-compile pyproject.toml --group=dev --output-file=requirements-dev.txt"  # Generar requirements-dev.txt (Solo Desarrollo)
+pip-compile-dev = "pip-compile pyproject.toml --extra=dev --output-file=requirements-dev.txt"  # Generar requirements-dev.txt (Producción y desarrollo)
 pip-sync = "pip-sync requirements.txt requirements-dev.txt"  # Sincronizar el Entorno Virtual
+pip-compile-linux = "pip-compile pyproject.toml --output-file=requirements-linux.txt"
+pip-compile-dev-linux = "pip-compile pyproject.toml --extra=dev --constraint=requirements-linux.txt --output-file=requirements-dev-linux.txt"
+pip-sync-linux = "pip-sync requirements-linux.txt requirements-dev-linux.txt"
 
 all = "task format && task lint && task test-cov"
 
