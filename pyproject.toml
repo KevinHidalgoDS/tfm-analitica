@@ -190,7 +190,7 @@ select = [
     "C4",   # comprehensions
     "N",    # naming
     "PL",   # reglas de pylint
-    "RUF"   # reglas propias de Ruff
+    "RUF",  # reglas propias de Ruff
     "D"     # pydocstyle
 ]
 
@@ -198,7 +198,8 @@ ignore = [
     "E501"  # line-length controlado por [tool.ruff].line-length (antes por Black)
 ]
 
-[tool.ruff.lint.pydocstyle] convention = "google"
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.format]
 quote-style = "double"
