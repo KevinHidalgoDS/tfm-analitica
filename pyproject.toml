@@ -19,7 +19,7 @@ dependencies = [
     "seaborn",
 ]
 
-[dependency-groups]
+[project.optional-dependencies]
 dev = [
     "pip-tools",
     "black",
@@ -87,7 +87,7 @@ lint = "task pylint && task ruff && task pydocstyle && task mypy && task pyrefly
 
 # --- Comandos agregados para pip-tools ---
 pip-compile = "pip-compile pyproject.toml --output-file=requirements.txt"  # Generar requirements.txt (Solo Producción)
-pip-compile-dev = "pip-compile pyproject.toml --group=dev --output-file=requirements-dev.txt"  # Generar requirements-dev.txt (Solo Desarrollo)
+pip-compile-dev = "pip-compile pyproject.toml --extra=dev --output-file=requirements-dev.txt"  # Generar requirements-dev.txt (Producción y desarrollo)
 pip-sync = "pip-sync requirements.txt requirements-dev.txt"  # Sincronizar el Entorno Virtual
 
 all = "task format && task lint && task test-cov"
