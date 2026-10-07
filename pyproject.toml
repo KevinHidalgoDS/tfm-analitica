@@ -36,7 +36,7 @@ dev = [
     "mkdocs-with-pdf",
     "mkdocstrings-python",
     "mypy",
-    "notebook",
+    # "notebook",
     "pre-commit",
     "pydocstyle",
     "pylint",
@@ -90,6 +90,9 @@ lint = "task pylint && task ruff && task pydocstyle && task mypy && task pyrefly
 pip-compile = "pip-compile pyproject.toml --output-file=requirements.txt"  # Generar requirements.txt (Solo Producción)
 pip-compile-dev = "pip-compile pyproject.toml --extra=dev --output-file=requirements-dev.txt"  # Generar requirements-dev.txt (Producción y desarrollo)
 pip-sync = "pip-sync requirements.txt requirements-dev.txt"  # Sincronizar el Entorno Virtual
+pip-compile-linux = "pip-compile pyproject.toml --output-file=requirements-linux.txt"
+pip-compile-dev-linux = "pip-compile pyproject.toml --extra=dev --constraint=requirements-linux.txt --output-file=requirements-dev-linux.txt"
+pip-sync-linux = "pip-sync requirements-linux.txt requirements-dev-linux.txt"
 
 all = "task format && task lint && task test-cov"
 

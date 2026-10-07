@@ -65,6 +65,68 @@ El framework requiere un ecosistema de herramientas distribuido:
 
 ## 🚀 Instalación y Configuración
 
+### Dependencias Python por plataforma
+
+Los archivos `requirements.txt` y `requirements-dev.txt` se mantienen para Windows.
+En Ubuntu/Linux se usan `requirements-linux.txt` y `requirements-dev-linux.txt`,
+generados desde `pyproject.toml` con Python 3.14 y `pip-tools==7.6.1`.
+No se deben generar los archivos de Linux desde Windows: las dependencias de
+Jupyter incluyen paquetes distintos para cada sistema operativo.
+
+Tras activar un entorno virtual con Python 3.14, instala las herramientas:
+
+```bash
+python -m pip install pip-tools==7.6.1 taskipy==1.14.1
+```
+
+En Windows, ejecuta `task pip-sync`. En Ubuntu/Linux, ejecuta `task pip-sync-linux`.
+Para actualizar los archivos de Linux, ejecuta `task pip-compile-linux` y
+`task pip-compile-dev-linux` en Ubuntu/Linux (o WSL) y versiona ambos archivos.
+GitHub Actions instala estos archivos ya resueltos, sin regenerarlos en cada job.
+
+#### Regenerar requisitos Linux desde un PC con solo Windows
+
+El workflow **Regenerate Linux requirements** genera ambos archivos en Ubuntu
+con Python 3.14, instala las dependencias y ejecuta las pruebas antes de publicar
+un artefacto descargable. Los requisitos de desarrollo usan los de producción
+como restricciones para mantener las versiones compartidas compatibles.
+
+Se ejecuta automáticamente cuando un PR cambia `pyproject.toml`,
+`requirements.txt` o `requirements-dev.txt`, y cuando esos cambios llegan a
+`main` o `develop`. También puedes ejecutarlo desde **Actions → Regenerate Linux
+requirements → Run workflow**, seleccionando la rama que contiene tus cambios.
+Activa `upgrade` si quieres actualizar todas las versiones compatibles; sin esa
+opción se conservan las versiones fijadas que sigan siendo compatibles.
+Para ejecutarlo manualmente, el workflow debe existir en la rama predeterminada
+del repositorio.
+
+Desde Windows:
+
+1. Modifica las dependencias y regenera los requisitos de Windows.
+2. Publica los cambios en tu rama y abre o actualiza el PR, o ejecuta el workflow manualmente.
+3. Descarga el artefacto `linux-requirements-<run_id>` de la ejecución correspondiente a tu commit.
+4. Extrae `requirements-linux.txt` y `requirements-dev-linux.txt` en la raíz del repositorio.
+5. Versiona ambos archivos en la misma rama antes de fusionar el PR.
+
+La generación no instala los archivos de Windows en Ubuntu ni escribe cambios
+automáticamente en el repositorio. El job de pruebas habitual sigue usando los
+archivos Linux versionados: si quedaron desactualizados, puede fallar hasta que
+subas los archivos del artefacto. Versionar solo los requisitos de Windows no
+introduce `pywinpty` en Linux, pero tampoco actualiza sus dependencias.
+
+```bash
+cd /mnt/d/tfm-analitica
+
+python3.14 -m venv ~/.venvs/tfm-analitica
+source ~/.venvs/tfm-analitica/bin/activate
+
+python -m pip install --upgrade pip
+python -m pip install pip-tools==7.6.1 taskipy==1.14.1
+task pip-sync-linux
+
+python -m pytest
+```
+
 **1. Clonar el repositorio y configurar versionado de datos:**
 
 ```bash
