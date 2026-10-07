@@ -75,7 +75,14 @@ match = "(?!no_).*\\.py"
 
 # pip install taskipy
 [tool.taskipy.tasks]
-format = "python -m ruff check src/ tests --fix && python -m black ."
+# --- TAREA 1: Format con Ruff ---
+# `ruff format` reemplaza a Black como formateador.
+# `ruff check --fix` aplica fixes automáticos de estilo/lint.
+# Nota: pre-commit ya filtra por archivos staged; aquí se formatea src/ y tests/ completos.
+format = "python -m ruff format src/ tests/ && python -m ruff check src/ tests/ --fix"
+# OBSOLETO - formato anterior con ruff check + black:
+# format = "python -m ruff check src/ tests --fix && python -m black ."
+
 pylint = "python -X utf8 -m pylint src/ tests/ > pylint.log"
 flake8 = "python -m flake8 . > flake8.log"
 ruff = "python -m ruff check src/ tests --output-format=full > ruff.log"
@@ -84,7 +91,22 @@ mypy = "python -m mypy src/ tests/ > mypy.log"
 pyrefly = "pyrefly check src/ tests > pyrefly.log"
 test = "python -m pytest > pytest.log"
 test-cov = "python -X utf8 -m pytest --cov=src --cov-report=term-missing > pytestcov.log"
-lint = "task pylint && task ruff && task pydocstyle && task mypy && task pyrefly"
+
+# --- TAREA 2 y 3: Lint con Ruff como principal ---
+# Análisis de redundancias:
+#   - ruff      : linter principal (reemplaza a pylint+flake8+isort+pydocstyle parcialmente)
+#   - pylint    : REDUNDANTE parcialmente (reglas PL en ruff cubren ~80% de pylint)
+#                 Mantener si se requieren checks adicionales de pylint no cubiertos por ruff
+#   - pydocstyle: REDUNDANTE (ruff regla D cubre docstrings, añadir 'D' a [tool.ruff.lint].select)
+#   - mypy      : COMPLEMENTARIO — type-checking estático, ruff NO lo reemplaza → MANTENER
+#   - pyrefly   : COMPLEMENTARIO — type inference alternativo a mypy → MANTENER (o elegir uno)
+#
+# Cadena recomendada: ruff primero (rápido), luego mypy/pyrefly (type-checking)
+lint = "task ruff && task mypy"
+# OBSOLETO - cadena anterior (pylint y pydocstyle cubiertos mayoritariamente por ruff):
+# lint = "task pylint && task ruff && task pydocstyle && task mypy && task pyrefly"
+# Si aún quieres pylint/pydocstyle para cobertura adicional, usa:
+# lint = "task ruff && task pylint && task pydocstyle && task mypy && task pyrefly"
 
 # --- Comandos agregados para pip-tools ---
 pip-compile = "pip-compile pyproject.toml --output-file=requirements.txt"  # Generar requirements.txt (Solo Producción)
@@ -168,12 +190,16 @@ select = [
     "C4",   # comprehensions
     "N",    # naming
     "PL",   # reglas de pylint
-    "RUF"   # reglas propias de Ruff
+    "RUF",  # reglas propias de Ruff
+    "D"     # pydocstyle
 ]
 
 ignore = [
-    "E501"  # Black controla la longitud de línea
+    "E501"  # line-length controlado por [tool.ruff].line-length (antes por Black)
 ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.format]
 quote-style = "double"
