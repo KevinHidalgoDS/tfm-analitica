@@ -1,7 +1,7 @@
 # =============================================================================
 # BLOQUE 1: METADATOS INSTITUCIONALES Y DEL PROYECTO DE TESIS
 # =============================================================================
-site_name: Framework Híbrido para la Detección de Datos Atípicos
+site_name: Plataforma para la Detección de Datos Atípicos
 site_description:
   "Tesis de Maestría en Ingeniería - Analítica: Detección de anomalías con microservicios y MLOps"
 site_author: Kevin Hidalgo
