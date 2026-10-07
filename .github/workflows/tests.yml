@@ -1,0 +1,59 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  tests:
+    name: Run tests with coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # pip install -r requirements.txt
+          # pip install pytest pytest-cov
+          pip install pip-tools taskipy
+          task pip-sync
+
+      - name: Run tests
+        run: |
+          pytest \
+            --cov=src \
+            --cov-report=xml \
+            --cov-report=term \
+            --junitxml=test-results.xml
+
+      # - name: Ejecutar Suite Completa (Format, Lint, Tests)
+      #   # Esto ejecuta task format, task lint y task tests-cov bloqueando el CI si falla alguno
+      #   run: task all
+
+      - name: Verificar Cobertura
+        # Pytest fallará automáticamente si la cobertura baja de 80% gracias a fail_under=80 en
+        # pyproject.toml
+        run: echo "Validaciones completadas y cobertura aprobada."
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: |
+            coverage.xml
+            test-results.xml
+          retention-days: 7
