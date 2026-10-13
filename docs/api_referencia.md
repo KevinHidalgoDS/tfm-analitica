@@ -23,3 +23,7 @@ Esta sección contiene la documentación automática de las funciones de ingenie
 
 ::: src.features.clean_transactions
 :::
+
+winget install OpenJS.NodeJS.LTS --scope user
+npm install -g prettier
+npx prettier --write docs/preliminares/06_metodologia.md
