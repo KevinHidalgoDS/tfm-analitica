@@ -15,6 +15,8 @@
         <link rel="prev" href="../escenario_01/">
       
       
+        <link rel="next" href="../escenario_03/">
+      
       
         
       
@@ -893,6 +895,8 @@
       
         
       
+        
+      
     
     
     
@@ -1199,6 +1203,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../escenario_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escenario 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2209,72 +2241,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=248983f5">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydataxm.pydataxm</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReadDB</span>
-
-<span class="c1"># Mantener una presentación consistente con el EDA del escenario 01.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span>
-    <span class="s2">"seaborn-v0_8-whitegrid"</span>
-    <span class="k">if</span> <span class="s2">"seaborn-v0_8-whitegrid"</span> <span class="ow">in</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">available</span>
-    <span class="k">else</span> <span class="s2">"default"</span>
-<span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">"figure.figsize"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">"figure.dpi"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">110</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">"crest"</span><span class="p">)</span>
-
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.max_columns"</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.float_format"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-1">import datetime as dt
-import re
-
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import seaborn as sns
-from pydataxm.pydataxm import ReadDB
-
-# Mantener una presentación consistente con el EDA del escenario 01.
-plt.style.use(
-    "seaborn-v0_8-whitegrid"
-    if "seaborn-v0_8-whitegrid" in plt.style.available
-    else "default"
-)
-plt.rcParams["figure.figsize"] = (13, 5)
-plt.rcParams["figure.dpi"] = 110
-sns.set_palette("crest")
-
-pd.set_option("display.max_columns", 30)
-pd.set_option("display.float_format", lambda value: f"{value:,.2f}")</div>
-</div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_hide_code">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_hide_code" id="cell-id=248983f5">
 </div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65e2bc75">
@@ -2287,334 +2255,8 @@ pd.set_option("display.float_format", lambda value: f"{value:,.2f}")</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2a124f10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">normalize_demand_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Normaliza la respuesta de XM a una fila por observación horaria.</span>
-
-<span class="sd">    Si la respuesta contiene columnas `Values_Hour01` ... `Values_Hour24`, las</span>
-<span class="sd">    convierte a formato largo y suma el desplazamiento horario a la fecha diaria.</span>
-<span class="sd">    Si ya está en formato largo, interpreta `Date` como marca temporal.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        data: Respuesta original de `ReadDB.request_data`.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        DataFrame ordenado con `Date` horario y una columna numérica `Demanda`.</span>
-
-<span class="sd">    Raises:</span>
-<span class="sd">        ValueError: Si faltan columnas de fecha/valores o el formato no es horario.</span>
-<span class="sd">    """</span>
-    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"La consulta de XM no devolvió registros."</span><span class="p">)</span>
-    <span class="k">if</span> <span class="s2">"Date"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">"La respuesta de XM no contiene la columna obligatoria 'Date'."</span>
-        <span class="p">)</span>
-
-    <span class="n">result</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">result</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
-    <span class="n">hour_columns</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">column</span>
-        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span>
-        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="sa">r</span><span class="s2">"Values_Hour\d{1,2}"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">column</span><span class="p">))</span>
-    <span class="p">]</span>
-
-    <span class="k">if</span> <span class="n">hour_columns</span><span class="p">:</span>
-        <span class="n">hour_columns</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span>
-            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\d+"</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-        <span class="p">)</span>
-        <span class="n">identifier_columns</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">column</span>
-            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Date"</span><span class="p">,</span> <span class="s2">"Id"</span><span class="p">,</span> <span class="s2">"Values_code"</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span>
-        <span class="p">]</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
-            <span class="n">id_vars</span><span class="o">=</span><span class="n">identifier_columns</span><span class="p">,</span>
-            <span class="n">value_vars</span><span class="o">=</span><span class="n">hour_columns</span><span class="p">,</span>
-            <span class="n">var_name</span><span class="o">=</span><span class="s2">"hour_label"</span><span class="p">,</span>
-            <span class="n">value_name</span><span class="o">=</span><span class="s2">"Demanda"</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">hour_number</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"hour_label"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">"(\d+)"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">hour_number</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">"Las etiquetas horarias de XM deben estar entre Hour01 y Hour24."</span>
-            <span class="p">)</span>
-        <span class="n">result</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span>
-            <span class="n">hour_number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
-            <span class="n">unit</span><span class="o">=</span><span class="s2">"h"</span><span class="p">,</span>
-        <span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">value_candidates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Demanda"</span><span class="p">,</span> <span class="s2">"Value"</span><span class="p">,</span> <span class="s2">"Values"</span><span class="p">,</span> <span class="s2">"DemaCome"</span><span class="p">]</span>
-        <span class="n">value_column</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
-            <span class="p">(</span><span class="n">column</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">value_candidates</span> <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
-            <span class="kc">None</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="n">value_column</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">"No se encontraron columnas horarias Values_HourXX ni una columna "</span>
-                <span class="s2">"de valores (Value/Demanda). Revise el esquema devuelto por XM."</span>
-            <span class="p">)</span>
-        <span class="k">if</span> <span class="n">value_column</span> <span class="o">!=</span> <span class="s2">"Demanda"</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">value_column</span><span class="p">:</span> <span class="s2">"Demanda"</span><span class="p">})</span>
-
-    <span class="n">result</span><span class="p">[</span><span class="s2">"Demanda"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"Demanda"</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">"No quedaron marcas temporales válidas tras convertir 'Date'."</span>
-        <span class="p">)</span>
-
-    <span class="n">weekday_names</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">"Lunes"</span><span class="p">,</span>
-        <span class="s2">"Martes"</span><span class="p">,</span>
-        <span class="s2">"Miércoles"</span><span class="p">,</span>
-        <span class="s2">"Jueves"</span><span class="p">,</span>
-        <span class="s2">"Viernes"</span><span class="p">,</span>
-        <span class="s2">"Sábado"</span><span class="p">,</span>
-        <span class="s2">"Domingo"</span><span class="p">,</span>
-    <span class="p">]</span>
-    <span class="n">result</span><span class="p">[</span><span class="s2">"hour"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span>
-    <span class="n">result</span><span class="p">[</span><span class="s2">"day_of_week"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofweek</span>
-    <span class="n">result</span><span class="p">[</span><span class="s2">"day_name"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"day_of_week"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">weekday_names</span><span class="p">)))</span>
-    <span class="n">result</span><span class="p">[</span><span class="s2">"is_weekend"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"day_of_week"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">5</span>
-
-    <span class="k">return</span> <span class="n">result</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">audit_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Resume tipos, valores faltantes, cardinalidad y cobertura por columna.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        data: DataFrame que se desea auditar.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Tabla con conteos no nulos/nulos, porcentaje de nulos y valores únicos.</span>
-<span class="sd">    """</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-        <span class="p">{</span>
-            <span class="s2">"tipo"</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
-            <span class="s2">"no_nulos"</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
-            <span class="s2">"nulos"</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
-            <span class="s2">"pct_nulos"</span><span class="p">:</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-            <span class="s2">"valores_unicos"</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">nunique</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-        <span class="p">}</span>
-    <span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">compute_extended_statistics</span><span class="p">(</span><span class="n">series</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Calcula medidas descriptivas y límites globales de Tukey (IQR).</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        series: Valores numéricos de demanda.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Serie con tamaño, tendencia central, dispersión, forma y límites IQR.</span>
-<span class="sd">    """</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No hay observaciones numéricas para calcular estadísticas."</span><span class="p">)</span>
-
-    <span class="n">q1</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
-    <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
-        <span class="p">{</span>
-            <span class="s2">"observaciones"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
-            <span class="s2">"media"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
-            <span class="s2">"mediana"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span>
-            <span class="s2">"desviacion_estandar"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
-            <span class="s2">"coeficiente_variacion_pct"</span><span class="p">:</span> <span class="p">(</span>
-                <span class="n">values</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">/</span> <span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
-                <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span>
-                <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-            <span class="p">),</span>
-            <span class="s2">"minimo"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
-            <span class="s2">"percentil_05"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.05</span><span class="p">),</span>
-            <span class="s2">"q1"</span><span class="p">:</span> <span class="n">q1</span><span class="p">,</span>
-            <span class="s2">"q3"</span><span class="p">:</span> <span class="n">q3</span><span class="p">,</span>
-            <span class="s2">"percentil_95"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.95</span><span class="p">),</span>
-            <span class="s2">"maximo"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
-            <span class="s2">"asimetria"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">skew</span><span class="p">(),</span>
-            <span class="s2">"curtosis"</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">(),</span>
-            <span class="s2">"iqr"</span><span class="p">:</span> <span class="n">iqr</span><span class="p">,</span>
-            <span class="s2">"limite_inferior_iqr"</span><span class="p">:</span> <span class="n">q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">,</span>
-            <span class="s2">"limite_superior_iqr"</span><span class="p">:</span> <span class="n">q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">,</span>
-        <span class="p">}</span>
-    <span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-2">def normalize_demand_dataframe(data: pd.DataFrame) -&gt; pd.DataFrame:
-    """Normaliza la respuesta de XM a una fila por observación horaria.
-
-    Si la respuesta contiene columnas `Values_Hour01` ... `Values_Hour24`, las
-    convierte a formato largo y suma el desplazamiento horario a la fecha diaria.
-    Si ya está en formato largo, interpreta `Date` como marca temporal.
-
-    Args:
-        data: Respuesta original de `ReadDB.request_data`.
-
-    Returns:
-        DataFrame ordenado con `Date` horario y una columna numérica `Demanda`.
-
-    Raises:
-        ValueError: Si faltan columnas de fecha/valores o el formato no es horario.
-    """
-    if data.empty:
-        raise ValueError("La consulta de XM no devolvió registros.")
-    if "Date" not in data.columns:
-        raise ValueError(
-            "La respuesta de XM no contiene la columna obligatoria 'Date'."
-        )
-
-    result = data.copy()
-    result["Date"] = pd.to_datetime(result["Date"], errors="coerce")
-    hour_columns = [
-        column
-        for column in result.columns
-        if re.fullmatch(r"Values_Hour\d{1,2}", str(column))
-    ]
-
-    if hour_columns:
-        hour_columns.sort(
-            key=lambda column: int(re.search(r"\d+", column).group())
-        )
-        identifier_columns = [
-            column
-            for column in ["Date", "Id", "Values_code"]
-            if column in result.columns
-        ]
-        result = result.melt(
-            id_vars=identifier_columns,
-            value_vars=hour_columns,
-            var_name="hour_label",
-            value_name="Demanda",
-        )
-        hour_number = result["hour_label"].str.extract(r"(\d+)")[0].astype(int)
-        if not hour_number.between(1, 24).all():
-            raise ValueError(
-                "Las etiquetas horarias de XM deben estar entre Hour01 y Hour24."
-            )
-        result["Date"] = result["Date"] + pd.to_timedelta(
-            hour_number - 1,
-            unit="h",
-        )
-    else:
-        value_candidates = ["Demanda", "Value", "Values", "DemaCome"]
-        value_column = next(
-            (column for column in value_candidates if column in result.columns),
-            None,
-        )
-        if value_column is None:
-            raise ValueError(
-                "No se encontraron columnas horarias Values_HourXX ni una columna "
-                "de valores (Value/Demanda). Revise el esquema devuelto por XM."
-            )
-        if value_column != "Demanda":
-            result = result.rename(columns={value_column: "Demanda"})
-
-    result["Demanda"] = pd.to_numeric(result["Demanda"], errors="coerce")
-    result = result.dropna(subset=["Date"]).sort_values("Date").reset_index(drop=True)
-    if result.empty:
-        raise ValueError(
-            "No quedaron marcas temporales válidas tras convertir 'Date'."
-        )
-
-    weekday_names = [
-        "Lunes",
-        "Martes",
-        "Miércoles",
-        "Jueves",
-        "Viernes",
-        "Sábado",
-        "Domingo",
-    ]
-    result["hour"] = result["Date"].dt.hour
-    result["day_of_week"] = result["Date"].dt.dayofweek
-    result["day_name"] = result["day_of_week"].map(dict(enumerate(weekday_names)))
-    result["is_weekend"] = result["day_of_week"] &gt;= 5
-
-    return result
-
-
-def audit_dataframe(data: pd.DataFrame) -&gt; pd.DataFrame:
-    """Resume tipos, valores faltantes, cardinalidad y cobertura por columna.
-
-    Args:
-        data: DataFrame que se desea auditar.
-
-    Returns:
-        Tabla con conteos no nulos/nulos, porcentaje de nulos y valores únicos.
-    """
-    return pd.DataFrame(
-        {
-            "tipo": data.dtypes.astype(str),
-            "no_nulos": data.notna().sum(),
-            "nulos": data.isna().sum(),
-            "pct_nulos": (data.isna().mean() * 100).round(2),
-            "valores_unicos": data.nunique(dropna=True),
-        }
-    )
-
-
-def compute_extended_statistics(series: pd.Series) -&gt; pd.Series:
-    """Calcula medidas descriptivas y límites globales de Tukey (IQR).
-
-    Args:
-        series: Valores numéricos de demanda.
-
-    Returns:
-        Serie con tamaño, tendencia central, dispersión, forma y límites IQR.
-    """
-    values = series.dropna()
-    if values.empty:
-        raise ValueError("No hay observaciones numéricas para calcular estadísticas.")
-
-    q1, q3 = values.quantile([0.25, 0.75])
-    iqr = q3 - q1
-    return pd.Series(
-        {
-            "observaciones": values.count(),
-            "media": values.mean(),
-            "mediana": values.median(),
-            "desviacion_estandar": values.std(),
-            "coeficiente_variacion_pct": (
-                values.std() / values.mean() * 100
-                if values.mean() != 0
-                else np.nan
-            ),
-            "minimo": values.min(),
-            "percentil_05": values.quantile(0.05),
-            "q1": q1,
-            "q3": q3,
-            "percentil_95": values.quantile(0.95),
-            "maximo": values.max(),
-            "asimetria": values.skew(),
-            "curtosis": values.kurtosis(),
-            "iqr": iqr,
-            "limite_inferior_iqr": q1 - 1.5 * iqr,
-            "limite_superior_iqr": q3 + 1.5 * iqr,
-        }
-    )</div>
-</div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_hide_code">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_hide_code" id="cell-id=2a124f10">
 </div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31a43c7e">
@@ -2636,7 +2278,7 @@ def compute_extended_statistics(series: pd.Series) -&gt; pd.Series:
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -2659,7 +2301,7 @@ def compute_extended_statistics(series: pd.Series) -&gt; pd.Series:
 <span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df_demanda</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-3">api = ReadDB()
+<div class="clipboard-copy-txt" id="cell-1">api = ReadDB()
 start_date = dt.date(2025, 1, 1)
 end_date = dt.date(2025, 12, 31)
 
@@ -2915,7 +2557,7 @@ display(df_demanda.head())</div>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -2951,7 +2593,7 @@ display(df_demanda.head())</div>
             <span class="s2">"revise el esquema antes de continuar."</span>
         <span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4">print("Columnas:", df_demanda.columns.tolist())
+<div class="clipboard-copy-txt" id="cell-2">print("Columnas:", df_demanda.columns.tolist())
 print("Tipos de dato:")
 display(df_demanda.dtypes.rename("tipo").to_frame())
 print(f"Registros recibidos: {len(df_demanda):,}")
@@ -3151,7 +2793,7 @@ Formato detectado: ancho (una fila por fecha y hasta 24 columnas horarias).
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -3168,7 +2810,7 @@ Formato detectado: ancho (una fila por fecha y hasta 24 columnas horarias).
         <span class="s2">"se detiene el preprocesamiento para no perder registros silenciosamente."</span>
     <span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-5">invalid_date_count = pd.to_datetime(df_demanda["Date"], errors="coerce").isna().sum()
+<div class="clipboard-copy-txt" id="cell-3">invalid_date_count = pd.to_datetime(df_demanda["Date"], errors="coerce").isna().sum()
 if invalid_date_count:
     raise ValueError(
         f"La respuesta contiene {invalid_date_count} valores Date inválidos; "
@@ -3199,7 +2841,7 @@ if invalid_date_count:
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -3220,7 +2862,7 @@ if invalid_date_count:
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Periodo observado: </span><span class="si">{</span><span class="n">df_demanda</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2"> a </span><span class="si">{</span><span class="n">df_demanda</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df_demanda</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-6"># Normalizar sin perder el nombre df_demanda y derivar los atributos del calendario.
+<div class="clipboard-copy-txt" id="cell-4"># Normalizar sin perder el nombre df_demanda y derivar los atributos del calendario.
 df_demanda = normalize_demand_dataframe(df_demanda)
 
 assert df_demanda["Date"].notna().all(), "Hay marcas temporales inválidas."
@@ -3367,7 +3009,7 @@ Periodo observado: 2025-01-01 00:00:00 a 2025-12-31 23:00:00
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -3411,7 +3053,7 @@ Periodo observado: 2025-01-01 00:00:00 a 2025-12-31 23:00:00
 <span class="n">display</span><span class="p">(</span><span class="n">hour_summary</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">weekday_summary</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-7">stats_demanda = compute_extended_statistics(df_demanda["Demanda"])
+<div class="clipboard-copy-txt" id="cell-5">stats_demanda = compute_extended_statistics(df_demanda["Demanda"])
 display(stats_demanda.rename("Demanda").to_frame())
 
 # Los códigos temporales permiten revisar la cobertura de calendario.
@@ -4013,7 +3655,7 @@ display(weekday_summary)</div>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -4070,7 +3712,7 @@ display(weekday_summary)</div>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"No hay valores faltantes en las columnas normalizadas."</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-8">quality_summary = audit_dataframe(df_demanda)
+<div class="clipboard-copy-txt" id="cell-6">quality_summary = audit_dataframe(df_demanda)
 print(f"Filas duplicadas completas: {df_demanda.duplicated().sum():,}")
 print(f"Timestamps duplicados: {df_demanda['Date'].duplicated().sum():,}")
 print(f"Demanda negativa: {(df_demanda['Demanda'] &lt; 0).sum():,}")
@@ -4324,7 +3966,7 @@ Demanda faltante/no numérica: 0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -4408,7 +4050,7 @@ Demanda faltante/no numérica: 0
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-9">fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+<div class="clipboard-copy-txt" id="cell-7">fig, axes = plt.subplots(2, 2, figsize=(15, 10))
 
 # La serie completa conserva el detalle; el promedio semanal resalta cambios de nivel.
 weekly_demand = df_demanda.set_index("Date")["Demanda"].resample("W").mean()
@@ -4518,7 +4160,7 @@ plt.show()</div>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -4579,7 +4221,7 @@ plt.show()</div>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="n">display</span><span class="p">(</span><span class="n">weekday_profile</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-10">weekday_order = [
+<div class="clipboard-copy-txt" id="cell-8">weekday_order = [
     "Lunes",
     "Martes",
     "Miércoles",
@@ -4746,7 +4388,7 @@ display(weekday_profile)</div>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-11">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -4809,7 +4451,7 @@ display(weekday_profile)</div>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-11">calendar_features = df_demanda[["hour", "day_of_week", "is_weekend"]].copy()
+<div class="clipboard-copy-txt" id="cell-9">calendar_features = df_demanda[["hour", "day_of_week", "is_weekend"]].copy()
 calendar_features["is_weekend"] = calendar_features["is_weekend"].astype(int)
 correlation_data = pd.concat(
     [df_demanda["Demanda"], calendar_features],
@@ -4904,7 +4546,7 @@ plt.show()</div>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-12">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewBox="0 0 16 16" width="20">
@@ -4952,7 +4594,7 @@ plt.show()</div>
     <span class="s2">"condiciones climáticas y calidad de medición antes de asignarles una causa."</span>
 <span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-12">global_lower = stats_demanda["limite_inferior_iqr"]
+<div class="clipboard-copy-txt" id="cell-10">global_lower = stats_demanda["limite_inferior_iqr"]
 global_upper = stats_demanda["limite_superior_iqr"]
 global_candidates = (
     (df_demanda["Demanda"] &lt; global_lower)
@@ -5327,7 +4969,7 @@ print(
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="6 de octubre de 2026 20:39:19 UTC"><span class="timeago" datetime="2026-10-06T20:39:19+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="6 de octubre de 2026 20:39:19 UTC">2026-10-06</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="14 de octubre de 2026 00:15:29 UTC"><span class="timeago" datetime="2026-10-14T00:15:29+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="14 de octubre de 2026 00:15:29 UTC">2026-10-14</span>
   </span>
 
     
