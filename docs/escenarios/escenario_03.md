@@ -9,15 +9,20 @@
 
 ### 1. ¿Cuál es el problema?
 
-El problema general de investigación consiste en diseñar e implementar una solución basada en
-microservicios para detectar observaciones atípicas (anomalías) en datos tabulares y exponer sus
-resultados en un tablero para los usuarios, enfrentando además los retos de integración,
-mantenimiento y despliegue documentados en las operaciones de sistemas de aprendizaje automático
-(MLOps). Al integrar la idea del conjunto de datos del SIMEM ("Generación Real por Planta"), el
-problema específico se traduce en detectar anomalías dentro de series temporales de alta dimensión
-(N plantas × T horas × tipo de combustible) que presentan dinámicas propias y donde las
-correlaciones entre plantas capturan relaciones espaciales complejas, como la congestión y el
-despacho de energía.
+El problema general de investigación radica en la incapacidad de las técnicas convencionales de
+análisis de datos para detectar con precisión observaciones atípicas (anomalías) en series
+temporales tabulares de alta dimensión, debido a su limitación para capturar dependencias no
+lineales y multivariadas complejas sin incurrir en altas tasas de falsos positivos o en la omisión
+de fallas críticas. Al contextualizar este desafío en el conjunto de datos de "Generación Real por
+Planta" del SIMEM, el problema específico se manifiesta en la dificultad para identificar anomalías
+operacionales (tales como caídas súbitas de generación, indisponibilidades no reportadas o
+desviaciones en el despacho) inmersas en una matriz multivariada de alta dimensión ($N \text{
+plantas} \times T \text{ horas} \times \text{tipo de combustible}$). En este entorno, las anomalías
+raramente ocurren como desviaciones aisladas en una sola planta, sino como alteraciones sutiles en
+las correlaciones temporales y espaciales cruzadas entre múltiples unidades interconectadas. Los
+enfoques actuales fallan al evaluar las variables de manera independiente o aislada, lo que impide
+detectar anomalías estructurales que se propagan por las restricciones de la red eléctrica y
+distorsionan la confiabilidad de la información operativa del mercado.
 
 ### 2. ¿Por qué es importante?
 
