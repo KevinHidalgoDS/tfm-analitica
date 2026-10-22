@@ -40,17 +40,39 @@ precio) y produce series no estacionarias con regímenes operativos cambiantes. 
 espaciales cruzadas hacen que un simple enfoque univariado o aislado ignore la riqueza estructural
 del comportamiento del sistema interconectado.
 
+Adicionalmente, la presencia no tratada de outliers u observaciones anómalas en este tipo de series
+temporales genera impactos severos que justifican la insuficiencia de los enfoques convencionales:
+
+- **Incremento del Ruido (_Noise_):** Los outliers operacionales y errores de telemetría aumentan
+  el ruido en la matriz N × T, lo que dificulta la detección de patrones reales y la extracción de
+  insights operativos valiosos.
+- **Inducción de Deriva de Datos (_Data Drift_):** Los outliers no aislados influyen sobre el
+  patrón general de la serie de tiempo, provocando una deriva en la distribución que disminuye
+  drásticamente la precisión de los modelos predictivos y su capacidad de generalización.
+- **Generación de Sesgos (_Biases_):** La presencia de datos atípicos introduce sesgos sistemáticos
+  en las métricas de la serie temporal, afectando la estimación del comportamiento regular de la
+  red.
+- **Fuga de Información (_Data Leakage_):** Los outliers contienen información extrema o no
+  representativa que, si se utiliza de manera inadecuada durante el preprocesamiento o
+  entrenamiento, lleva a la sobreestimación o subestimación de las predicciones y del error de
+  reconstrucción.
+- **Condicionamiento en la Selección de Modelos:** La vulnerabilidad de los algoritmos ante la
+  presencia de outliers condiciona críticamente la selección de los modelos para los pronósticos y
+  la detección, descartando esquemas lineales o univariados simples.
+
 ### 4. ¿Cuál es la propuesta?
 
 La propuesta investigativa es diseñar, implementar y evaluar un marco de trabajo híbrido para la
 detección de anomalías que combine métodos estadísticos clásicos, métodos de aprendizaje automático
 (como Isolation Forest y Local Outlier Factor) y un autocodificador (autoencoder) de aprendizaje
 profundo, operado en una arquitectura de microservicios en la nube con un tablero interactivo.
-Aplicando esto a la idea propuesta, el encaje de estos datos con los modelos avanzados de la
-propuesta es excelente; la matriz multivariada permite emplear autoencoders (AE) sobre las matrices
-de planta × hora, así como LSTMs multivariados, transformers o Graph Neural Networks (GNN),
-permitiendo una reconstrucción donde el error de reconstrucción funja directamente como señal de
-anomalía multivariada.
+
+Dado que la presencia de outliers condiciona severamente la selección de los modelos, la estructura
+multivariada N × T permite emplear autoencoders (AE) sobre las matrices de planta × hora, así como
+LSTMs multivariados, transformers o Graph Neural Networks (GNN). Estas arquitecturas avanzadas
+permiten realizar una reconstrucción donde el error de reconstrucción funja directamente como señal
+de anomalía multivariada, blindando al sistema frente al ruido, neutralizando el _data drift_ y
+evitando que los sesgos o la fuga de datos distorsionen el diagnóstico operativo.
 
 ### 5. ¿Qué se espera encontrar?
 
@@ -59,6 +81,7 @@ y exhaustividad) superior al de los métodos individuales aislados, reduciendo l
 positivos sin incrementar significativamente los falsos negativos. Específicamente, al integrar la
 idea del dataset del SIMEM, se espera corroborar empíricamente que, debido a la inmensa
 dimensionalidad y las dependencias cruzadas de la matriz N×T, el componente de modelos profundos
-supere con creces a los métodos univariados tradicionales. Así mismo, se espera que el tablero de
-visualización mejore notablemente el tiempo de interpretación y la comprensión de estos resultados
-complejos por parte de los usuarios no especialistas.
+supere con creces a los métodos univariados tradicionales, mitigando activamente los efectos de
+_data drift_, sesgos, ruido y _data leakage_. Así mismo, se espera que el tablero de visualización
+mejore notablemente el tiempo de interpretación y la comprensión de estos resultados complejos por
+parte de los usuarios no especialistas.
