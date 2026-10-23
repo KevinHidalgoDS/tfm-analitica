@@ -3,10 +3,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Tesis de Maestría en Ingeniería - Analítica: Detección de anomalías con microservicios y MLOps">
+        <meta name="description" content="None.">
       
       
-        <meta name="author" content="Kevin Hidalgo">
+        <meta name="author" content="Kevin Ferney Hidalgo Higuita">
       
       
         <link rel="canonical" href="https://kevinhidalgods.github.io/tfm-analitica/escenarios/escenario_03/">
@@ -932,6 +932,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1253,6 +1264,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1347,15 +1369,83 @@
 </tbody>
 </table>
 <h3 id="1-cual-es-el-problema">1. ¿Cuál es el problema?<a class="headerlink" href="#1-cual-es-el-problema" title="Permanent link">¶</a></h3>
-<p>El problema general de investigación consiste en diseñar e implementar una solución basada en
-microservicios para detectar observaciones atípicas (anomalías) en datos tabulares y exponer sus
-resultados en un tablero para los usuarios, enfrentando además los retos de integración,
-mantenimiento y despliegue documentados en las operaciones de sistemas de aprendizaje automático
-(MLOps). Al integrar la idea del conjunto de datos del SIMEM ("Generación Real por Planta"), el
-problema específico se traduce en detectar anomalías dentro de series temporales de alta dimensión
-(N plantas × T horas × tipo de combustible) que presentan dinámicas propias y donde las
-correlaciones entre plantas capturan relaciones espaciales complejas, como la congestión y el
-despacho de energía.</p>
+<!-- prettier-ignore -->
+<!-- El problema general de investigación radica en la incapacidad de las técnicas convencionales de
+análisis de datos para detectar con precisión observaciones atípicas (anomalías) en series
+temporales tabulares de alta dimensión, debido a su limitación para capturar dependencias no
+lineales y multivariadas complejas sin incurrir en altas tasas de falsos positivos o en la omisión
+de fallas críticas. Al contextualizar este desafío en el conjunto de datos de "Generación Real por
+Planta" del SIMEM, el problema específico se manifiesta en la dificultad para identificar anomalías
+operacionales (tales como caídas súbitas de generación, indisponibilidades no reportadas o
+desviaciones en el despacho) inmersas en una matriz multivariada de alta dimensión ($N \text{
+plantas} \times T \text{ horas} \times \text{tipo de combustible}$). En este entorno, las anomalías
+raramente ocurren como desviaciones aisladas en una sola planta, sino como alteraciones sutiles en
+las correlaciones temporales y espaciales cruzadas entre múltiples unidades interconectadas. Los
+enfoques actuales fallan al evaluar las variables de manera independiente o aislada, lo que impide
+detectar anomalías estructurales que se propagan por las restricciones de la red eléctrica y
+distorsionan la confiabilidad de la información operativa del mercado. -->
+
+<!-- prettier-ignore -->
+<!-- El problema central radica en la incapacidad de los sistemas de monitoreo actuales para identificar
+desviaciones operacionales sutiles y acopladas en la generación eléctrica, lo que compromete la
+eficiencia económica y la confiabilidad del Mercado de Energía Mayorista. Abordar el conjunto de
+datos de "Generación Real por Planta" del SIMEM (Sistema de Información del Mercado de Energía
+Mayorista) presenta desafíos críticos por las siguientes razones:Impacto Económico y Operativo: Las
+anomalías operacionales, como caídas súbitas de generación, indisponibilidades no reportadas a
+tiempo o desviaciones del despacho programado, rara vez son eventos aislados. Cuando una planta
+falla en entregar su energía, el sistema interconectado (gestionado por XM) debe compensar esta
+deficiencia en tiempo real alterando el despacho económico, activando reservas o alterando los
+flujos de potencia. Esto se traduce directamente en sobrecostos operativos, ineficiencias en la
+formación de precios del mercado y riesgos para la estabilidad de la red.La Barrera Técnica (Por
+qué los métodos actuales fallan): Los datos poseen una estructura de alta dimensión ($N\text{
+plantas}\times T \text{horas} \times \text{tipo de combustible}$). Las técnicas convencionales
+(análisis univariado, umbrales estáticos o reglas de negocio independientes por planta) fracasan
+porque ignoran la naturaleza interconectada del sistema eléctrico. Una desviación en una unidad
+provoca alteraciones en las demás debido a las leyes físicas (flujos de potencia) y a las reglas
+del mercado (mérito económico y regulación de frecuencia).Fatiga de Alarmas y Puntos Ciegos: Al
+evaluar cada serie temporal de forma independiente, los enfoques tradicionales generan altas tasas
+de falsos positivos frente a dinámicas normales del sistema (como rampas de subida o cambios de
+despacho generalizados), y simultáneamente presentan "puntos ciegos" ante fallas sistémicas
+complejas que solo son evidentes al analizar la correlación espacio-temporal conjunta de las
+plantas. En síntesis, el problema es la falta de modelos analíticos capaces de capturar las
+dependencias no lineales y topológicas (físicas y de mercado) entre las plantas generadoras, lo que
+impide una detección temprana, precisa y contextual de las anomalías operacionales en el sistema
+colombiano. -->
+
+<p>El Sistema Interconectado Nacional (SIN) y el Mercado de Energía Mayorista de Colombia (MEM),
+operados y administrados por XM, conforman una infraestructura crítica donde la confiabilidad
+operativa y la eficiencia económica están estrechamente acopladas. En este entorno, las anomalías
+operacionales en el parque generador —tales como caídas súbitas de generación, indisponibilidades
+no reportadas a tiempo o desviaciones sistemáticas respecto al despacho programado— rara vez
+constituyen eventos aislados. Debido a las leyes físicas que rigen los flujos de potencia y a las
+reglas de mérito económico del despacho, la falla o alteración en una unidad generadora obliga al
+sistema a compensar la deficiencia en tiempo real, propagando el impacto hacia otras plantas
+interconectadas <sup id="fnref:xm2023informe"><a class="footnote-ref" href="#fn:xm2023informe">1</a></sup>.</p>
+<p>A pesar del riesgo sistémico que representan estas anomalías, los sistemas de monitoreo
+tradicionales y los enfoques analíticos convencionales enfrentan una severa limitación técnica:
+evalúan las series temporales de generación de forma independiente o mediante umbrales estáticos
+univariados. Esta aproximación resulta inadecuada para el conjunto de datos de "Generación Real por
+Planta" del Sistema de Información del Mercado de Energía Mayorista (SIMEM), el cual posee una alta
+dimensionalidad (<span class="arithmatex">\(N\:\text{plantas}\:\times\:\text{horas}\:\times\text{tipo de combustible}\)</span>). Al
+ignorar las dependencias topológicas, físicas y de mercado, los métodos tradicionales generan altas
+tasas de falsos positivos frente a dinámicas sistémicas normales (como rampas de generación o
+reconfiguraciones de red) y, paradójicamente, presentan "puntos ciegos" ante fallas incipientes que
+solo son detectables al analizar la correlación espacio-temporal conjunta <sup id="fnref:audibert2020usad"><a class="footnote-ref" href="#fn:audibert2020usad">2</a></sup>.</p>
+<p>En el ámbito de la investigación local, existe una brecha metodológica significativa. Mientras que
+la literatura enfocada en el mercado eléctrico colombiano ha explotado exhaustivamente los datos
+del SIMEM para el pronóstico del precio de bolsa y la demanda, el problema de la detección de
+anomalías operacionales ha sido relegado a procesos de limpieza de datos mediante métodos
+estadísticos básicos (Z-score, rangos intercuartílicos). No existen marcos metodológicos
+consolidados en el contexto colombiano que implementen arquitecturas de aprendizaje profundo
+diseñadas explícitamente para el modelado de dependencias en grafos dinámicos o la reconstrucción
+de subespacios no lineales, enfoques que han demostrado superioridad en la reducción de falsos
+positivos en infraestructuras críticas complejas <sup id="fnref:deng2021graph"><a class="footnote-ref" href="#fn:deng2021graph">3</a></sup>.</p>
+<p>En consecuencia, el problema fundamental radica en la ausencia de modelos analíticos multivariados
+y "conscientes del mercado" (Market-Aware) capaces de capturar las dependencias no lineales y
+estructurales entre las múltiples plantas del parque generador colombiano. Esta carencia impide la
+detección temprana, precisa y contextual de anomalías operacionales, limitando la capacidad de
+anticipar eventos que comprometen la seguridad del suministro y la formación eficiente de precios
+en el mercado.</p>
 <h3 id="2-por-que-es-importante">2. ¿Por qué es importante?<a class="headerlink" href="#2-por-que-es-importante" title="Permanent link">¶</a></h3>
 <p>La calidad de los datos es fundamental, pues de ella depende la validez de los análisis analíticos
 que apoyan la toma de decisiones, pudiendo verse afectada por errores de medición, fallas de
@@ -1373,25 +1463,169 @@ temporal es alta (estacionalidad horaria, semanal, anual y cambios por mantenimi
 precio) y produce series no estacionarias con regímenes operativos cambiantes. Las dependencias
 espaciales cruzadas hacen que un simple enfoque univariado o aislado ignore la riqueza estructural
 del comportamiento del sistema interconectado.</p>
+<p>Adicionalmente, la presencia no tratada de outliers u observaciones anómalas en este tipo de series
+temporales genera impactos severos que justifican la insuficiencia de los enfoques convencionales:</p>
+<ul>
+<li><strong>Incremento del Ruido (<em>Noise</em>):</strong> Los outliers operacionales y errores de telemetría aumentan
+  el ruido en la matriz N × T, lo que dificulta la detección de patrones reales y la extracción de
+  insights operativos valiosos.</li>
+<li><strong>Inducción de Deriva de Datos (<em>Data Drift</em>):</strong> Los outliers no aislados influyen sobre el
+  patrón general de la serie de tiempo, provocando una deriva en la distribución que disminuye
+  drásticamente la precisión de los modelos predictivos y su capacidad de generalización.</li>
+<li><strong>Generación de Sesgos (<em>Biases</em>):</strong> La presencia de datos atípicos introduce sesgos sistemáticos
+  en las métricas de la serie temporal, afectando la estimación del comportamiento regular de la
+  red.</li>
+<li><strong>Fuga de Información (<em>Data Leakage</em>):</strong> Los outliers contienen información extrema o no
+  representativa que, si se utiliza de manera inadecuada durante el preprocesamiento o
+  entrenamiento, lleva a la sobreestimación o subestimación de las predicciones y del error de
+  reconstrucción.</li>
+<li><strong>Condicionamiento en la Selección de Modelos:</strong> La vulnerabilidad de los algoritmos ante la
+  presencia de outliers condiciona críticamente la selección de los modelos para los pronósticos y
+  la detección, descartando esquemas lineales o univariados simples.</li>
+</ul>
 <h3 id="4-cual-es-la-propuesta">4. ¿Cuál es la propuesta?<a class="headerlink" href="#4-cual-es-la-propuesta" title="Permanent link">¶</a></h3>
 <p>La propuesta investigativa es diseñar, implementar y evaluar un marco de trabajo híbrido para la
 detección de anomalías que combine métodos estadísticos clásicos, métodos de aprendizaje automático
 (como Isolation Forest y Local Outlier Factor) y un autocodificador (autoencoder) de aprendizaje
-profundo, operado en una arquitectura de microservicios en la nube con un tablero interactivo.
-Aplicando esto a la idea propuesta, el encaje de estos datos con los modelos avanzados de la
-propuesta es excelente; la matriz multivariada permite emplear autoencoders (AE) sobre las matrices
-de planta × hora, así como LSTMs multivariados, transformers o Graph Neural Networks (GNN),
-permitiendo una reconstrucción donde el error de reconstrucción funja directamente como señal de
-anomalía multivariada.</p>
+profundo, operado en una arquitectura de microservicios en la nube con un tablero interactivo.</p>
+<p>Dado que la presencia de outliers condiciona severamente la selección de los modelos, la estructura
+multivariada N × T permite emplear autoencoders (AE) sobre las matrices de planta × hora, así como
+LSTMs multivariados, transformers o Graph Neural Networks (GNN). Estas arquitecturas avanzadas
+permiten realizar una reconstrucción donde el error de reconstrucción funja directamente como señal
+de anomalía multivariada, blindando al sistema frente al ruido, neutralizando el <em>data drift</em> y
+evitando que los sesgos o la fuga de datos distorsionen el diagnóstico operativo.</p>
 <h3 id="5-que-se-espera-encontrar">5. ¿Qué se espera encontrar?<a class="headerlink" href="#5-que-se-espera-encontrar" title="Permanent link">¶</a></h3>
 <p>Se espera que el esquema híbrido propuesto logre un desempeño de detección (medido en F1, precisión
 y exhaustividad) superior al de los métodos individuales aislados, reduciendo la tasa de falsos
 positivos sin incrementar significativamente los falsos negativos. Específicamente, al integrar la
 idea del dataset del SIMEM, se espera corroborar empíricamente que, debido a la inmensa
 dimensionalidad y las dependencias cruzadas de la matriz N×T, el componente de modelos profundos
-supere con creces a los métodos univariados tradicionales. Así mismo, se espera que el tablero de
-visualización mejore notablemente el tiempo de interpretación y la comprensión de estos resultados
-complejos por parte de los usuarios no especialistas.</p>
+supere con creces a los métodos univariados tradicionales, mitigando activamente los efectos de
+<em>data drift</em>, sesgos, ruido y <em>data leakage</em>. Así mismo, se espera que el tablero de visualización
+mejore notablemente el tiempo de interpretación y la comprensión de estos resultados complejos por
+parte de los usuarios no especialistas.</p>
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">¶</a></h2>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:xm2023informe">
+<p>XM S.A. E.S.P., "Reporte integral de sostenibilidad, operación y mercado 2023," XM, Filial de ISA, Medellín, Colombia, 2023. Available: <a href="https://www.xm.com.co/sites/default/files/documents/Reporte\%20Integral\%20de\%20Sostenibilidad\%2C\%20Operaci\%C3\%B3n\%20y\%20Mercado\%202023_XM.pdf">https://www.xm.com.co/sites/default/files/documents/Reporte\%20Integral\%20de\%20Sostenibilidad\%2C\%20Operaci\%C3\%B3n\%20y\%20Mercado\%202023\_XM.pdf</a>&nbsp;<a class="footnote-backref" href="#fnref:xm2023informe" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:audibert2020usad">
+<p>J. Audibert, P. Michau, and O. Fink, "Usad: Unsupervised anomaly detection on multivariate time series," in <em>Proceedings of the 26th ACM SIGKDD international conference on knowledge discovery\ &amp; data mining</em>, ACM, 2020, pp. 3395--3404. Available: <a href="https://dl.acm.org/doi/10.1145/3394486.3403392">https://dl.acm.org/doi/10.1145/3394486.3403392</a>&nbsp;<a class="footnote-backref" href="#fnref:audibert2020usad" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:deng2021graph">
+<p>A. Deng and B. Hooi, "Graph neural network-based anomaly detection in multivariate time series," in <em>Proceedings of the AAAI conference on artificial intelligence</em>, 2021, pp. 4027--4035. Available: <a href="https://ojs.aaai.org/index.php/AAAI/article/view/16523">https://ojs.aaai.org/index.php/AAAI/article/view/16523</a>&nbsp;<a class="footnote-backref" href="#fnref:deng2021graph" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
+</ol>
+</div><script data-mkdocs-jupyter-mathjax="{&quot;url&quot;: &quot;https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js&quot;, &quot;version&quot;: 4}">
+/* Shared by full pages and Material's instant navigation. */
+(() => {
+  const config = JSON.parse(document.currentScript.dataset.mkdocsJupyterMathjax);
+  if (window.mkdocsJupyterMathJax) return;
+
+  let loading;
+  let queue = Promise.resolve();
+  let previous = [];
+
+  const ready = async () => {
+    if (!loading) {
+      loading = (async () => {
+        let math = window.MathJax;
+        if (!math?.typesetPromise) {
+          const url = new URL(config.url, document.baseURI).href;
+          const existing = Array.from(document.scripts).find(script =>
+            script.src && (script.src === url || script.id === 'MathJax-script' ||
+              (/mathjax/i.test(script.src) &&
+               /\/(?:MathJax|latest|(?:tex|mml)(?:-mml)?-(?:chtml|svg))\.js(?:[?#]|$)/i.test(script.src))));
+          if (existing) {
+            if (!math?.startup?.promise) {
+              await new Promise((resolve, reject) => {
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+              });
+            }
+          } else {
+            // Keep site macros, delimiters and startup hooks when supplied.
+            const options = math || {};
+            window.MathJax = {
+              ...options,
+              loader: {
+                ...options.loader,
+                load: Array.from(new Set(['ui/safe', ...(options.loader?.load || [])]))
+              },
+              startup: { typeset: false, ...options.startup },
+              tex: {
+                tags: 'ams',
+                useLabelIds: true,
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                ...options.tex
+              }
+            };
+            await new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.src = config.url;
+              script.id = 'MathJax-script';
+              script.async = true;
+              script.onload = resolve;
+              script.onerror = reject;
+              document.head.appendChild(script);
+            });
+          }
+        }
+        math = window.MathJax;
+        await math.startup.promise;
+        return math;
+      })();
+    }
+    const math = await loading;
+    // A site owner can extend the v3 queue again on each navigation.
+    await math.startup.promise;
+    return math;
+  };
+
+  const unrendered = node => {
+    if (node.matches('mjx-container')) return [];
+    if (!node.querySelector('mjx-container')) return [node];
+    // In v3, scanning generated assistive MathML again produces nested output.
+    return Array.from(node.children).flatMap(unrendered);
+  };
+
+  const refresh = () => {
+    // A separate chain also serializes v3, without changing v4's startup promise.
+    queue = queue.then(async () => {
+      const notebooks = Array.from(document.querySelectorAll('.jupyter-wrapper'));
+      if (!notebooks.length && !previous.length) return;
+      if (notebooks.length === previous.length &&
+          notebooks.every((node, index) => node === previous[index])) return;
+      const math = await ready();
+      if (previous.length) {
+        math.typesetClear(previous);
+        math.texReset();
+      }
+      previous = notebooks.filter(node => node.isConnected);
+      const pending = previous.flatMap(unrendered);
+      if (pending.length) await math.typesetPromise(pending);
+    }).catch(error => console.error('mkdocs-jupyter: MathJax rendering failed', error));
+    return queue;
+  };
+
+  window.mkdocsJupyterMathJax = { refresh };
+  const start = () => {
+    if (typeof document$ !== 'undefined') document$.subscribe(refresh);
+    else refresh();
+  };
+  // Theme bundles and user-provided MathJax scripts can follow notebook content.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else start();
+})();
+
+</script>
+
 
 
 
@@ -1412,7 +1646,7 @@ complejos por parte de los usuarios no especialistas.</p>
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="5 de octubre de 2026 23:01:10 UTC"><span class="timeago" datetime="2026-10-05T23:01:10+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="5 de octubre de 2026 23:01:10 UTC">2026-10-05</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="23 de octubre de 2026 03:14:04 UTC"><span class="timeago" datetime="2026-10-23T03:14:04+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="23 de octubre de 2026 03:14:04 UTC">2026-10-23</span>
   </span>
 
     
@@ -1515,7 +1749,114 @@ complejos por parte de los usuarios no especialistas.</p>
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  
+  <script data-mkdocs-jupyter-mathjax="{&quot;url&quot;: &quot;https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js&quot;, &quot;version&quot;: 4}">
+/* Shared by full pages and Material's instant navigation. */
+(() => {
+  const config = JSON.parse(document.currentScript.dataset.mkdocsJupyterMathjax);
+  if (window.mkdocsJupyterMathJax) return;
+
+  let loading;
+  let queue = Promise.resolve();
+  let previous = [];
+
+  const ready = async () => {
+    if (!loading) {
+      loading = (async () => {
+        let math = window.MathJax;
+        if (!math?.typesetPromise) {
+          const url = new URL(config.url, document.baseURI).href;
+          const existing = Array.from(document.scripts).find(script =>
+            script.src && (script.src === url || script.id === 'MathJax-script' ||
+              (/mathjax/i.test(script.src) &&
+               /\/(?:MathJax|latest|(?:tex|mml)(?:-mml)?-(?:chtml|svg))\.js(?:[?#]|$)/i.test(script.src))));
+          if (existing) {
+            if (!math?.startup?.promise) {
+              await new Promise((resolve, reject) => {
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+              });
+            }
+          } else {
+            // Keep site macros, delimiters and startup hooks when supplied.
+            const options = math || {};
+            window.MathJax = {
+              ...options,
+              loader: {
+                ...options.loader,
+                load: Array.from(new Set(['ui/safe', ...(options.loader?.load || [])]))
+              },
+              startup: { typeset: false, ...options.startup },
+              tex: {
+                tags: 'ams',
+                useLabelIds: true,
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                ...options.tex
+              }
+            };
+            await new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.src = config.url;
+              script.id = 'MathJax-script';
+              script.async = true;
+              script.onload = resolve;
+              script.onerror = reject;
+              document.head.appendChild(script);
+            });
+          }
+        }
+        math = window.MathJax;
+        await math.startup.promise;
+        return math;
+      })();
+    }
+    const math = await loading;
+    // A site owner can extend the v3 queue again on each navigation.
+    await math.startup.promise;
+    return math;
+  };
+
+  const unrendered = node => {
+    if (node.matches('mjx-container')) return [];
+    if (!node.querySelector('mjx-container')) return [node];
+    // In v3, scanning generated assistive MathML again produces nested output.
+    return Array.from(node.children).flatMap(unrendered);
+  };
+
+  const refresh = () => {
+    // A separate chain also serializes v3, without changing v4's startup promise.
+    queue = queue.then(async () => {
+      const notebooks = Array.from(document.querySelectorAll('.jupyter-wrapper'));
+      if (!notebooks.length && !previous.length) return;
+      if (notebooks.length === previous.length &&
+          notebooks.every((node, index) => node === previous[index])) return;
+      const math = await ready();
+      if (previous.length) {
+        math.typesetClear(previous);
+        math.texReset();
+      }
+      previous = notebooks.filter(node => node.isConnected);
+      const pending = previous.flatMap(unrendered);
+      if (pending.length) await math.typesetPromise(pending);
+    }).catch(error => console.error('mkdocs-jupyter: MathJax rendering failed', error));
+    return queue;
+  };
+
+  window.mkdocsJupyterMathJax = { refresh };
+  const start = () => {
+    if (typeof document$ !== 'undefined') document$.subscribe(refresh);
+    else refresh();
+  };
+  // Theme bundles and user-provided MathJax scripts can follow notebook content.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else start();
+})();
+
+</script>
+
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
 document$.subscribe(()=>{ lightbox.reload(); });
 </script></body></html>
