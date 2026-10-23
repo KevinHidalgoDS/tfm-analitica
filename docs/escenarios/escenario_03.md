@@ -1,3 +1,26 @@
+---
+title: Escenario 3
+author: "Kevin Ferney Hidalgo Higuita"
+date: "8 de Septiembre de 2026"
+institute: "Universidad Nacional de Colombia, Sede Medellín"
+description: "None."
+# --- Configuraciones para Pandoc (PDF) ---
+lang: es-CO
+bibliography: referencias.bib
+csl: ieee.csl
+# Formato visual del PDF (LaTeX)
+geometry:
+  - top=2.5cm
+  - bottom=2.5cm
+  - left=3cm
+  - right=2.5cm
+fontsize: 12pt
+linestretch: 1.15
+papersize: letter
+toc: true
+toc-depth: 2
+---
+
 # Escenario 3
 
 ## Datos
@@ -9,7 +32,8 @@
 
 ### 1. ¿Cuál es el problema?
 
-El problema general de investigación radica en la incapacidad de las técnicas convencionales de
+<!-- prettier-ignore -->
+<!-- El problema general de investigación radica en la incapacidad de las técnicas convencionales de
 análisis de datos para detectar con precisión observaciones atípicas (anomalías) en series
 temporales tabulares de alta dimensión, debido a su limitación para capturar dependencias no
 lineales y multivariadas complejas sin incurrir en altas tasas de falsos positivos o en la omisión
@@ -22,7 +46,72 @@ raramente ocurren como desviaciones aisladas en una sola planta, sino como alter
 las correlaciones temporales y espaciales cruzadas entre múltiples unidades interconectadas. Los
 enfoques actuales fallan al evaluar las variables de manera independiente o aislada, lo que impide
 detectar anomalías estructurales que se propagan por las restricciones de la red eléctrica y
-distorsionan la confiabilidad de la información operativa del mercado.
+distorsionan la confiabilidad de la información operativa del mercado. -->
+
+<!-- prettier-ignore -->
+<!-- El problema central radica en la incapacidad de los sistemas de monitoreo actuales para identificar
+desviaciones operacionales sutiles y acopladas en la generación eléctrica, lo que compromete la
+eficiencia económica y la confiabilidad del Mercado de Energía Mayorista. Abordar el conjunto de
+datos de "Generación Real por Planta" del SIMEM (Sistema de Información del Mercado de Energía
+Mayorista) presenta desafíos críticos por las siguientes razones:Impacto Económico y Operativo: Las
+anomalías operacionales, como caídas súbitas de generación, indisponibilidades no reportadas a
+tiempo o desviaciones del despacho programado, rara vez son eventos aislados. Cuando una planta
+falla en entregar su energía, el sistema interconectado (gestionado por XM) debe compensar esta
+deficiencia en tiempo real alterando el despacho económico, activando reservas o alterando los
+flujos de potencia. Esto se traduce directamente en sobrecostos operativos, ineficiencias en la
+formación de precios del mercado y riesgos para la estabilidad de la red.La Barrera Técnica (Por
+qué los métodos actuales fallan): Los datos poseen una estructura de alta dimensión ($N\text{
+plantas}\times T \text{horas} \times \text{tipo de combustible}$). Las técnicas convencionales
+(análisis univariado, umbrales estáticos o reglas de negocio independientes por planta) fracasan
+porque ignoran la naturaleza interconectada del sistema eléctrico. Una desviación en una unidad
+provoca alteraciones en las demás debido a las leyes físicas (flujos de potencia) y a las reglas
+del mercado (mérito económico y regulación de frecuencia).Fatiga de Alarmas y Puntos Ciegos: Al
+evaluar cada serie temporal de forma independiente, los enfoques tradicionales generan altas tasas
+de falsos positivos frente a dinámicas normales del sistema (como rampas de subida o cambios de
+despacho generalizados), y simultáneamente presentan "puntos ciegos" ante fallas sistémicas
+complejas que solo son evidentes al analizar la correlación espacio-temporal conjunta de las
+plantas. En síntesis, el problema es la falta de modelos analíticos capaces de capturar las
+dependencias no lineales y topológicas (físicas y de mercado) entre las plantas generadoras, lo que
+impide una detección temprana, precisa y contextual de las anomalías operacionales en el sistema
+colombiano. -->
+
+El Sistema Interconectado Nacional (SIN) y el Mercado de Energía Mayorista de Colombia (MEM),
+operados y administrados por XM, conforman una infraestructura crítica donde la confiabilidad
+operativa y la eficiencia económica están estrechamente acopladas. En este entorno, las anomalías
+operacionales en el parque generador —tales como caídas súbitas de generación, indisponibilidades
+no reportadas a tiempo o desviaciones sistemáticas respecto al despacho programado— rara vez
+constituyen eventos aislados. Debido a las leyes físicas que rigen los flujos de potencia y a las
+reglas de mérito económico del despacho, la falla o alteración en una unidad generadora obliga al
+sistema a compensar la deficiencia en tiempo real, propagando el impacto hacia otras plantas
+interconectadas [@xm2023informe].
+
+A pesar del riesgo sistémico que representan estas anomalías, los sistemas de monitoreo
+tradicionales y los enfoques analíticos convencionales enfrentan una severa limitación técnica:
+evalúan las series temporales de generación de forma independiente o mediante umbrales estáticos
+univariados. Esta aproximación resulta inadecuada para el conjunto de datos de "Generación Real por
+Planta" del Sistema de Información del Mercado de Energía Mayorista (SIMEM), el cual posee una alta
+dimensionalidad ($N\:\text{plantas}\:\times\:\text{horas}\:\times\text{tipo de combustible}$). Al
+ignorar las dependencias topológicas, físicas y de mercado, los métodos tradicionales generan altas
+tasas de falsos positivos frente a dinámicas sistémicas normales (como rampas de generación o
+reconfiguraciones de red) y, paradójicamente, presentan "puntos ciegos" ante fallas incipientes que
+solo son detectables al analizar la correlación espacio-temporal conjunta [@audibert2020usad].
+
+En el ámbito de la investigación local, existe una brecha metodológica significativa. Mientras que
+la literatura enfocada en el mercado eléctrico colombiano ha explotado exhaustivamente los datos
+del SIMEM para el pronóstico del precio de bolsa y la demanda, el problema de la detección de
+anomalías operacionales ha sido relegado a procesos de limpieza de datos mediante métodos
+estadísticos básicos (Z-score, rangos intercuartílicos). No existen marcos metodológicos
+consolidados en el contexto colombiano que implementen arquitecturas de aprendizaje profundo
+diseñadas explícitamente para el modelado de dependencias en grafos dinámicos o la reconstrucción
+de subespacios no lineales, enfoques que han demostrado superioridad en la reducción de falsos
+positivos en infraestructuras críticas complejas [@deng2021graph].
+
+En consecuencia, el problema fundamental radica en la ausencia de modelos analíticos multivariados
+y "conscientes del mercado" (Market-Aware) capaces de capturar las dependencias no lineales y
+estructurales entre las múltiples plantas del parque generador colombiano. Esta carencia impide la
+detección temprana, precisa y contextual de anomalías operacionales, limitando la capacidad de
+anticipar eventos que comprometen la seguridad del suministro y la formación eficiente de precios
+en el mercado.
 
 ### 2. ¿Por qué es importante?
 
@@ -90,3 +179,8 @@ supere con creces a los métodos univariados tradicionales, mitigando activament
 _data drift_, sesgos, ruido y _data leakage_. Así mismo, se espera que el tablero de visualización
 mejore notablemente el tiempo de interpretación y la comprensión de estos resultados complejos por
 parte de los usuarios no especialistas.
+
+
+## Referencias
+
+\bibliography
