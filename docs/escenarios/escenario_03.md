@@ -144,12 +144,12 @@ académica e industrial enfocada en el mercado eléctrico colombiano ha explotad
 datos del SIMEM, pero con un enfoque predominantemente predictivo. Estudios recientes se han
 concentrado en el desarrollo de modelos para el pronóstico del precio de bolsa y la estimación de
 la demanda mediante redes neuronales y modelos econométricos (ARIMA, LSTM), relegando la detección
-de anomalías a procesos de limpieza estadística previa [lopez2021precio].
+de anomalías a procesos de limpieza estadística previa [@lopez2021precio].
 
 Aunque han surgido estudios en la literatura económica nacional orientados a la identificación de
 anomalías operacionales y el poder de mercado en el sector eléctrico colombiano mediante Machine
 Learning —como los desarrollados en la serie de Borradores de Economía del Banco de la República
-[riascos2022deteccion]— estas importantes iniciativas aún no consolidan arquitecturas
+[@riascos2022deteccion]— estas importantes iniciativas aún no consolidan arquitecturas
 que integren explícitamente las dependencias en grafos dinámicos o la reconstrucción de subespacios
 no lineales, enfoques que han demostrado superioridad en la reducción de falsos positivos en
 infraestructuras críticas complejas [@deng2021graph].
