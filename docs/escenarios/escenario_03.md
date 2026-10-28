@@ -75,7 +75,8 @@ dependencias no lineales y topológicas (físicas y de mercado) entre las planta
 impide una detección temprana, precisa y contextual de las anomalías operacionales en el sistema
 colombiano. -->
 
-El Sistema Interconectado Nacional (SIN) y el Mercado de Energía Mayorista de Colombia (MEM),
+<!-- prettier-ignore -->
+<!--El Sistema Interconectado Nacional (SIN) y el Mercado de Energía Mayorista de Colombia (MEM),
 operados y administrados por XM, conforman una infraestructura crítica donde la confiabilidad
 operativa y la eficiencia económica están estrechamente acopladas. En este entorno, las anomalías
 operacionales en el parque generador —tales como caídas súbitas de generación, indisponibilidades
@@ -83,9 +84,10 @@ no reportadas a tiempo o desviaciones sistemáticas respecto al despacho program
 constituyen eventos aislados. Debido a las leyes físicas que rigen los flujos de potencia y a las
 reglas de mérito económico del despacho, la falla o alteración en una unidad generadora obliga al
 sistema a compensar la deficiencia en tiempo real, propagando el impacto hacia otras plantas
-interconectadas [@xm2023informe].
+interconectadas [@xm2023informe]. -->
 
-A pesar del riesgo sistémico que representan estas anomalías, los sistemas de monitoreo
+<!-- prettier-ignore -->
+<!--A pesar del riesgo sistémico que representan estas anomalías, los sistemas de monitoreo
 tradicionales y los enfoques analíticos convencionales enfrentan una severa limitación técnica:
 evalúan las series temporales de generación de forma independiente o mediante umbrales estáticos
 univariados. Esta aproximación resulta inadecuada para el conjunto de datos de "Generación Real por
@@ -94,9 +96,10 @@ dimensionalidad ($N\:\text{plantas}\:\times\:\text{horas}\:\times\text{tipo de c
 ignorar las dependencias topológicas, físicas y de mercado, los métodos tradicionales generan altas
 tasas de falsos positivos frente a dinámicas sistémicas normales (como rampas de generación o
 reconfiguraciones de red) y, paradójicamente, presentan "puntos ciegos" ante fallas incipientes que
-solo son detectables al analizar la correlación espacio-temporal conjunta [@audibert2020usad].
+solo son detectables al analizar la correlación espacio-temporal conjunta [@audibert2020usad]. -->
 
-En el ámbito de la investigación local, existe una brecha metodológica significativa. Mientras que
+<!-- prettier-ignore -->
+<!--En el ámbito de la investigación local, existe una brecha metodológica significativa. Mientras que
 la literatura enfocada en el mercado eléctrico colombiano ha explotado exhaustivamente los datos
 del SIMEM para el pronóstico del precio de bolsa y la demanda, el problema de la detección de
 anomalías operacionales ha sido relegado a procesos de limpieza de datos mediante métodos
@@ -104,7 +107,52 @@ estadísticos básicos (Z-score, rangos intercuartílicos). No existen marcos me
 consolidados en el contexto colombiano que implementen arquitecturas de aprendizaje profundo
 diseñadas explícitamente para el modelado de dependencias en grafos dinámicos o la reconstrucción
 de subespacios no lineales, enfoques que han demostrado superioridad en la reducción de falsos
-positivos en infraestructuras críticas complejas [@deng2021graph].
+positivos en infraestructuras críticas complejas [@deng2021graph]. -->
+
+<!-- prettier-ignore -->
+<!--En consecuencia, el problema fundamental radica en la ausencia de modelos analíticos multivariados
+y "conscientes del mercado" (Market-Aware) capaces de capturar las dependencias no lineales y
+estructurales entre las múltiples plantas del parque generador colombiano. Esta carencia impide la
+detección temprana, precisa y contextual de anomalías operacionales, limitando la capacidad de
+anticipar eventos que comprometen la seguridad del suministro y la formación eficiente de precios
+en el mercado. -->
+
+El Sistema Interconectado Nacional (SIN) y el Mercado de Energía Mayorista de Colombia (MEM),
+operados y administrados por XM, conforman una infraestructura crítica donde la confiabilidad
+operativa y la eficiencia económica están estrechamente acopladas. En este entorno, las anomalías
+operacionales en el parque generador —tales como caídas súbitas de generación, indisponibilidades
+no reportadas a tiempo o desviaciones sistemáticas respecto al despacho programado— rara vez
+constituyen eventos aislados. Debido a las leyes físicas que rigen los flujos de potencia y a las
+reglas de mérito económico del despacho, la falla o alteración en una unidad generadora obliga al
+sistema a compensar la deficiencia en tiempo real, propagando el impacto hacia otras plantas
+interconectadas. Esta vulnerabilidad ante la simultaneidad de eventos e indisponibilidades ha sido
+documentada en los balances de confiabilidad y desempeño operativo del sistema [@xm2023informe].
+
+A pesar del riesgo sistémico que representan estas anomalías, los sistemas de monitoreo
+tradicionales y los enfoques analíticos convencionales enfrentan una severa limitación técnica:
+evalúan las series temporales de generación de forma independiente o mediante umbrales estáticos
+univariados. Esta aproximación resulta inadecuada para el conjunto de datos de "Generación Real por
+Planta" del Sistema de Información del Mercado de Energía Mayorista (SIMEM), el cual posee una alta
+dimensionalidad ($N$ plantas $\times$ $T$ horas $\times$ tipo de combustible). Al ignorar las
+dependencias topológicas, físicas y de mercado, los métodos tradicionales generan altas tasas de
+falsos positivos frente a dinámicas sistémicas normales (como rampas de generación o
+reconfiguraciones de red) y, paradójicamente, presentan "puntos ciegos" ante fallas incipientes que
+solo son detectables al analizar la correlación espacio-temporal conjunta [@audibert2020usad].
+
+En el ámbito de la investigación local, existe una brecha metodológica significativa. La literatura
+académica e industrial enfocada en el mercado eléctrico colombiano ha explotado exhaustivamente los
+datos del SIMEM, pero con un enfoque predominantemente predictivo. Estudios recientes se han
+concentrado en el desarrollo de modelos para el pronóstico del precio de bolsa y la estimación de
+la demanda mediante redes neuronales y modelos econométricos (ARIMA, LSTM), relegando la detección
+de anomalías a procesos de limpieza estadística previa [lopez2021precio].
+
+Aunque han surgido estudios en la literatura económica nacional orientados a la identificación de
+anomalías operacionales y el poder de mercado en el sector eléctrico colombiano mediante Machine
+Learning —como los desarrollados en la serie de Borradores de Economía del Banco de la República
+[riascos2022deteccion]— estas importantes iniciativas aún no consolidan arquitecturas
+que integren explícitamente las dependencias en grafos dinámicos o la reconstrucción de subespacios
+no lineales, enfoques que han demostrado superioridad en la reducción de falsos positivos en
+infraestructuras críticas complejas [@deng2021graph].
 
 En consecuencia, el problema fundamental radica en la ausencia de modelos analíticos multivariados
 y "conscientes del mercado" (Market-Aware) capaces de capturar las dependencias no lineales y
@@ -179,7 +227,6 @@ supere con creces a los métodos univariados tradicionales, mitigando activament
 _data drift_, sesgos, ruido y _data leakage_. Así mismo, se espera que el tablero de visualización
 mejore notablemente el tiempo de interpretación y la comprensión de estos resultados complejos por
 parte de los usuarios no especialistas.
-
 
 ## Referencias
 
