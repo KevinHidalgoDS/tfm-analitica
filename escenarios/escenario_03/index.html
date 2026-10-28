@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -30,10 +30,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -1412,6 +1412,48 @@ dependencias no lineales y topológicas (físicas y de mercado) entre las planta
 impide una detección temprana, precisa y contextual de las anomalías operacionales en el sistema
 colombiano. -->
 
+<!-- prettier-ignore -->
+<!--El Sistema Interconectado Nacional (SIN) y el Mercado de Energía Mayorista de Colombia (MEM),
+operados y administrados por XM, conforman una infraestructura crítica donde la confiabilidad
+operativa y la eficiencia económica están estrechamente acopladas. En este entorno, las anomalías
+operacionales en el parque generador —tales como caídas súbitas de generación, indisponibilidades
+no reportadas a tiempo o desviaciones sistemáticas respecto al despacho programado— rara vez
+constituyen eventos aislados. Debido a las leyes físicas que rigen los flujos de potencia y a las
+reglas de mérito económico del despacho, la falla o alteración en una unidad generadora obliga al
+sistema a compensar la deficiencia en tiempo real, propagando el impacto hacia otras plantas
+interconectadas [^xm2023informe]. -->
+
+<!-- prettier-ignore -->
+<!--A pesar del riesgo sistémico que representan estas anomalías, los sistemas de monitoreo
+tradicionales y los enfoques analíticos convencionales enfrentan una severa limitación técnica:
+evalúan las series temporales de generación de forma independiente o mediante umbrales estáticos
+univariados. Esta aproximación resulta inadecuada para el conjunto de datos de "Generación Real por
+Planta" del Sistema de Información del Mercado de Energía Mayorista (SIMEM), el cual posee una alta
+dimensionalidad ($N\:\text{plantas}\:\times\:\text{horas}\:\times\text{tipo de combustible}$). Al
+ignorar las dependencias topológicas, físicas y de mercado, los métodos tradicionales generan altas
+tasas de falsos positivos frente a dinámicas sistémicas normales (como rampas de generación o
+reconfiguraciones de red) y, paradójicamente, presentan "puntos ciegos" ante fallas incipientes que
+solo son detectables al analizar la correlación espacio-temporal conjunta [^audibert2020usad]. -->
+
+<!-- prettier-ignore -->
+<!--En el ámbito de la investigación local, existe una brecha metodológica significativa. Mientras que
+la literatura enfocada en el mercado eléctrico colombiano ha explotado exhaustivamente los datos
+del SIMEM para el pronóstico del precio de bolsa y la demanda, el problema de la detección de
+anomalías operacionales ha sido relegado a procesos de limpieza de datos mediante métodos
+estadísticos básicos (Z-score, rangos intercuartílicos). No existen marcos metodológicos
+consolidados en el contexto colombiano que implementen arquitecturas de aprendizaje profundo
+diseñadas explícitamente para el modelado de dependencias en grafos dinámicos o la reconstrucción
+de subespacios no lineales, enfoques que han demostrado superioridad en la reducción de falsos
+positivos en infraestructuras críticas complejas [^deng2021graph]. -->
+
+<!-- prettier-ignore -->
+<!--En consecuencia, el problema fundamental radica en la ausencia de modelos analíticos multivariados
+y "conscientes del mercado" (Market-Aware) capaces de capturar las dependencias no lineales y
+estructurales entre las múltiples plantas del parque generador colombiano. Esta carencia impide la
+detección temprana, precisa y contextual de anomalías operacionales, limitando la capacidad de
+anticipar eventos que comprometen la seguridad del suministro y la formación eficiente de precios
+en el mercado. -->
+
 <p>El Sistema Interconectado Nacional (SIN) y el Mercado de Energía Mayorista de Colombia (MEM),
 operados y administrados por XM, conforman una infraestructura crítica donde la confiabilidad
 operativa y la eficiencia económica están estrechamente acopladas. En este entorno, las anomalías
@@ -1420,26 +1462,31 @@ no reportadas a tiempo o desviaciones sistemáticas respecto al despacho program
 constituyen eventos aislados. Debido a las leyes físicas que rigen los flujos de potencia y a las
 reglas de mérito económico del despacho, la falla o alteración en una unidad generadora obliga al
 sistema a compensar la deficiencia en tiempo real, propagando el impacto hacia otras plantas
-interconectadas <sup id="fnref:xm2023informe"><a class="footnote-ref" href="#fn:xm2023informe">1</a></sup>.</p>
+interconectadas. Esta vulnerabilidad ante la simultaneidad de eventos e indisponibilidades ha sido
+documentada en los balances de confiabilidad y desempeño operativo del sistema <sup id="fnref:xm2023informe"><a class="footnote-ref" href="#fn:xm2023informe">1</a></sup>.</p>
 <p>A pesar del riesgo sistémico que representan estas anomalías, los sistemas de monitoreo
 tradicionales y los enfoques analíticos convencionales enfrentan una severa limitación técnica:
 evalúan las series temporales de generación de forma independiente o mediante umbrales estáticos
 univariados. Esta aproximación resulta inadecuada para el conjunto de datos de "Generación Real por
 Planta" del Sistema de Información del Mercado de Energía Mayorista (SIMEM), el cual posee una alta
-dimensionalidad (<span class="arithmatex">\(N\:\text{plantas}\:\times\:\text{horas}\:\times\text{tipo de combustible}\)</span>). Al
-ignorar las dependencias topológicas, físicas y de mercado, los métodos tradicionales generan altas
-tasas de falsos positivos frente a dinámicas sistémicas normales (como rampas de generación o
+dimensionalidad (<span class="arithmatex">\(N\)</span> plantas <span class="arithmatex">\(\times\)</span> <span class="arithmatex">\(T\)</span> horas <span class="arithmatex">\(\times\)</span> tipo de combustible). Al ignorar las
+dependencias topológicas, físicas y de mercado, los métodos tradicionales generan altas tasas de
+falsos positivos frente a dinámicas sistémicas normales (como rampas de generación o
 reconfiguraciones de red) y, paradójicamente, presentan "puntos ciegos" ante fallas incipientes que
 solo son detectables al analizar la correlación espacio-temporal conjunta <sup id="fnref:audibert2020usad"><a class="footnote-ref" href="#fn:audibert2020usad">2</a></sup>.</p>
-<p>En el ámbito de la investigación local, existe una brecha metodológica significativa. Mientras que
-la literatura enfocada en el mercado eléctrico colombiano ha explotado exhaustivamente los datos
-del SIMEM para el pronóstico del precio de bolsa y la demanda, el problema de la detección de
-anomalías operacionales ha sido relegado a procesos de limpieza de datos mediante métodos
-estadísticos básicos (Z-score, rangos intercuartílicos). No existen marcos metodológicos
-consolidados en el contexto colombiano que implementen arquitecturas de aprendizaje profundo
-diseñadas explícitamente para el modelado de dependencias en grafos dinámicos o la reconstrucción
-de subespacios no lineales, enfoques que han demostrado superioridad en la reducción de falsos
-positivos en infraestructuras críticas complejas <sup id="fnref:deng2021graph"><a class="footnote-ref" href="#fn:deng2021graph">3</a></sup>.</p>
+<p>En el ámbito de la investigación local, existe una brecha metodológica significativa. La literatura
+académica e industrial enfocada en el mercado eléctrico colombiano ha explotado exhaustivamente los
+datos del SIMEM, pero con un enfoque predominantemente predictivo. Estudios recientes se han
+concentrado en el desarrollo de modelos para el pronóstico del precio de bolsa y la estimación de
+la demanda mediante redes neuronales y modelos econométricos (ARIMA, LSTM), relegando la detección
+de anomalías a procesos de limpieza estadística previa [lopez2021precio].</p>
+<p>Aunque han surgido estudios en la literatura económica nacional orientados a la identificación de
+anomalías operacionales y el poder de mercado en el sector eléctrico colombiano mediante Machine
+Learning —como los desarrollados en la serie de Borradores de Economía del Banco de la República
+[riascos2022deteccion]— estas importantes iniciativas aún no consolidan arquitecturas
+que integren explícitamente las dependencias en grafos dinámicos o la reconstrucción de subespacios
+no lineales, enfoques que han demostrado superioridad en la reducción de falsos positivos en
+infraestructuras críticas complejas <sup id="fnref:deng2021graph"><a class="footnote-ref" href="#fn:deng2021graph">3</a></sup>.</p>
 <p>En consecuencia, el problema fundamental radica en la ausencia de modelos analíticos multivariados
 y "conscientes del mercado" (Market-Aware) capaces de capturar las dependencias no lineales y
 estructurales entre las múltiples plantas del parque generador colombiano. Esta carencia impide la
@@ -1646,7 +1693,7 @@ parte de los usuarios no especialistas.</p>
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="23 de octubre de 2026 03:14:04 UTC"><span class="timeago" datetime="2026-10-23T03:14:04+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="23 de octubre de 2026 03:14:04 UTC">2026-10-23</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="28 de octubre de 2026 03:24:30 UTC"><span class="timeago" datetime="2026-10-28T03:24:30+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="28 de octubre de 2026 03:24:30 UTC">2026-10-28</span>
   </span>
 
     
@@ -1735,10 +1782,10 @@ parte de los usuarios no especialistas.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.path", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.path", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       
