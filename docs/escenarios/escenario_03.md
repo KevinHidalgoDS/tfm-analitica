@@ -149,17 +149,19 @@ de anomalías a procesos de limpieza estadística previa [@lopez2021precio].
 Aunque han surgido estudios en la literatura económica nacional orientados a la identificación de
 anomalías operacionales y el poder de mercado en el sector eléctrico colombiano mediante Machine
 Learning —como los desarrollados en la serie de Borradores de Economía del Banco de la República
-[@riascos2022deteccion]— estas importantes iniciativas aún no consolidan arquitecturas
-que integren explícitamente las dependencias en grafos dinámicos o la reconstrucción de subespacios
-no lineales, enfoques que han demostrado superioridad en la reducción de falsos positivos en
-infraestructuras críticas complejas [@deng2021graph].
+[@riascos2022deteccion]— estas importantes iniciativas aún no consolidan arquitecturas que integren
+explícitamente las dependencias en grafos dinámicos o la reconstrucción de subespacios no lineales,
+enfoques que han demostrado superioridad en la reducción de falsos positivos en infraestructuras
+críticas complejas [@deng2021graph].
 
-En consecuencia, el problema fundamental radica en la ausencia de modelos analíticos multivariados
-y "conscientes del mercado" (Market-Aware) capaces de capturar las dependencias no lineales y
-estructurales entre las múltiples plantas del parque generador colombiano. Esta carencia impide la
-detección temprana, precisa y contextual de anomalías operacionales, limitando la capacidad de
-anticipar eventos que comprometen la seguridad del suministro y la formación eficiente de precios
-en el mercado.
+En consecuencia, el problema no radica estrictamente en una ausencia de modelos analíticos en la
+industria, sino en que los enfoques basados en una sola variable o en el análisis aislado de cada
+planta podrían estar dejando por fuera señales sistémicas importantes. Al no capturar las
+dependencias no lineales y estructurales (físicas y de mercado) entre las múltiples unidades del
+parque generador colombiano, se pierde información valiosa sobre el estado global de la red.
+Incorporar estas señales subyacentes mediante arquitecturas multivariadas y "conscientes del
+mercado" (Market-Aware) permitiría una mejor gestión de las anomalías operacionales, contribuyendo
+así directamente a la resiliencia del sistema eléctrico y a la seguridad del suministro.
 
 ### 2. ¿Por qué es importante?
 
