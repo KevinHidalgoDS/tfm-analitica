@@ -1303,16 +1303,18 @@ de anomalías a procesos de limpieza estadística previa <sup id="fnref:lopez202
 <p>Aunque han surgido estudios en la literatura económica nacional orientados a la identificación de
 anomalías operacionales y el poder de mercado en el sector eléctrico colombiano mediante Machine
 Learning —como los desarrollados en la serie de Borradores de Economía del Banco de la República
-<sup id="fnref:riascos2022deteccion"><a class="footnote-ref" href="#fn:riascos2022deteccion">5</a></sup>— estas importantes iniciativas aún no consolidan arquitecturas
-que integren explícitamente las dependencias en grafos dinámicos o la reconstrucción de subespacios
-no lineales, enfoques que han demostrado superioridad en la reducción de falsos positivos en
-infraestructuras críticas complejas <sup id="fnref:deng2021graph"><a class="footnote-ref" href="#fn:deng2021graph">3</a></sup>.</p>
-<p>En consecuencia, el problema fundamental radica en la ausencia de modelos analíticos multivariados
-y "conscientes del mercado" (Market-Aware) capaces de capturar las dependencias no lineales y
-estructurales entre las múltiples plantas del parque generador colombiano. Esta carencia impide la
-detección temprana, precisa y contextual de anomalías operacionales, limitando la capacidad de
-anticipar eventos que comprometen la seguridad del suministro y la formación eficiente de precios
-en el mercado.</p>
+<sup id="fnref:riascos2022deteccion"><a class="footnote-ref" href="#fn:riascos2022deteccion">5</a></sup>— estas importantes iniciativas aún no consolidan arquitecturas que integren
+explícitamente las dependencias en grafos dinámicos o la reconstrucción de subespacios no lineales,
+enfoques que han demostrado superioridad en la reducción de falsos positivos en infraestructuras
+críticas complejas <sup id="fnref:deng2021graph"><a class="footnote-ref" href="#fn:deng2021graph">3</a></sup>.</p>
+<p>En consecuencia, el problema no radica estrictamente en una ausencia de modelos analíticos en la
+industria, sino en que los enfoques basados en una sola variable o en el análisis aislado de cada
+planta podrían estar dejando por fuera señales sistémicas importantes. Al no capturar las
+dependencias no lineales y estructurales (físicas y de mercado) entre las múltiples unidades del
+parque generador colombiano, se pierde información valiosa sobre el estado global de la red.
+Incorporar estas señales subyacentes mediante arquitecturas multivariadas y "conscientes del
+mercado" (Market-Aware) permitiría una mejor gestión de las anomalías operacionales, contribuyendo
+así directamente a la resiliencia del sistema eléctrico y a la seguridad del suministro.</p>
 <h3 id="2-por-que-es-importante">2. ¿Por qué es importante?<a class="headerlink" href="#2-por-que-es-importante" title="Permanent link">¶</a></h3>
 <p>La calidad de los datos es fundamental, pues de ella depende la validez de los análisis analíticos
 que apoyan la toma de decisiones, pudiendo verse afectada por errores de medición, fallas de
@@ -1519,7 +1521,7 @@ parte de los usuarios no especialistas.</p>
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="28 de octubre de 2026 11:16:08 UTC"><span class="timeago" datetime="2026-10-28T11:16:08+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="28 de octubre de 2026 11:16:08 UTC">2026-10-28</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="4 de noviembre de 2026 02:07:22 UTC"><span class="timeago" datetime="2026-11-04T02:07:22+00:00" locale="es"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="4 de noviembre de 2026 02:07:22 UTC">2026-11-04</span>
   </span>
 
     
